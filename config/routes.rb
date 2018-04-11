@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get 'description'
       get 'photo_upload'
       get 'amenities'
+      get 'lifestyles'
       get 'location'
       get 'preload'
       get 'preview'

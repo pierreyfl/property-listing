@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= render 'room_menu' %>
+  </div>
+  <div class="col-md-9">
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+        Life Style Category
+      </div>
+
+      <div class="panel-body">
+        <div class="container">
+          <%= form_for @room do |f| %>
+            <div class="row form-group">
+              <div class="col-md-4">
+                <%= f.check_box :is_tv %> Category A
+              </div>
+              <div class="col-md-4">
+                <%= f.check_box :is_kitchen %> Category B
+              </div>
+              <div class="col-md-4">
+                <%= f.check_box :is_internet %> Category C
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-4">
+                <%= f.check_box :is_heating %> Category D
+              </div>
+              <div class="col-md-4">
+                <%= f.check_box :is_air %> Category E
+              </div>
+            </div>
+            <br/><br/>
+
+            <div class="text-center">
+              <%= f.submit "Save", class: "btn btn-form" %>
+            </div>
+
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

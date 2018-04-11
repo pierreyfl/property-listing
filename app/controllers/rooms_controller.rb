@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
 
   before_action :set_room, except: [:index, :new, :create]
   before_action :authenticate_user!, except: [:show, :preload, :preview]
-  before_action :is_authorised, only: [:listing, :pricing, :description, :photo_upload, :amenities, :location, :update]
+  before_action :is_authorised, only: [:listing, :pricing, :description, :photo_upload, :amenities, :location, :update, :lifestyles]
 
   def index
     @rooms = current_user.rooms
@@ -46,6 +46,9 @@ class RoomsController < ApplicationController
   end
 
   def amenities
+  end
+
+  def lifestyles
   end
 
   def location
@@ -111,7 +114,7 @@ class RoomsController < ApplicationController
   end
 
   def room_params
-    params.require(:room).permit(:home_type, :room_type, :accommodate, :bed_room, :bath_room, :listing_name, :summary, :address, :is_tv, :is_kitchen, :is_air, :is_heating, :is_internet, :price, :active, :instant)
+    params.require(:room).permit(:is_rent, :home_type, :room_type, :accommodate, :bed_room, :bath_room, :listing_name, :summary, :address, :is_tv, :is_kitchen, :is_air, :is_heating, :is_internet, :price, :active, :instant)
   end
 
 end

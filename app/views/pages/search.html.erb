@@ -17,7 +17,7 @@
         <%= search_form_for @search, url: search_path, remote: true do |f| %>
 
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
               <label>Price Range:</label>
               <div id="slider-range"></div>
             </div>
@@ -28,6 +28,10 @@
             <div class="col-md-2">
               <label>Max Price:</label>
               <%= f.text_field :price_lteq, class: "form-control" %>
+            </div>
+            <div class="col-md-2">
+              <%= f.radio_button :is_rent_eq, 1 %> <label>Rent<label> &nbsp;
+              <%= f.radio_button :is_rent_eq, 0  %> <label>Buy<label>
             </div>
           </div>
           <hr/>
@@ -95,6 +99,24 @@
             </div>
           </div>
           <hr/>
+
+          <div class="row">
+            <div class="col-md-4">
+              <%= check_box_tag "q[is_tv_eq]", true %> Category A
+            </div>
+            <div class="col-md-4">
+              <%= check_box_tag "q[is_kitchen_eq]", true %> Category B
+            </div>
+            <div class="col-md-4">
+              <%= check_box_tag "q[is_internet_eq]", true %> Category C
+            </div>
+            <div class="col-md-4">
+              <%= check_box_tag "q[is_heating_eq]", true %> Category D
+            </div>
+            <div class="col-md-4">
+              <%= check_box_tag "q[is_air_eq]", true %> Category E
+            </div>
+          </div>
 
           <div class="row text-center">
             <%= f.submit "Search", class: "btn btn-form" %>

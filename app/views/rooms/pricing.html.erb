@@ -19,6 +19,14 @@
                 <%= f.text_field :price, placeholder: "eg: $100", class: "form-control", required: true %>
               </div>
             </div>
+            <div class="row">
+              <div class="form-group">
+                <%= f.radio_button :is_rent, 1, checked: (f.object.is_rent) %> <label>Rent<label> &nbsp;
+                <%= f.radio_button :is_rent, 0, checked: (!f.object.is_rent) %> <label>Buy<label>
+
+
+              </div>
+            </div>
 
             <div class="text-center">
               <%= f.submit "Save", class: "btn btn-form" %>
