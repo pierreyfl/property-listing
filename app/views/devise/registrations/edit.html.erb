@@ -23,6 +23,14 @@
             </div>
 
             <div class="form-group">
+              <%= f.text_field :date_of_birth, placeholder: "Date of Birth", class: "datepicker form-control", value: f.object.date_of_birth.try(:strftime, '%d-%m-%Y') %>
+            </div>
+
+            <div class="form-group">
+              <%= f.text_field :interested_location, placeholder: "Interested Location in buying", class: "form-control" %>
+            </div>
+
+            <div class="form-group">
               <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control" %>
             </div>
 
@@ -100,7 +108,7 @@
       </div>
 
       <div class="modal-body">
-        <%= form_for current_user, url: verify_phone_number_user_path(current_user), method: :post do |f| %>
+        <%= form_for current_user, url: verify_phone_number_user_path(current_user), method: :post, html: {id: 'edit_usersss'} do |f| %>
           <div class="form-group">
             <%= f.phone_field :pin, class: "form-control", placeholder: "Your Verification Code", value: "" %>
           </div>
