@@ -68,6 +68,7 @@
         <li<% if current_page?(revenues_path) %> class="active" <% end %> ><%= link_to "Revenues", revenues_path %></li>
         <li<% if current_page?(host_calendar_path) %> class="active" <% end %> ><%= link_to "Host Calendar", host_calendar_path %></li>
         <li<% if current_page?(payment_method_path) %> class="active" <% end %> ><%= link_to "Account Settings", payment_method_path %></li>
+        <li<% if current_page?(agency_roles_path) && current_user.has_role?(:agency_admin) %> class="active" <% end %> ><%= link_to "Agency Roles", agency_roles_path %></li>
       </ul>
     </div>
   </nav>

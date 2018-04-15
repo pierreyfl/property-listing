@@ -1,0 +1,6 @@
+<select class="stateSelect" name="agent[state]" id="agent_state">
+  <option value=""></option>
+  <%= states.each do |k, v| %>
+    <option value="<%= k %>"><%= v %></option>
+  <% end %>
+</select>

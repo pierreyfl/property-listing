@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= render 'shared/agent_setting_sidebar' %>
+  </div>
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">Agency Roles</div>
+      <div class="panel-body">
+        <div class="container">
+          <%= form_for :agency_role, url: agency_roles_path do |f| %>
+            <div class="form-group">
+              <label>Name</label>
+              <%= f.text_field :name, class: "form-control", placeholder: "agent" %>
+            </div>
+            <%= f.submit :submit, class: "btn btn-normal" %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
