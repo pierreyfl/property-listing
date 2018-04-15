@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_agency
-    @current_agency = Agency.find_by(id: current_user.userable_id)
+    @current_agency ||= Agency.find_by(id: current_user.userable_id)
   end
 end

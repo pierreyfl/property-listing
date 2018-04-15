@@ -1,4 +1,5 @@
 class AgentsController < ApplicationController
+  before_action :authenticate_agency_admin
   def index
     @agents = current_agency.agents
   end
@@ -45,5 +46,12 @@ class AgentsController < ApplicationController
     end
 
     {country: country, state: state, city: city}
+  end
+
+  def authenticate_agency_admin
+    unless current_user.has_role?(:agency_admin, current_agency)
+      flash[:danger] = "You have no permission to operate"
+      redirect_to '/'
+    end
   end
 end
