@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180411180911) do
+ActiveRecord::Schema.define(version: 20180415064826) do
+
+  create_table "agencies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "agents", force: :cascade do |t|
+    t.string "photo"
+    t.string "cover_photo"
+    t.string "name"
+    t.string "title"
+    t.string "phone_number"
+    t.string "email"
+    t.integer "years_experience"
+    t.integer "agency_id"
+    t.string "description", limit: 500
+    t.string "address"
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "calendars", force: :cascade do |t|
     t.date "day"
@@ -56,6 +80,13 @@ ActiveRecord::Schema.define(version: 20180411180911) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.index ["room_id"], name: "index_photos_on_room_id"
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.string "name"
+    t.integer "agent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -152,6 +183,8 @@ ActiveRecord::Schema.define(version: 20180411180911) do
     t.integer "unread", default: 0
     t.date "date_of_birth"
     t.string "interested_location"
+    t.integer "userable_id"
+    t.string "userable_type"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

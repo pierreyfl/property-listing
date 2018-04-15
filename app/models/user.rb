@@ -13,6 +13,9 @@ class User < ApplicationRecord
   has_many :notifications
 
   has_one :setting
+
+  belongs_to :userable, polymorphic: true
+
   after_create :add_setting
 
   def add_setting
