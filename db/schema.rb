@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180415065957) do
+ActiveRecord::Schema.define(version: 20180415154403) do
 
   create_table "agencies", force: :cascade do |t|
     t.string "name"
@@ -19,8 +19,6 @@ ActiveRecord::Schema.define(version: 20180415065957) do
   end
 
   create_table "agents", force: :cascade do |t|
-    t.string "photo"
-    t.string "cover_photo"
     t.string "name"
     t.string "title"
     t.string "phone_number"
@@ -34,6 +32,14 @@ ActiveRecord::Schema.define(version: 20180415065957) do
     t.string "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string "cover_photo_file_name"
+    t.string "cover_photo_content_type"
+    t.integer "cover_photo_file_size"
+    t.datetime "cover_photo_updated_at"
   end
 
   create_table "calendars", force: :cascade do |t|

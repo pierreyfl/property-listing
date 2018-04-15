@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   has_one :setting
 
-  belongs_to :userable, polymorphic: true
+  belongs_to :userable, polymorphic: true, optional: true
 
   after_create :add_setting
 
