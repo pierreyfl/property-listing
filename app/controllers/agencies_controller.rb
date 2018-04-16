@@ -1,4 +1,6 @@
 class AgenciesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authenticate_super_admin
   def index
     @agencies = Agency.all
   end
@@ -25,6 +27,15 @@ class AgenciesController < ApplicationController
   private
   def agency_params
     params.require(:agency).permit(:email, :name)
+  end
+
+  def authenticate_super_admin
+    # only super_admin can do agency creation and other operations
+    unless current_user.has_role? :super_admin
+      flash[:error] = "You don't have permission!"
+      redirect_to dashboard_path
+    end
+
   end
 
 end

@@ -1,7 +1,7 @@
 $(document).ready(function() {
     var form = $('.selectedRegion');
     // replace states select options once country selection change
-    $('body').on('change', '.countrySelect', function(){
+    $('.countrySelect').on('change', function(){
         $('.stateSelect').empty();
         $('.citySelect').empty();
         form.find('.selectedCountry').val($('.countrySelect').val());

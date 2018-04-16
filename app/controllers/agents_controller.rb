@@ -19,7 +19,10 @@ class AgentsController < ApplicationController
 
   def create
     @user = User.find_by(email: agent_params[:email])
-    render :new unless @user.present?
+    unless @user.present?
+      flash[:error] = "User doesn't exist, let agent register an account first"
+      return redirect_to dashboard_path
+    end
 
     region_info = process_region_info(agent_params)
     agent_params.merge!(region_info)
