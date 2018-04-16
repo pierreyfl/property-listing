@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_agency
+    # current_agency will return current logged user's agency, if the logged in user doesn't have +:agency_admin+ role, it will redirect to home
     unless current_user.roles.where(name: :agency_admin).exists?
       flash[:error] = "You dont have permission"
       redirect_to '/'

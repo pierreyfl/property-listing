@@ -2,6 +2,7 @@ class RegionController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:search]
 
   def search
+    # render state, city with giving country id, state id
     country = region_params[:country]
     state = region_params[:state]
     if country.present? && state.blank?
