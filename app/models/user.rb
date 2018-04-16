@@ -15,6 +15,18 @@ class User < ApplicationRecord
 
   has_one :setting
 
+  # Use polymorphic association since agent and agency admin need login feature, the reason for not using STI(single table inheritance)
+  # is under the consideration of future maintenance.
+  #
+  # Usage:
+  #   agent = Agent.first
+  #   agent.user
+  #   => #<User ...>
+  #
+  #   agency = Agency.first
+  #   agency.user
+  #   => #<User ...>
+  #
   belongs_to :userable, polymorphic: true, optional: true
 
   after_create :add_setting
@@ -66,6 +78,7 @@ class User < ApplicationRecord
     !self.merchant_id.blank?
   end
 
+  # helper method for creating super admin account in rails console
   def self.create_super_admin(email:, password:, fullname:)
     transaction do
       user = User.create!(email: email, password: password, fullname: fullname)
