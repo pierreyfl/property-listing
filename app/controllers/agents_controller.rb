@@ -1,5 +1,5 @@
 class AgentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
   before_action :authenticate_agency_admin, except: [:show]
   before_action only: [:show] do
     track_referer(params[:id], 'Agent')
