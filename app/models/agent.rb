@@ -8,6 +8,6 @@ class Agent < ApplicationRecord
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/
   validates_attachment_content_type :cover_photo, content_type: /\Aimage\/.*\z/
 
-  # Use polymorphic association, so that referer tracking is able to suit for multiple models
+  # Use polymorphic association, so that referer tracking can suit for multiple models
   has_many :page_views, as: :trackable
 end
