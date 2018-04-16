@@ -15,6 +15,30 @@ class ApplicationController < ActionController::Base
   end
 
   def current_agency
+    unless current_user.roles.where(name: :agency_admin).exists?
+      flash[:error] = "You dont have permission"
+      redirect_to '/'
+    end
     @current_agency ||= Agency.find_by(id: current_user.userable_id)
   end
+
+  def current_agent
+    @current_agent ||= Agent.find_by(id: current_user.userable_id)
+  end
+
+  def track_referer(trackable_id, trackable_type)
+    referer = request.referer
+    return if referer.nil?
+    domain = get_domain(referer)
+    page_view = PageView.find_or_initialize_by(domain: domain, trackable_id: trackable_id, trackable_type: trackable_type)
+    page_view.count += 1
+    page_view.save!
+  end
+
+  def get_domain(url)
+    url = "http://#{url}" if URI.parse(url).scheme.nil?
+    host = URI.parse(url).host.downcase
+    host.start_with?('www.') ? host[4..-1] : host
+  end
+
 end

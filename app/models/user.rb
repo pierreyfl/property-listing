@@ -66,4 +66,16 @@ class User < ApplicationRecord
     !self.merchant_id.blank?
   end
 
+  def self.create_super_admin(email:, password:, fullname:)
+    transaction do
+      user = User.create!(email: email, password: password, fullname: fullname)
+      user.add_role :super_admin
+    end
+  end
+
+  def agency
+    role = self.roles.where(resource_type: "Agency").first
+    Agency.find_by(id: role.resource_id)
+  end
+
 end

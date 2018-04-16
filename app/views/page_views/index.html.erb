@@ -1,0 +1,16 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Domain</th>
+    <th>Count</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @page_views.each do |page_view| %>
+  <tr>
+    <td><%= page_view.domain %></td>
+    <td><%= page_view.count %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>

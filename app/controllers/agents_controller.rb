@@ -1,5 +1,14 @@
 class AgentsController < ApplicationController
-  before_action :authenticate_agency_admin
+  before_action :authenticate_user!
+  before_action :authenticate_agency_admin, except: [:show]
+  before_action only: [:show] do
+    track_referer(params[:id], 'Agent')
+  end
+
+  def show
+    @agent = Agent.find(params[:id])
+  end
+
   def index
     @agents = current_agency.agents
   end
@@ -54,4 +63,5 @@ class AgentsController < ApplicationController
       redirect_to '/'
     end
   end
+
 end

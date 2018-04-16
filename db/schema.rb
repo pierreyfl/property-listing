@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180415154403) do
+ActiveRecord::Schema.define(version: 20180415171218) do
 
   create_table "agencies", force: :cascade do |t|
     t.string "name"
@@ -75,6 +75,16 @@ ActiveRecord::Schema.define(version: 20180415154403) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "page_views", force: :cascade do |t|
+    t.string "domain"
+    t.integer "count", default: 0
+    t.integer "trackable_id"
+    t.string "trackable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["domain"], name: "index_page_views_on_domain"
   end
 
   create_table "photos", force: :cascade do |t|
