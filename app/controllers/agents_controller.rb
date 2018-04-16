@@ -59,7 +59,7 @@ class AgentsController < ApplicationController
 
   def authenticate_agency_admin
     unless current_user.has_role?(:agency_admin, current_agency)
-      flash[:danger] = "You have no permission to operate"
+      flash[:error] = "You have no permission to operate"
       redirect_to '/'
     end
   end

@@ -10,7 +10,7 @@ class PageViewsController < ApplicationController
   private
   def authenticate_agent
     unless current_user.has_role?(:agent, current_user.agency)
-      flash[:danger] = "You have no permission to operate"
+      flash[:error] = "You have no permission to operate"
       redirect_to '/'
     end
   end

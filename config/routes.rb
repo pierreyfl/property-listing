@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   resources :agency_roles
   resources :agents
   resources :page_views, only: [:index]
+  resources :agencies
 
   post '/region/search' => "region#search", defaults: { format: :js }
 
