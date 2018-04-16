@@ -13,10 +13,5 @@ $(document).ready(function() {
         form.find('.selectedState').val($('.stateSelect').val());
         Rails.fire(form[0], 'submit');
     })
-
-    var agentForm = $('#agentForm');
-    agentForm.onsubmit = function() {
-        alert('on submit');
-    }
 });
 
