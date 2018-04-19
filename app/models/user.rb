@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -13,6 +14,21 @@ class User < ApplicationRecord
   has_many :notifications
 
   has_one :setting
+
+  # Use polymorphic association since agent and agency admin need login feature, the reason for not using STI(single table inheritance)
+  # is under the consideration of future maintenance.
+  #
+  # Usage:
+  #   agent = Agent.first
+  #   agent.user
+  #   => #<User ...>
+  #
+  #   agency = Agency.first
+  #   agency.user
+  #   => #<User ...>
+  #
+  belongs_to :userable, polymorphic: true, optional: true
+
   after_create :add_setting
 
   def add_setting
@@ -60,6 +76,19 @@ class User < ApplicationRecord
 
   def is_active_host
     !self.merchant_id.blank?
+  end
+
+  # helper method for creating super admin account in rails console
+  def self.create_super_admin(email:, password:, fullname:)
+    transaction do
+      user = User.create!(email: email, password: password, fullname: fullname)
+      user.add_role :super_admin
+    end
+  end
+
+  def agency
+    role = self.roles.where(resource_type: "Agency").first
+    Agency.find_by(id: role.resource_id)
   end
 
 end

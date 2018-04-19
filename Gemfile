@@ -39,6 +39,8 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'pry'
+  gem 'pry-byebug'
 end
 
 group :development do
@@ -72,3 +74,5 @@ gem 'stripe', '~> 3.0.0'
 gem 'rails-assets-card', source: 'https://rails-assets.org'
 gem 'omniauth-stripe-connect', '~> 2.10.0'
 gem 'chartkick', '~> 2.2.4'
+gem 'city-state'
+gem 'rolify'

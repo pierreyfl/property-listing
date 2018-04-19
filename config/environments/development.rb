@@ -53,6 +53,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_cable.url = "ws://localhost:3000/cable"
+  config.action_cable.allowed_request_origins = ['http://127.0.0.1:3000', 'http://localhost:3000']
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
@@ -76,15 +77,15 @@ Rails.application.configure do
      password: 'Aa3439250289'
    }
 
-  config.paperclip_defaults = {
-    storage: :s3,
-    path: ':class/:attachment/:id/:style/:filename',
-    s3_host_name: 's3-eu-central-1.amazonaws.com',
-    s3_credentials: {
-      bucket: Rails.application.secrets.bucket,
-      access_key_id: Rails.application.secrets.access_key_id,
-      secret_access_key: Rails.application.secrets.secret_access_key,
-      s3_region: 'eu-central-1'
-    }
-  }
+  # config.paperclip_defaults = {
+  #   storage: :s3,
+  #   path: ':class/:attachment/:id/:style/:filename',
+  #   s3_host_name: 'us-west-2.amazonaws.com',
+  #   s3_credentials: {
+  #     bucket: Rails.application.secrets.bucket,
+  #     access_key_id: Rails.application.secrets.access_key_id,
+  #     secret_access_key: Rails.application.secrets.secret_access_key,
+  #     s3_region: 'us-west-2'
+  #   }
+  # }
 end
