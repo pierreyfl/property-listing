@@ -8,15 +8,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "AirKong", root_path, class: "navbar-brand" %>
+      <%= link_to "PropertyListing", root_path, class: "navbar-brand" %>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
 
-      <%= form_tag search_path, class: "navbar-form navbar-left", method: :get do %>
-        <div class="form-group">
-          <%= text_field_tag :search, params[:search], placeholder: "Anywhere", class: "form-control" %>
-        </div>
-      <% end %>
 
       <ul class="nav navbar-nav navbar-right">
 
@@ -58,15 +53,13 @@
   </div><!--/.container-fluid -->
 </nav>
 
-<% if (user_signed_in?) && !current_page?(root_path) && !current_page?("/rooms/#{params[:id]}") %>
+<% if (user_signed_in?) && !current_page?(root_path) && !current_page?(search_path)%>
   <nav class="navbar navbar-default" style="background-color: #565A5C">
     <div class="container">
       <ul class="nav navbar-nav">
         <li <% if current_page?(dashboard_path) %> class="active" <% end %> ><%= link_to "Dashboard", dashboard_path %></li>
         <li<% if current_page?(rooms_path) %> class="active" <% end %> ><%= link_to "Manage Listings", rooms_path %></li>
         <li<% if current_page?(conversations_path) %> class="active" <% end %> ><%= link_to "Messages", conversations_path %></li>
-        <li<% if current_page?(revenues_path) %> class="active" <% end %> ><%= link_to "Revenues", revenues_path %></li>
-        <li<% if current_page?(host_calendar_path) %> class="active" <% end %> ><%= link_to "Host Calendar", host_calendar_path %></li>
         <li<% if current_page?(payment_method_path) %> class="active" <% end %> ><%= link_to "Account Settings", payment_method_path %></li>
       </ul>
     </div>
