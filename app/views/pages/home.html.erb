@@ -29,6 +29,30 @@
         <div class="collapse" id="collapsePanel">
            <hr/>
            
+           <div class="row">
+             <div class="col-md-4">
+               <div class="form-group select">
+                 <label>Property Type</label>
+                 <%= f.select :accommodate_gteq, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]], id: "accommodate", prompt: "Select...", class: "form-control" %>
+               </div>
+             </div>
+             <div class="col-md-4">
+               <div class="form-group select">
+                 <label>Bedroom</label>
+                 <%= f.select :bed_room_gteq, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]], id: "bed_room", prompt: "Select...", class: "form-control" %>
+               </div>
+             </div>
+             <div class="col-md-4">
+               <div class="form-group select">
+                 <label>Bathroom</label>
+                 <%= f.select :bath_room_gteq, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]], id: "bath_room", prompt: "Select...", class: "form-control" %>
+               </div>
+             </div>
+             <hr/>
+           </div>
+           
+           <hr/>
+           
           <div class="row">
             <div class="col-md-6">
               <label>Price Range:</label>

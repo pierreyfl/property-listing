@@ -1,5 +1,5 @@
 <!-- Image -->
-<div class="row">
+<div class="row" style="margin-top: 20px;">
   <div class="col-md-12">
     <%= image_tag @room.cover_photo(nil), width: "100%" %>
   </div>
@@ -9,7 +9,7 @@
 <div class="row">
 
   <!-- LEFT PANEL -->
-  <div class="col-md-8">
+  <div class="col-md-12">
     <!-- Listing name -->
     <div class="row">
       <div class="col-md-8">
@@ -22,28 +22,25 @@
       </div>
     </div>
     <hr/>
+</div>
 
     <!-- Room Info -->
     <div class="row text-babu">
       <div class="row text-center row-space-1">
-        <div class="col-md-3">
+        <div class="col-md-4">
           <i class="fa fa-home fa-2x"></i>
         </div>
-        <div class="col-md-3">
-          <i class="fa fa-user-circle-o fa-2x"></i>
-        </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <i class="fa fa-bed fa-2x"></i>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <i class="fa fa-bath fa-2x"></i>
         </div>
       </div>
       <div class="row text-center">
-        <div class="col-md-3"><%= @room.home_type %></div>
-        <div class="col-md-3"><%= pluralize(@room.accommodate, "Guest") %></div>
-        <div class="col-md-3"><%= pluralize(@room.bed_room, "Bedroom") %></div>
-        <div class="col-md-3"><%= pluralize(@room.bath_room, "Bathroom") %></div>
+        <div class="col-md-4"><%= @room.home_type %></div>
+        <div class="col-md-4"><%= pluralize(@room.bed_room, "Bedroom") %></div>
+        <div class="col-md-4"><%= pluralize(@room.bath_room, "Bathroom") %></div>
       </div>
     </div>
     <hr/>
@@ -120,6 +117,7 @@
     </div>
     <hr/>
 
+    <!-- 
     <div class="row">
       <div class="col-md-12">
         <h3>
@@ -131,8 +129,8 @@
         </div>
       </div>
     </div>
+    -->  
     <br/>
-    <hr/>
 
     <!-- GOOGLE MAP -->
     <div class="row">
@@ -187,10 +185,11 @@
   </div>
 
   <!-- RIGHT PANEL -->
+  <!-- RESERVATION FORM
   <div class="col-md-4">
-    <!-- RESERVATION FORM -->
-    <%= render 'reservations/form' %>
+    <%#= render 'reservations/form' %>
   </div>
+  -->
 </div>
 
 <script>

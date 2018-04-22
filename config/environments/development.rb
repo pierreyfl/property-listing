@@ -69,13 +69,9 @@ Rails.application.configure do
   #}
   # Settings for Gmail
    config.action_mailer.smtp_settings = {
-     address: 'smtp.gmail.com',
-     port: 587,
-     enable_starttls_auto: true,
-     authentication: 'plain',
-     user_name: 'aliceklg@gmail.com',
-     password: 'Aa3439250289'
-   }
+     :address => "localhost",
+     :port => 1025,
+     :domain => "propertylisting.com" }
 
   # config.paperclip_defaults = {
   #   storage: :s3,

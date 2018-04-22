@@ -15,6 +15,8 @@
 //= require rails-ujs
 //= require jquery-ui/datepicker
 //= require jquery-ui/slider
+//= require bootstrap-datepicker
+//= require plugins/countrypicker.min.js
 //= require toastr
 //= require moment
 //= require fullcalendar
@@ -24,3 +26,5 @@
 //= require cable
 //= require turbolinks
 //= require_tree .
+
+
