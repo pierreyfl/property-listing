@@ -50,71 +50,58 @@ class PagesController < ApplicationController
   end
 
   def search
-    # STEP 1
-    if params[:search].present? && params[:search].strip != ""
-      #session[:loc_search] = params[:search]
-    end
-
     @rooms_address = Room.where(active: true).all
 
-    # STEP 2
-    # if session[:loc_search] && session[:loc_search] != ""
-    #   @rooms_address = @rooms_address.near(session[:loc_search], 5, order: 'distance')
-    # end
+    filters = {}
 
     if params[:q][:accommodate_gteq] && params[:q][:accommodate_gteq] != "" && params[:q][:accommodate_gteq] != "0"
-      @rooms_address = @rooms_address.where('accommodate >= ?', params[:q][:accommodate_gteq])
+      filters[:accommodate] = { gte: params[:q][:accommodate_gteq] }
     end
 
     if params[:q][:bed_room_gteq] && params[:q][:bed_room_gteq] != "" && params[:q][:bed_room_gteq] != "0"
-      @rooms_address = @rooms_address.where('bed_room >= ?', params[:q][:bed_room_gteq])
+      filters[:bed_room] = { gte: params[:q][:bed_room_gteq] }
     end
 
     if params[:q][:bath_room_gteq] && params[:q][:bath_room_gteq] != "" && params[:q][:bath_room_gteq] != "0"
-      @rooms_address = @rooms_address.where('bath_room >= ?', params[:q][:bath_room_gteq])
+      filters[:bath_room] = { gte: params[:q][:bath_room_gteq] }
     end
 
     if params[:q][:price_lteq] && params[:q][:price_lteq] != ""
-      @rooms_address = @rooms_address.where('price <= ?', params[:q][:price_lteq])
+      filters[:price] = { lte: params[:q][:price_lteq] }
     end
 
     if params[:q][:price_gteq] && params[:q][:price_gteq] != ""
-      @rooms_address = @rooms_address.where('price >= ?', params[:q][:price_gteq])
-    end
-
-    if params[:q][:price_gteq] && params[:q][:price_gteq] != ""
-      @rooms_address = @rooms_address.where('price >= ?', params[:q][:price_gteq])
+      filters[:price] = { gte: params[:q][:price_gteq] }
     end
 
     if params[:q][:is_tv_eq] && params[:q][:is_tv_eq] != ""
-      @rooms_address = @rooms_address.where('is_tv = ?', params[:q][:is_tv_eq])
+      filters[:is_tv] = params[:q][:is_tv_eq]
     end
 
     if params[:q][:is_kitchen_eq] && params[:q][:is_kitchen_eq] != ""
-      @rooms_address = @rooms_address.where('is_kitchen = ?', params[:q][:is_kitchen_eq])
+      filters[:is_kitchen] = params[:q][:is_kitchen_eq]
     end
 
     if params[:q][:is_internet_eq] && params[:q][:is_internet_eq] != ""
-      @rooms_address = @rooms_address.where('is_internet = ?', params[:q][:is_internet_eq])
+      filters[:is_internet] = params[:q][:is_internet_eq]
     end
 
     if params[:q][:is_heating_eq] && params[:q][:is_heating_eq] != ""
-      @rooms_address = @rooms_address.where('is_heating = ?', params[:q][:is_heating_eq])
+      filters[:is_heating] = params[:q][:is_heating_eq]
     end
 
     if params[:q][:is_air_eq] && params[:q][:is_air_eq] != ""
-      @rooms_address = @rooms_address.where('is_air = ?', params[:q][:is_air_eq])
+      filters[:is_air] = params[:q][:is_air_eq]
     end
-    
+
     if params[:q][:room_type_eq_any] && params[:q][:room_type_eq_any] != ""
-      @rooms_address = @rooms_address.where('room_type IN (?)', params[:q][:room_type_eq_any])
+      filters[:room_type] = params[:q][:room_type_eq_any]
     end
 
     # STEP 3
     if params[:search] && params[:search] != ""
-      @rooms = @rooms_address.search params[:search]
+      @rooms = @rooms_address.search params[:search], where: filters
     end
-    #@rooms = @search.all
 
     @arrRooms = @rooms.to_a
     # STEP 4
