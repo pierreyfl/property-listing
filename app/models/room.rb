@@ -1,5 +1,7 @@
 class Room < ApplicationRecord
 
+  searchkick word_middle: [:summary, :address, :listing_name]
+
   enum instant: {Request: 0, Instant: 1}
 
   belongs_to :user

@@ -19,7 +19,7 @@
       <div class="row">
         <div class="col-md-2">
           <div class="form-group select">
-            <%= f.select :accommodate_gteq, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]], { id: "accommodate", prompt: "All property types" }, { class: "form-control no-border-form-control" } %>
+            <%= f.select :accommodate_gteq, [["Any", 0], ["1", 1], ["2", 2], ["3", 3], ["4+", 4]], { id: "accommodate", prompt: "All property types" }, { class: "form-control no-border-form-control" } %>
           </div>
         </div>
         <div class="col-md-2">
@@ -91,25 +91,16 @@
 
                 <div class="row">
                   <div class="col-md-4">
-                    <%= check_box_tag "q[is_tv_eq]", true %> Category A
+                    <%= check_box_tag "q[room_type_eq_any][]", "Entire" %> Entire Room
                   </div>
                   <div class="col-md-4">
-                    <%= check_box_tag "q[is_kitchen_eq]", true %> Category B
+                    <%= check_box_tag "q[room_type_eq_any][]", "Private" %> Private
                   </div>
                   <div class="col-md-4">
-                    <%= check_box_tag "q[is_internet_eq]", true %> Category C
+                    <%= check_box_tag "q[room_type_eq_any][]", "Shared" %> Shared
                   </div>
                 </div>
 
-                <div class="row">
-                  <div class="col-md-4">
-                    <%= check_box_tag "q[is_heating_eq]", true %> Category D
-                  </div>
-                  <div class="col-md-4">
-                    <%= check_box_tag "q[is_air_eq]", true %> Category E
-                  </div>                
-                </div>
-                
               </div>
             </div>
 
