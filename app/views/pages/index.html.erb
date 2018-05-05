@@ -19,29 +19,34 @@
       <div class="row">
         <div class="col-md-2">
           <div class="form-group select">
-            <%= f.select :accommodate_gteq, [["Any", 0], ["1", 1], ["2", 2], ["3", 3], ["4+", 4]], { id: "accommodate", prompt: "All property types" }, { class: "form-control no-border-form-control" } %>
+            <%= f.select :accommodate_gteq, Room::ACCOMADATION_TYPES.map{|k, v| [v, k]}, { id: "accommodate_gteq", prompt: "All property types" }, { class: "form-control no-border-form-control" } %>
           </div>
         </div>
         <div class="col-md-2">
           <div class="form-group select">
-            <%= f.select :bed_room_gteq, [["Any", 0], ["1", 1], ["2", 2], ["3", 3], ["4+", 4]], { id: "bed_room", prompt: "Beds" }, { class: "form-control no-border-form-control" } %>
+            <%= f.select :bed_room_gteq, Room::BED_ROOMS.map{|k, v| [v, k]}, { id: "bed_room_lteq", prompt: "Beds (min)" }, { class: "form-control no-border-form-control" } %>
           </div>
         </div>
         <div class="col-md-2">
           <div class="form-group select">
-            <%= f.select :bath_room_gteq, [["Any", 0], ["1", 1], ["2", 2], ["3", 3], ["4+", 4]], { id: "bath_room", prompt: "Bathrooms" }, { class: "form-control no-border-form-control" } %>
+            <%= f.select :bed_room_lteq, Room::BED_ROOMS.map{|k, v| [v, k]}, { id: "bed_room_gteq", prompt: "Beds (max)" }, { class: "form-control no-border-form-control" } %>
+          </div>
+        </div>        
+        <div class="col-md-2">
+          <div class="form-group select">
+            <%= f.select :bath_room_gteq, Room::BATH_ROOMS.map{|k, v| [v, k]}, { id: "bath_room_gteq", prompt: "Bathrooms" }, { class: "form-control no-border-form-control" } %>
           </div>
         </div>
 
         <div class="col-md-2">
           <div class="form-group">
-            <%= f.number_field :price_gteq, class: "form-control no-border-form-control", placeholder: 'Price (min)' %>
+            <%= f.select :price_gteq, Room::PRICES.map{|v| [v, v]}, { id: "price_lteq", prompt: "Price (min)" }, { class: "form-control no-border-form-control" } %>
           </div>
         </div>
 
         <div class="col-md-2">
           <div class="form-group">
-            <%= f.number_field :price_lteq, class: "form-control no-border-form-control", placeholder: 'Price (max)' %>
+            <%= f.select :price_lteq, Room::PRICES.map{|v| [v, v]}, { id: "price_gteq", prompt: "Price (max)" }, { class: "form-control no-border-form-control" } %>
           </div>
         </div>
 

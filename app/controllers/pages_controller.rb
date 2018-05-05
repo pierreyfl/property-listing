@@ -58,6 +58,10 @@ class PagesController < ApplicationController
       filters[:accommodate] = { gte: params[:q][:accommodate_gteq] }
     end
 
+    if params[:q][:bed_room_lteq] && params[:q][:bed_room_lteq] != "" && params[:q][:bed_room_lteq] != "0"
+      filters[:bed_room] = { lte: params[:q][:bed_room_lteq] }
+    end
+
     if params[:q][:bed_room_gteq] && params[:q][:bed_room_gteq] != "" && params[:q][:bed_room_gteq] != "0"
       filters[:bed_room] = { gte: params[:q][:bed_room_gteq] }
     end
