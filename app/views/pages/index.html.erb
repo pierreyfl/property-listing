@@ -40,13 +40,13 @@
 
         <div class="col-md-2">
           <div class="form-group">
-            <%= f.select :price_gteq, Room::PRICES.map{|v| [v, v]}, { id: "price_lteq", prompt: "Price (min)" }, { class: "form-control no-border-form-control" } %>
+            <%= f.select :price_gteq, Room::PRICES.map{|k, v| [v, k]}, { id: "price_lteq", prompt: "Price (min)" }, { class: "form-control no-border-form-control" } %>
           </div>
         </div>
 
         <div class="col-md-2">
           <div class="form-group">
-            <%= f.select :price_lteq, Room::PRICES.map{|v| [v, v]}, { id: "price_gteq", prompt: "Price (max)" }, { class: "form-control no-border-form-control" } %>
+            <%= f.select :price_lteq, Room::PRICES.map{|k, v| [v, k]}, { id: "price_gteq", prompt: "Price (max)" }, { class: "form-control no-border-form-control" } %>
           </div>
         </div>
 
@@ -123,7 +123,6 @@
       </div>
 
     </div>
-
   <% end %>
 </div>    
 
@@ -133,7 +132,7 @@
 <br/>
 
 <div class="row">
-  <%= render partial: "rooms/rooms_list", locals: {rooms: @rooms} %>
+  <%= render partial: "rooms/rooms_list", locals: {rooms: @arrRooms} %>
 </div>
 
 <!-- CITIES -->

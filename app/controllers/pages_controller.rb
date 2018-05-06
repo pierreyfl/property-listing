@@ -55,26 +55,30 @@ class PagesController < ApplicationController
     filters = {}
 
     if params[:q][:accommodate_gteq] && params[:q][:accommodate_gteq] != "" && params[:q][:accommodate_gteq] != "0"
-      filters[:accommodate] = { gte: params[:q][:accommodate_gteq] }
+      filters[:home_type] = { gte: params[:q][:accommodate_gteq] }
     end
 
-    if params[:q][:bed_room_lteq] && params[:q][:bed_room_lteq] != "" && params[:q][:bed_room_lteq] != "0"
+    if is_bed_room_range?(params)
+      filters[:bed_room] = params[:q][:bed_room_gteq].to_i..params[:q][:bed_room_lteq].to_i
+    elsif params[:q][:bed_room_lteq] && params[:q][:bed_room_lteq] != "" && params[:q][:bed_room_lteq] != "0"
       filters[:bed_room] = { lte: params[:q][:bed_room_lteq] }
-    end
-
-    if params[:q][:bed_room_gteq] && params[:q][:bed_room_gteq] != "" && params[:q][:bed_room_gteq] != "0"
+    elsif params[:q][:bed_room_gteq] && params[:q][:bed_room_gteq] != "" && params[:q][:bed_room_gteq] != "0"
       filters[:bed_room] = { gte: params[:q][:bed_room_gteq] }
     end
 
-    if params[:q][:bath_room_gteq] && params[:q][:bath_room_gteq] != "" && params[:q][:bath_room_gteq] != "0"
+    if is_bath_room_range?(params)
+      filters[:bath_room] = params[:q][:bath_room_gteq].to_i..params[:q][:bath_room_lteq].to_i
+    elsif params[:q][:bath_room_lteq] && params[:q][:bath_room_lteq] != "" && params[:q][:bath_room_lteq] != "0"
+      filters[:bath_room] = { lte: params[:q][:bath_room_lteq] }
+    elsif params[:q][:bath_room_gteq] && params[:q][:bath_room_gteq] != "" && params[:q][:bath_room_gteq] != "0"
       filters[:bath_room] = { gte: params[:q][:bath_room_gteq] }
     end
 
-    if params[:q][:price_lteq] && params[:q][:price_lteq] != ""
+    if is_price_range?(params)
+      filters[:price] = params[:q][:price_gteq].to_f - 1..params[:q][:price_lteq].to_f + 1
+    elsif params[:q][:price_lteq] && params[:q][:price_lteq] != "" && params[:q][:price_lteq] != "0"
       filters[:price] = { lte: params[:q][:price_lteq] }
-    end
-
-    if params[:q][:price_gteq] && params[:q][:price_gteq] != ""
+    elsif params[:q][:price_gteq] && params[:q][:price_gteq] != "" && params[:q][:price_gteq] != "0"
       filters[:price] = { gte: params[:q][:price_gteq] }
     end
 
@@ -103,9 +107,13 @@ class PagesController < ApplicationController
     end
 
     # STEP 3
+    search = "*"
+
     if params[:search] && params[:search] != ""
-      @rooms = @rooms_address.search params[:search], where: filters
+      search = params[:search]      
     end
+
+    @rooms = @rooms_address.search search, where: filters, match: :word_middle
 
     @arrRooms = @rooms.to_a
     # STEP 4
@@ -189,4 +197,32 @@ class PagesController < ApplicationController
     end
   end
 
+  private
+
+  def is_bed_room_range?(params)
+    return params[:q][:bed_room_gteq] && 
+            params[:q][:bed_room_gteq] != "" && 
+            params[:q][:bed_room_gteq] != "0" && 
+            params[:q][:bed_room_lteq] && 
+            params[:q][:bed_room_lteq] != "" && 
+            params[:q][:bed_room_lteq] != "0"
+  end
+
+  def is_bath_room_range?(params)
+    return params[:q][:bath_room_gteq] && 
+            params[:q][:bath_room_gteq] != "" && 
+            params[:q][:bath_room_gteq] != "0" && 
+            params[:q][:bath_room_lteq] && 
+            params[:q][:bath_room_lteq] != "" && 
+            params[:q][:bath_room_lteq] != "0"
+  end
+
+  def is_price_range?(params)
+    return params[:q][:price_gteq] && 
+            params[:q][:price_gteq] != "" && 
+            params[:q][:price_gteq] != "0" && 
+            params[:q][:price_lteq] && 
+            params[:q][:price_lteq] != "" && 
+            params[:q][:price_lteq] != "0"
+  end
 end

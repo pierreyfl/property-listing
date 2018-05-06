@@ -13,25 +13,31 @@ user = User.new({
 
 user.save!
 
-room = Room.new({
-  home_type: '1',
-  room_type: 'Private',
-  accommodate: 1,
-  bed_room: 2,
-  bath_room: 1,
-  listing_name: 'Nice bed room with attached bathroom',
-  summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-  address: 'Cecilia Chapman 711-2880 Nulla St. Mankato Mississippi 96522 (257) 563-7401',
-  is_tv: true,
-  is_kitchen: false,
-  is_air: true,
-  is_heating: true,
-  is_internet: true,
-  price: 1500,
-  active: true,
-  user: user
-})
+15.times do |i|
+  bed_rooms = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  bath_rooms =  [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  property_types =  [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  true_or_false = [true, false]
+  prices = [50000, 75000, 100000, 125000, 150000, 175000, 200000, 225000, 250000]
 
-room.save!
+  Room.create!({
+    home_type: property_types.sample,
+    room_type: 'Private',
+    accommodate: 1,
+    bed_room: bed_rooms.sample,
+    bath_room: bath_rooms.sample,
+    listing_name: Faker::Lorem.word,
+    summary: Faker::Lorem.sentence,
+    address: Faker::Address.street_address,
+    is_tv: true_or_false.sample,
+    is_kitchen: true_or_false.sample,
+    is_air: true_or_false.sample,
+    is_heating: true_or_false.sample,
+    is_internet: true_or_false.sample,
+    price: prices.sample,
+    active: true,
+    user: user
+  })
+end
 
 Room.reindex
