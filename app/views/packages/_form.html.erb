@@ -1,0 +1,38 @@
+<div class="form-group">
+        <%= form.label(:name) %>
+        <%= form.text_field :name, class: "form-control", placeholder: "Enter package name"  %>
+        
+    </div>
+    
+    <div class="form-group">
+        <%= form.label(:listing_period) %>
+        <%= form.text_field :listing_period, class: "form-control", placeholder: "Listing period"  %>
+        
+    </div>
+    
+    <div class="form-group">
+        <%= form.label(:price) %>
+        <%= form.text_field :price, class: "form-control", placeholder: "Price", type: 'number'  %>
+        
+    </div>
+    <div class="form-group">
+        <%= form.label(:listings_amount) %>
+        <%= form.text_field :listings_amount, class: "form-control", placeholder: "Listings amount", type: 'number'  %>
+        
+    </div>
+    <div class="form-group">
+        <%= form.check_box :is_standard   %> <%= form.label(:is_standard) %>
+    </div>
+    <div class="form-group">
+        <%= form.check_box :is_premium   %> <%= form.label(:is_premium) %>
+    </div>
+    <div class="form-group">
+        <%= form.check_box :is_feature   %> <%= form.label(:is_feature) %>
+    </div>
+    <div class="form-group">
+        <%= form.check_box :is_single   %> <%= form.label(:is_single) %>
+    </div>  
+    <div class="form-group">
+        <%= form.check_box :is_multi   %> <%= form.label(:is_multi) %>
+    </div>  
+    
