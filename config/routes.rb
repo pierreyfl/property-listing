@@ -34,8 +34,11 @@ Rails.application.routes.draw do
 
   resources :guest_reviews, only: [:create, :destroy]
   resources :host_reviews, only: [:create, :destroy]
-  resources :packages
-  resources :classfied_lists
+  
+   scope '/admin' do
+    resources :packages
+    resources :classfied_lists
+  end
 
   get '/your_trips' => 'reservations#your_trips'
   get '/your_reservations' => 'reservations#your_reservations'

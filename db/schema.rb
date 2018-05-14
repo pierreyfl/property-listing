@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180512154351) do
+ActiveRecord::Schema.define(version: 20180514195102) do
 
   create_table "agencies", force: :cascade do |t|
     t.string "name"
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 20180512154351) do
     t.string "cover_photo_content_type"
     t.integer "cover_photo_file_size"
     t.datetime "cover_photo_updated_at"
+  end
+
+  create_table "amenities", force: :cascade do |t|
+    t.string "name"
+    t.boolean "available"
+    t.integer "property_package_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "calendars", force: :cascade do |t|
@@ -111,6 +119,7 @@ ActiveRecord::Schema.define(version: 20180512154351) do
     t.integer "agent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "approved"
   end
 
   create_table "property_packages", force: :cascade do |t|
