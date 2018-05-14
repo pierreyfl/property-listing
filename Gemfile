@@ -71,6 +71,7 @@ gem 'geocoder', '~> 1.4'
 gem 'jquery-ui-rails', '~> 5.0'
 gem 'ransack', '~> 1.8'
 gem 'react-rails'
+gem 'react-bootstrap-rails', '~> 0.13.0'
 gem 'cancancan', '~> 2.0'
 
 # AirKong

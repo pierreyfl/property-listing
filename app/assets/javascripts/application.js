@@ -15,6 +15,7 @@
 //= require rails-ujs
 //= require react
 //= require react_ujs
+//= require react_bootstrap
 //= require jquery-ui/datepicker
 //= require jquery-ui/slider
 //= require bootstrap-datepicker

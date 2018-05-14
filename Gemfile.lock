@@ -237,6 +237,8 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    react-bootstrap-rails (0.13.0)
+      rails (>= 3.1)
     react-rails (2.4.4)
       babel-transpiler (>= 0.7.0)
       connection_pool
@@ -347,6 +349,7 @@ DEPENDENCIES
   rails (~> 5.1.2)
   rails-assets-card!
   ransack (~> 1.8)
+  react-bootstrap-rails (~> 0.13.0)
   react-rails
   rolify
   sass-rails (~> 5.0)
