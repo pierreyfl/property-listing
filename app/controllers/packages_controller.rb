@@ -1,7 +1,11 @@
 class PackagesController < AdminController
     
     def index
-        @packages = PropertyPackage.all 
+        respond_to do |format| 
+            format.html {render :index and return }
+            format.json { render json: PropertyPackage.all  }
+        end
+
     end
     
     def new 
