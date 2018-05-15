@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'classfied_lists/index'
+
   root 'pages#home'
 
   devise_for :users,
@@ -32,7 +34,11 @@ Rails.application.routes.draw do
 
   resources :guest_reviews, only: [:create, :destroy]
   resources :host_reviews, only: [:create, :destroy]
-  resources :packages
+  
+   scope '/admin' do
+    resources :packages
+    resources :classfied_lists
+  end
 
   get '/your_trips' => 'reservations#your_trips'
   get '/your_reservations' => 'reservations#your_reservations'

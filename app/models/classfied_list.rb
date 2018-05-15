@@ -1,0 +1,2 @@
+class ClassfiedList < ApplicationRecord
+end

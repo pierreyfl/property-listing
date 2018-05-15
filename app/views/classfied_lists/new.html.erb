@@ -1,0 +1,9 @@
+<h3>
+    Create new list
+</h3>
+
+<%= form_for @list, html: {class: ""}, :url => classfied_lists_path do |form| %>
+    <%= render "form", {form: form} %>
+    
+    <%= form.submit "Save", class: "btn btn-primary" %>
+<% end %>
