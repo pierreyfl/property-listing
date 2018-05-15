@@ -13,9 +13,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require rails-ujs
-//= require react
-//= require react_ujs
-//= require react_bootstrap
+
 //= require jquery-ui/datepicker
 //= require jquery-ui/slider
 //= require bootstrap-datepicker
@@ -28,6 +26,9 @@
 //= require chartkick
 //= require cable
 //= require turbolinks
+// = require react
+// = require react_ujs
+
 //= require_tree .
 
 
