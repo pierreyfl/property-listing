@@ -1,26 +1,2 @@
-<h3>Classfied Lists</h1>
-<p>
-    <%= link_to "Create list", new_classfied_list_path, :class => 'btn btn-primary' %>
+<%= react_component("ClassfiedLists") %>
 
-</p>
-<table class="table">
-    <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Time length</th>
-        <th></th>
-    </tr>
-    
-    <% @lists.each do |list|%>
-    <tr>
-        <td><%= list.title %></td>
-        <td><%= list.price %></td>
-        <td><%= list.time_length %></td>
-        <td>
-            <%= link_to "Edit", edit_classfied_list_path(list), :class => 'btn btn-primary btn-xs' %>
-            <%=link_to "Delete", classfied_list_path(list), :method => :delete, :class => "btn btn-danger btn-xs", :confirm => "Are you sure ?"%>  
-
-        </td>
-    </tr
-    <% end %>
-</table>

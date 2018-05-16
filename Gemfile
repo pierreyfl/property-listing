@@ -9,8 +9,8 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-# gem 'pg', '~> 0.18'
+# gem 'sqlite3'
+gem 'pg', '~> 0.18'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
@@ -79,8 +79,9 @@ gem 'twilio-ruby'
 gem 'fullcalendar-rails', '~> 3.4'
 gem 'momentjs-rails', '~> 2.17.1'
 gem 'stripe', '~> 3.0.0'
-gem 'rails-assets-card', source: 'https://rails-assets.org'
+gem 'rails-assets-card', source: 'http://insecure.rails-assets.org' #'http://rails-assets.org'
 gem 'omniauth-stripe-connect', '~> 2.10.0'
 gem 'chartkick', '~> 2.2.4'
 gem 'city-state'
 gem 'rolify'
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?

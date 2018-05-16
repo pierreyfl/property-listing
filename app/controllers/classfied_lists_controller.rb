@@ -1,7 +1,10 @@
 class ClassfiedListsController < AdminController
   
   def index
-    @lists = ClassfiedList.all
+    respond_to do |format|
+      format.html { render :index and return }
+      format.json { render json: ClassfiedList.all }
+    end
   end
   
   def new 
@@ -9,25 +12,39 @@ class ClassfiedListsController < AdminController
   end
   
   def create  
-      
-      if ClassfiedList.create(list_params) 
-          redirect_to classfied_lists_path, notice: 'List created successfully' 
-      else
-          @package = ClassfiedList.new(package_params)
-          render :new
-      end
+    list = ClassfiedList.new
+    list.title = params[:title]
+    list.price = params[:price]
+    list.time_length = params[:time_length]
+
+    if list.save!
+      render json: list and return
+    end
+
+    render json: list.errors, status: :unprocessable_entity
+
   end
   
   def edit 
       @list = ClassfiedList.find(params[:id])
   end
   
-  def update 
-      @list =ClassfiedList.find(params[:id]) 
-      
-      if @list.update(list_params)
-          redirect_to classfied_lists_path, notice: 'List updated successfully' and return
-      end
+  def update
+    list = ClassfiedList.find(params[:id])
+    list.title = params[:title]
+    list.price = params[:price]
+    list.time_length = params[:time_length]
+
+    if list.save!
+      render json: list and return
+    end
+
+    render json: list.errors, status: :unprocessable_entity
+  end
+
+
+  def destroy
+    ClassfiedList.delete(params[:id])
   end
   
   private

@@ -1,18 +1,14 @@
-var PackagesList = createReactClass({
-    
+var ClassifiedListTable = createReactClass({
 
-    delete: function(id) {console.log('delete', id)},
     
     render: function() {
-        //var Button = ReactBootstrap.Button;
         var vm = this;
         var rows = this.props.packages.map(function(p){
             return (
                  <tr key={p.id}>
-                    <td>{p.name}</td>
+                    <td>{p.title}</td>
                     <td>{p.price}</td>
-                    <td>{p.listing_period}</td>
-                    <td>{p.listings_amount}</td>
+                    <td>{p.time_length}</td>
                     <td>
                         <a className="btn btn-primary btn-xs" onClick={ vm.props.onEdit.bind(null, p) } data-toggle="modal" data-target="#myModal" >Edit</a> 
                         <a className="btn btn-danger btn-xs" onClick={vm.props.onDelete.bind(null, p)}>Delete</a>
@@ -28,8 +24,8 @@ var PackagesList = createReactClass({
                <tr>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Period</th>
-                    <th>Listings amount</th>
+                    <th>Time length</th>
+
                     <th></th>
                 </tr>
                 
