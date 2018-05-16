@@ -13,9 +13,10 @@ var PackagesList = createReactClass({
                     <td>{p.price}</td>
                     <td>{p.listing_period}</td>
                     <td>{p.listings_amount}</td>
-                    <td>
-                        <a className="btn btn-primary btn-xs" onClick={ vm.props.onEdit.bind(null, p) } data-toggle="modal" data-target="#myModal" >Edit</a> 
-                        <a className="btn btn-danger btn-xs" onClick={vm.props.onDelete.bind(null, p)}>Delete</a>
+                    <td className="actions">
+                        <a href="javascript:void(0)" onClick={ vm.props.onSelect.bind(null, p) } data-toggle="modal" data-target="#AmenitiesModal">Amenities</a>
+                        <a href="javascript:void(0)"  onClick={ vm.props.onEdit.bind(null, p) } data-toggle="modal" data-target="#myModal" ><i className="fa fa-edit"></i></a>
+                        <a href="javascript:void(0)"  onClick={vm.props.onDelete.bind(null, p)}><i className="fa fa-trash-o text-danger"></i></a>
             
                     </td>
                 </tr>

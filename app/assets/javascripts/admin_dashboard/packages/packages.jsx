@@ -2,7 +2,8 @@ var Packages = createReactClass({
     getInitialState: function() {
         return {
             packages: [],
-            packageToEdit: {}
+            packageToEdit: {},
+            selectedPackage: {}
             
         };
     },
@@ -59,6 +60,11 @@ var Packages = createReactClass({
             });
         }
     },
+    setSelectedPackage: function (pack, event) {
+        this.setState({
+            selectedPackage: pack
+        })
+    },
     
     handleEdit: function(data, event){
         var formData = {
@@ -104,12 +110,14 @@ var Packages = createReactClass({
                <PackagesList
                    onEdit={this.handleEdit}
                    onDelete={this.handleDelete}
+                   onSelect={this.setSelectedPackage}
                 packages={this.state.packages} />
                
                 
                 <PackageForm title="Create/Edit Package"
                              onSave={this.handleSave}
                 formData={this.state.packageToEdit} />
+                <Amenities package={this.state.selectedPackage}></Amenities>
           </div>
         );
     }

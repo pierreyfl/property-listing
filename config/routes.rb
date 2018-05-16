@@ -36,7 +36,9 @@ Rails.application.routes.draw do
   resources :host_reviews, only: [:create, :destroy]
   
    scope '/admin' do
-    resources :packages
+    resources :packages do
+      resources :amenities
+    end
     resources :classfied_lists
   end
 
