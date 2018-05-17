@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       resources :amenities
     end
     resources :classfied_lists
+    resources :rooms, controller: :admin_rooms
   end
 
   get '/your_trips' => 'reservations#your_trips'
