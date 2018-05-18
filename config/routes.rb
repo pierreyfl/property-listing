@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       resources :amenities
     end
     resources :classfied_lists
+    resources :articles
     resources :rooms, controller: :admin_rooms
   end
 
