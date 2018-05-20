@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
 
-  before_action :set_room, except: [:index, :new, :create]
-  before_action :authenticate_user!, except: [:show, :preload, :preview]
+  before_action :set_room, except: [:index, :new, :create, :log]
+  before_action :authenticate_user!, except: [:show, :preload, :preview, :log]
   before_action :is_authorised, only: [:listing, :pricing, :description, :photo_upload, :amenities, :location, :update, :lifestyles]
 
   def index
@@ -90,6 +90,17 @@ class RoomsController < ApplicationController
     }
 
     render json: output
+  end
+
+  def log
+    user_id = nil
+    email = ''
+    if user_signed_in?
+      user_id = current_user.id
+      email = current_user.email
+    end
+
+    RoomVisit.create(:user_id => user_id, :email => email, :room_id => params[:room_id], :time_spent => params[:timeSpent], :ip => request.remote_ip )
   end
 
   private

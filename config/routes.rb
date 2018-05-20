@@ -42,7 +42,9 @@ Rails.application.routes.draw do
     resources :classfied_lists
     resources :articles
     resources :rooms, controller: :admin_rooms
-  end
+   end
+
+  get '/log-room-visit' => 'rooms#log'
 
   get '/your_trips' => 'reservations#your_trips'
   get '/your_reservations' => 'reservations#your_reservations'
