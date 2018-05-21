@@ -3,6 +3,8 @@
     <div class="panel panel-default">
       <div class="panel-heading"><h1><%= @agency.name %></h1></div>
       <div class="panel-body">
+          <p><%= image_tag @agency.cover_photo.url %></p><br>
+          <h3>About us</h3>
           <p><%= @agency.description %></p><br>
           <p><i class="fa fa-map-marker"></i> <strong>Location :</strong> <%= @agency.location %></p>
           <p><i class="fa fa-envelope"></i> <strong>Email :</strong> <%= @agency.email %></p>
@@ -14,10 +16,9 @@
               <div>
                 <p><%= image_tag agent.photo %></p>
                 <p><%= agent.name %></p>
-                <p><%= agent.title %></p>
-                <p><%= agent.years_experience %> Years of experience</p>
               </div>
             <% end %>
+            <p><%= agent.title %></p>
           <% end %>
           <% if current_user.has_role? :agency_admin %>
             <%= link_to "Add Agent", new_agent_path, class: 'btn btn-success' %>

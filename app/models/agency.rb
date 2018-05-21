@@ -11,7 +11,11 @@ class Agency < ApplicationRecord
   #   user.add_role :agency_admin, agency
   #
   resourcify
+  has_attached_file :cover_photo
+  validates_attachment_content_type :cover_photo, content_type: /\Aimage\/.*\z/
   has_many :agents
   has_one :user, as: :userable
+
+  enum search_visibility: [:is_public,:is_private]
 
 end

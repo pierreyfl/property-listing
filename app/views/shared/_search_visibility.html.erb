@@ -1,0 +1,7 @@
+<div class="form-group">
+  <label>Search Visibility</label> &nbsp;&nbsp;
+  <% Agent.search_visibilities.keys.each do |search_visibility| %>
+  <%= f.radio_button :search_visibility, search_visibility %>
+  <%= f.label search_visibility[3..-1] %>
+  <% end %>
+</div>

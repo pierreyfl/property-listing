@@ -1,6 +1,6 @@
 class AgenciesController < ApplicationController
   before_action :authenticate_user!
-  # before_action :authenticate_super_admin
+  before_action :authenticate_super_admin
   def index
     @agencies = Agency.all
   end
@@ -37,7 +37,8 @@ class AgenciesController < ApplicationController
       :description,
       :contact_no,
       :private,
-      :location
+      :location,
+      :cover_photo
     )
   end
 
