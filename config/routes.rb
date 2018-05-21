@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   resources :host_reviews, only: [:create, :destroy]
   
    scope '/admin' do
+    get '/overview' => 'pages#overview'
     resources :packages do
       resources :amenities
     end
