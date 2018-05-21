@@ -5,6 +5,13 @@
 @import "fullcalendar";
 @import "bootstrap-datepicker/bootstrap-datepicker";
 
+.select:before {
+  top: 10px !important;
+}
+
+.no-border-form-control {
+  border: 0px !important;
+}
 
 body {
   color: #565a5c;
