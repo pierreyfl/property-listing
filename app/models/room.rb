@@ -39,8 +39,8 @@ class Room < ApplicationRecord
   after_validation :geocode, if: :address_changed?
 
   validates :home_type, presence: true
-  validates :room_type, presence: true
-  validates :accommodate, presence: true
+  #validates :room_type, presence: true
+  #validates :accommodate, presence: true
   validates :bed_room, presence: true
   validates :bath_room, presence: true
 
@@ -49,6 +49,31 @@ class Room < ApplicationRecord
       self.photos[0].image.url(size)
     else
       "blank.jpg"
+    end
+  end
+  
+  def property_type
+    case self.home_type
+    when "0"
+      "Any"
+    when "1"
+      "House"
+    when "2"
+      "Apartment"
+    when "3"
+      "Town house"
+    when "4"
+      "Villa"
+    when "5"
+      "Land"
+    when "6"
+      "Acreage"
+    when "7"
+      "Rural"
+    when "8"
+      "Block of Units"
+    when "9"
+      "Retirement Living"
     end
   end
 

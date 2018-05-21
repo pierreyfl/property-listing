@@ -14,38 +14,24 @@
           <%= form_for @room do |f| %>
 
             <div class="row">
-              <div class="col-md-4 select">
+              <div class="col-md-6">
                 <div class="form-group">
-                  <label>Home Type</label>
-                  <%= f.select :home_type, [["Apartment", "Apartment"], ["House", "House"], ["Bed & Breakfast", "Bed & Breakfast"]],
+                  <label>Property Type</label>
+                  <%= f.select :home_type, Room::ACCOMADATION_TYPES.map{|k, v| [v, k]},
                                 id: "home_type", prompt: "Select...", class: "form-control" %>
                 </div>
               </div>
 
-              <div class="col-md-4 select">
+
+              <div class="col-md-6">
                 <div class="form-group">
-                  <label>Room Type</label>
-                  <%= f.select :room_type, [["Entire", "Entire"], ["Private", "Private"], ["Shared", "Shared"]],
-                                id: "room_type", prompt: "Select...", class: "form-control" %>
+                  <label>Price</label>
+                  <%= f.text_field :price, class: "form-control" %>
                 </div>
               </div>
 
-              <div class="col-md-4 select">
-                <div class="form-group">
-                  <label>Booking Type</label>
-                  <%= f.select :instant, Room.instants.map {|key,value| [key.humanize, key]}, selected: 'Instant', prompt: "Select...", class: "form-control" %>
-                </div>
-              </div>
-
-              <div class="col-md-4 select">
-                <div class="form-group">
-                  <label>Accommodate</label>
-                  <%= f.select :accommodate, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]],
-                                id: "accommodate", prompt: "Select...", class: "form-control" %>
-                </div>
-              </div>
-
-              <div class="col-md-4 select">
+              
+              <div class="col-md-6">
                 <div class="form-group">
                   <label>Bedroom</label>
                   <%= f.select :bed_room, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]],
@@ -53,7 +39,7 @@
                 </div>
               </div>
 
-              <div class="col-md-4 select">
+              <div class="col-md-6">
                 <div class="form-group">
                   <label>Bathrooms</label>
                   <%= f.select :bath_room, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]],

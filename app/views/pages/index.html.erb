@@ -5,7 +5,6 @@
 
   <%= search_form_for @search, url: search_path, remote: true do |f| %>
 
-    <div class="content">
 
       <div class="row">
         <div class="col-md-8">
@@ -124,16 +123,10 @@
 
     </div>
   <% end %>
-</div>
 
 
 <!-- HOMES -->
-<div><h3>Homes</h3></div>
-<br/>
 
-<div class="row">
-  <%= render partial: "rooms/rooms_list", locals: {rooms: @arrRooms} %>
-</div>
 
 <!-- CITIES -->
 <div><h3>Cities</h3></div>
