@@ -10,12 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180520155739) do
+ActiveRecord::Schema.define(version: 20180521103723) do
 
   create_table "agencies", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "private", default: false, null: false
+    t.string "location"
+    t.string "contact_no"
+    t.text "description"
+    t.string "email"
   end
 
   create_table "agents", force: :cascade do |t|
@@ -231,41 +236,8 @@ ActiveRecord::Schema.define(version: 20180520155739) do
     t.index ["user_id"], name: "index_settings_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "fullname"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "provider"
-    t.string "uid"
-    t.string "image"
-    t.string "phone_number"
-    t.text "description"
-    t.string "pin"
-    t.boolean "phone_verified"
-    t.string "stripe_id"
-    t.string "merchant_id"
-    t.integer "unread", default: 0
-    t.date "date_of_birth"
-    t.string "interested_location"
-    t.integer "userable_id"
-    t.string "userable_type"
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'bool' for column 'admin'
 
   create_table "users_roles", id: false, force: :cascade do |t|
     t.integer "user_id"
