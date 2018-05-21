@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h1><%= @agency.name %></h1></div>
+      <div class="panel-body">
+          <p><%= @agency.description %></p><br>
+          <p><i class="fa fa-map-marker"></i> <strong>Location :</strong> <%= @agency.location %></p>
+          <p><i class="fa fa-envelope"></i> <strong>Email :</strong> <%= @agency.email %></p>
+          <p><i class="fa fa-phone"></i> <strong>Contact No. :</strong> <%= @agency.contact_no %></p>
+          <hr>
+          <h3>Our Agents</h3>
+          <% @agency.agents.each do |agent| %>
+            <div>
+              <%= link_to agent.name, agent %>
+            </div>
+          <% end %>
+          <% if current_user.has_role? :agency_admin %>
+            <%= link_to "Add Agent", new_agent_path, class: 'btn btn-success' %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

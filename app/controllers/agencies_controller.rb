@@ -8,6 +8,10 @@ class AgenciesController < ApplicationController
   def new
   end
 
+  def show
+    @agency = Agency.find(params[:id])
+  end
+
   def create
     email = agency_params[:email]
     user = User.find_by(email: email)
@@ -17,7 +21,7 @@ class AgenciesController < ApplicationController
     end
 
     user.transaction do
-      agency = Agency.create!(name: agency_params[:name])
+      agency = Agency.create!(agency_params)
       user.update!(userable: agency)
       user.add_role(:agency_admin, agency)
     end
@@ -26,7 +30,15 @@ class AgenciesController < ApplicationController
 
   private
   def agency_params
-    params.require(:agency).permit(:email, :name)
+    params.require(:agency)
+    .permit(
+      :email,
+      :name,
+      :description,
+      :contact_no,
+      :private,
+      :location
+    )
   end
 
   def authenticate_super_admin
