@@ -1,0 +1,30 @@
+<h3>Rooms</h3>
+<% if (@rooms.count > 0) %>
+<table class="table">
+  <tr>
+    <th>home_type</th>
+    <th>Room Type</th>
+    <th>bed_room</th>
+    <th>bath_room</th>
+    <th>listing_name</th>
+    <th></th>
+  </tr>
+  <% @rooms.each  do |room| %>
+  <tr>
+    <td><%= room.home_type %></td>
+    <td><%= room.room_type %></td>
+    <td><%= room.bed_room %></td>
+    <td><%= room.bath_room %></td>
+    <td><%= room.listing_name %></td>
+    <td>
+      <a href="/admin/rooms/<%= room.id %>">Details</a>
+
+    </td>
+  </tr>
+  <% end %>
+</table>
+<% else %>
+    <div class="alert alert-info">
+      No pending properties
+    </div>
+<% end %>

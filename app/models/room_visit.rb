@@ -1,0 +1,2 @@
+class RoomVisit < ApplicationRecord
+end

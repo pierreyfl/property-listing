@@ -23,6 +23,9 @@
 
 .byebug_history
 
+<<<<<<< HEAD
 # /config/secrets.yml 
+=======
+>>>>>>> admin-dashboard
 .idea
 public/system

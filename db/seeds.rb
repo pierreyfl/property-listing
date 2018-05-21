@@ -41,3 +41,9 @@ user.save!
 end
 
 Room.reindex
+
+Amenity.create(:name => 'amenity 1', :available => true, :property_package_id => 3)
+Amenity.create(:name => 'amenity 2', :available => true, :property_package_id => 3)
+Amenity.create(:name => 'amenity 3', :available => true, :property_package_id => 3)
+Amenity.create(:name => 'amenity 4', :available => true, :property_package_id => 3)
+Amenity.create(:name => 'amenity 5', :available => true, :property_package_id => 3)

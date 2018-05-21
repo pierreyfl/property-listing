@@ -148,11 +148,14 @@
 
     </div>
     <hr/>
-
+    <%
+      near_rooms =  @room.nearbys(10)
+    %>
+    <% if near_rooms %>
     <!-- NEAR BY ROOMS -->
     <div class="row">
       <h3>Near by</h3>
-      <% for room in @room.nearbys(10).max(6).shuffle %>
+      <% for room in near_rooms.max(6).shuffle %>
         <div class="col-md-4">
           <div class="panel panel-default">
             <div class="panel-heading preview">
@@ -166,6 +169,8 @@
         </div>
       <% end %>
     </div>
+
+      <% end %>
   </div>
 
   <!-- RIGHT PANEL -->
@@ -176,10 +181,55 @@
   -->
 </div>
 
+<div id="room-details"></div>
+
 <script>
   $('#average_rating').raty({
     path: '/assets',
     readOnly: true,
     score: <%= @room.average_rating %>
   });
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  var start_time = Date.now();
+
+  $(document).on('page:change', function() {
+      var $roomDetais = $('#room-details');
+      var productPolling;
+
+      if ($productContainer.length) {
+          productPolling = setInterval(fetchProducts, 500);
+          $(document).on('page:change', clearPolling);
+      }
+
+      function clearPolling() {
+          clearInterval(productPolling);
+          $document.off('page:change', clearPolling);
+      }
+
+      function fetchProduct() {
+          // some ajax code
+      }
+  });
+
+ setInterval(function () {
+      if ($('#room-details').length)
+        start_time = logTime(start_time);
+  }, 15000);
+
+
+
+
+function logTime(start) {
+    var end_date = new Date();
+    var diff = Math.abs(end_date - start);
+    $.ajax({
+        url: "/log-room-visit",
+        data: {'timeSpent': diff, room_id: <%= @room.id%>},
+        async: true
+    });
+
+    return end_date;
+}
 </script>

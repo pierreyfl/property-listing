@@ -1,0 +1,9 @@
+<h3>
+    Edit <%= @list.title %>
+</h3>
+
+<%= form_for @list, html: {class: ""}, :url => classfied_list_path(@list) do |form| %>
+    <%= render "form", {form: form} %>
+    
+    <%= form.submit "Save", class: "btn btn-primary" %>
+<% end %>

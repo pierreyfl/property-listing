@@ -1,11 +1,17 @@
 class AgenciesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authenticate_super_admin
+  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_super_admin, except: [:show]
   def index
     @agencies = Agency.all
   end
 
   def new
+  end
+  
+  def show
+    @room = Room.find(params[:id])
+    @photos = @room.photos
+    @guest_reviews = @room.guest_reviews
   end
 
   def create

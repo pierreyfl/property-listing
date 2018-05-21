@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  
   root 'pages#index'
+  get 'classfied_lists/index'
 
   devise_for :users,
               path: '',
@@ -32,6 +34,18 @@ Rails.application.routes.draw do
 
   resources :guest_reviews, only: [:create, :destroy]
   resources :host_reviews, only: [:create, :destroy]
+  
+   scope '/admin' do
+    get '/overview' => 'pages#overview'
+    resources :packages do
+      resources :amenities
+    end
+    resources :classfied_lists
+    resources :articles
+    resources :rooms, controller: :admin_rooms
+   end
+
+  get '/log-room-visit' => 'rooms#log'
 
   get '/your_trips' => 'reservations#your_trips'
   get '/your_reservations' => 'reservations#your_reservations'

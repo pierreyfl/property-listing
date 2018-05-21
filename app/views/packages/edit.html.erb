@@ -1,0 +1,9 @@
+<h3>
+    Edit <%= @package.name %>
+</h3>
+
+<%= form_for @package, html: {class: ""}, :url => package_path(@package) do |form| %>
+    <%= render "form", {form: form} %>
+    
+    <%= form.submit "Save", class: "btn btn-primary" %>
+<% end %>
