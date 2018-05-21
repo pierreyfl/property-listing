@@ -31,7 +31,7 @@
           <div class="form-group select">
             <%= f.select :bed_room_lteq, Room::BED_ROOMS.map{|k, v| [v, k]}, { id: "bed_room_gteq", prompt: "Beds (max)" }, { class: "form-control no-border-form-control" } %>
           </div>
-        </div>        
+        </div>
         <div class="col-md-2">
           <div class="form-group select">
             <%= f.select :bath_room_gteq, Room::BATH_ROOMS.map{|k, v| [v, k]}, { id: "bath_room_gteq", prompt: "Bathrooms" }, { class: "form-control no-border-form-control" } %>
@@ -85,7 +85,7 @@
                   </div>
                   <div class="col-md-4">
                     <%= check_box_tag "q[is_air_eq]", true %> Air Conditioning
-                  </div>                
+                  </div>
                 </div>
 
                 <div class="row">
@@ -124,7 +124,7 @@
 
     </div>
   <% end %>
-</div>    
+</div>
 
 
 <!-- HOMES -->
@@ -163,6 +163,10 @@
 </div>
 
 <script>
+  function initialize() {
+
+  }
+
   $('#start_date').datepicker({
     dateFormat: 'dd-mm-yy',
     minDate: 0,
