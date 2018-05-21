@@ -1,1 +1,17 @@
-<%= @agent.name %>
+<div class="row">
+  <div class="col">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h1><%= @agent.agency.name %> Agent</h1></div>
+      <div class="panel-body">
+          <%= image_tag @agent.cover_photo %> <br>
+          <%= image_tag @agent.photo %> <br>
+          <p><%= @agent.name %></p><br>
+          <p> <strong>Address :</strong> <%= @agent.address %></p>
+          <p><strong>Email :</strong> <%= @agent.email %></p>
+          <p><strong>Contact No. :</strong> <%= @agent.phone_number %></p>
+          <hr>
+          <h3>About</h3>
+          <p><%= @agent.description %></p>
+    </div>
+  </div>
+</div>

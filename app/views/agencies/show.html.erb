@@ -10,9 +10,14 @@
           <hr>
           <h3>Our Agents</h3>
           <% @agency.agents.each do |agent| %>
-            <div>
-              <%= link_to agent.name, agent %>
-            </div>
+            <%= link_to agent do %>
+              <div>
+                <p><%= image_tag agent.photo %></p>
+                <p><%= agent.name %></p>
+                <p><%= agent.title %></p>
+                <p><%= agent.years_experience %> Years of experience</p>
+              </div>
+            <% end %>
           <% end %>
           <% if current_user.has_role? :agency_admin %>
             <%= link_to "Add Agent", new_agent_path, class: 'btn btn-success' %>
