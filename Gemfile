@@ -74,7 +74,6 @@ gem 'react-rails'
 gem 'react-bootstrap-rails', '~> 0.13.0'
 gem 'cancancan', '~> 2.0'
 
-# AirKong
 gem 'twilio-ruby'
 gem 'fullcalendar-rails', '~> 3.4'
 gem 'momentjs-rails', '~> 2.17.1'
