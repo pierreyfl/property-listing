@@ -1,1 +1,23 @@
-agent homepage
+<div class="row">
+  <div class="col">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h1>Agent - <%= @agent.agency.name %></h1></div>
+      <div class="panel-body">
+          <div>
+            <%= image_tag @agent.cover_photo.url %> <br> <br>
+          </div>
+          <%= image_tag @agent.photo.url %> <br>
+          <h2><%= @agent.name %></h2><br>
+          <p><%= @agent.title %></p><br>
+          <p><strong>Address :</strong> <%= @agent.address %></p>
+          <p><strong>Country :</strong> <%= @agent.country %></p>
+          <p><strong>City :</strong> <%= @agent.city %></p>
+          <p><strong>State :</strong> <%= @agent.state %></p>
+          <p><strong>Email :</strong> <%= @agent.email %></p>
+          <p><strong>Contact No. :</strong> <%= @agent.phone_number %></p>
+          <hr>
+          <h3>About</h3>
+          <p><%= @agent.description %></p>
+    </div>
+  </div>
+</div>
