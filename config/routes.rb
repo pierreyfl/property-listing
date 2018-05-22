@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     end
     resources :classfied_lists
     resources :articles
+    resources :stats
     resources :rooms, controller: :admin_rooms
    end
 
