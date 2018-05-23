@@ -70,5 +70,8 @@ Rails.application.routes.draw do
   post '/notification_settings' => 'settings#update'
   get '/notifications' => 'notifications#index'
 
+  post 'favourites/:resource_name/:resource_id' => 'favourites#create', as: 'favourite'
+  delete 'favourites/:resource_name/:resource_id' => 'favourites#destroy', as: 'unfavourite'
+
   mount ActionCable.server => '/cable'
 end

@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+  include Likeable::UserMethods
+
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
