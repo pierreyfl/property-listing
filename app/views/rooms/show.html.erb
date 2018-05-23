@@ -19,6 +19,7 @@
       <div class="col-md-4 text-center">
         <%= image_tag avatar_url(@room.user), class: "img-circle avatar-large" %><br/><br/>
         <%= @room.user.fullname %>
+        <%= social_share_button_tag(@room.listing_name) %> <button type="button" name="print" onclick="window.print();return false;" ><i class="fa fa-print"></i></button>
       </div>
     </div>
     <hr/>

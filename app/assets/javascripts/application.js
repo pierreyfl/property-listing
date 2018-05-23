@@ -25,6 +25,5 @@
 //= require chartkick
 //= require cable
 //= require turbolinks
+//= require social-share-button
 //= require_tree .
-
-

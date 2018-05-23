@@ -263,6 +263,8 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
     sixarm_ruby_unaccent (1.2.0)
+    social-share-button (1.1.0)
+      coffee-rails
     sort_alphabetical (1.1.0)
       unicode_utils (>= 1.2.2)
     spring (2.0.2)
@@ -346,6 +348,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   searchkick
   selenium-webdriver
+  social-share-button (~> 1.1)
   spring
   spring-watcher-listen (~> 2.0.0)
   stripe (~> 3.0.0)
