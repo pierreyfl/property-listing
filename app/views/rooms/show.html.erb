@@ -15,19 +15,7 @@
       <div class="col-md-8">
         <h1>
           <%= @room.listing_name %>
-          <% if current_user.likes? @room %>
-            <%= link_to unfavourite_path(resource_name: @room.class,
-                                        resource_id: @room.id),
-                                        method: :delete do %>
-                                        <i class="fa fa-star"></i>
-            <% end %>
-          <% else %>
-            <%= link_to favourite_path(resource_name: @room.class,
-                                        resource_id: @room.id),
-                                        method: :post do %>
-                                        <i class="fa fa-star-o"></i>
-            <% end %>
-          <% end %>
+          <%= favourite_link(@room) %>
         </h1>
         <%= @room.address %>
       </div>
