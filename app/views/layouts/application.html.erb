@@ -13,14 +13,17 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/hot-sneaks/jquery-ui.css">
   </head>
 
-  <body>
+  <% page_class = [controller_name, action_name].join('-') %>
+
+  <body class="<%= page_class %>">
     <%= render 'shared/navbar' %>
     <%= render 'shared/message' %>
     <% if current_user %>
       <input type="hidden" id="user_id" value="<%= current_user.id %>">
     <% end %>
-    <div class="container">
+    <div class="<%= "container" unless ["pages-index"].include?(page_class) %>">
       <%= yield %>
     </div>
+    <%= render 'shared/footer' %>
   </body>
 </html>

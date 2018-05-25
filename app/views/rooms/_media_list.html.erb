@@ -1,0 +1,35 @@
+<% rooms.each do |room| %>
+  <li class="media">
+    <div class="media-left">
+      <a href="#">
+        <%= image_tag room.cover_photo(:medium) %>
+      </a>
+    </div>
+    <div class="media-body">
+      <div class="media-header">
+        <div>
+          <div class="pull-right">
+            <div id="star_<%= room.id %>"></div> <%= pluralize(room.average_rating, "review") %>
+          </div>
+          <p>House</p>
+        </div>
+        <h4 class="media-heading">2,700,000</h4>
+      </div>
+      <h5><%= link_to room.listing_name, room %></h5>
+      <p></p>
+      <div class="media-footer">
+        <a class="btn btn-link"><i class="fa fa-bed"></i> 3 bed</a>
+        <a class="btn btn-link"><i class="fa fa-bath"></i> 1 bath</a>
+        <a class="btn btn-link"><i class="fa fa-car"></i> 2 parking</a>
+      </div>
+    </div>
+  </li>
+
+  <script>
+    $('#star_<%= room.id %>').raty({
+      path: '/assets',
+      readOnly: true,
+      score: <%= room.average_rating %>
+    });
+  </script>
+<% end %>

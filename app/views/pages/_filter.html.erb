@@ -1,0 +1,70 @@
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#home">Buy</a></li>
+  <li><a data-toggle="tab" href="#rent">Rent</a></li>
+  <li><a data-toggle="tab" href="#new_home">New homes</a></li>
+</ul>
+
+<div class="input-group">
+  <div class="input-group-btn">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Country <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="#">Action</a></li>
+      <li><a href="#">Another action</a></li>
+      <li><a href="#">Something else here</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a href="#">Separated link</a></li>
+    </ul>
+  </div><!-- /btn-group -->
+  <%= text_field_tag :search, params[:search], placeholder: "Search by state, suburb or postcode", class: "form-control", id:"autolocation" %>
+  <span class="input-group-btn">
+    <button type="submit" class="btn btn-default" type="button">
+      <i class="fa fa-search"></i>
+      Search
+    </button>
+  </span>
+</div><!-- /input-group -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="pull-right">
+      <a href="#" id="link-more-options">
+        More options
+        <i class="fa fa-angle-down"></i>
+        <i class="fa fa-angle-up" style="display: none;"></i>
+      </a>
+    </div>
+  </div>
+</div>
+<div id="search-more-options" class="row" style="display: none;">
+  <div class="col-md-2">
+    <div class="form-group select">
+      <%= f.select :accommodate_gteq, Room::ACCOMADATION_TYPES.map{|k, v| [v, k]}, { id: "accommodate_gteq", prompt: "All property types" }, { class: "form-control no-border-form-control" } %>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group select">
+      <%= f.select :bed_room_gteq, Room::BED_ROOMS.map{|k, v| [v, k]}, { id: "bed_room_lteq", prompt: "Beds (min)" }, { class: "form-control no-border-form-control" } %>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group select">
+      <%= f.select :bed_room_lteq, Room::BED_ROOMS.map{|k, v| [v, k]}, { id: "bed_room_gteq", prompt: "Beds (max)" }, { class: "form-control no-border-form-control" } %>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group select">
+      <%= f.select :bath_room_gteq, Room::BATH_ROOMS.map{|k, v| [v, k]}, { id: "bath_room_gteq", prompt: "Bathrooms" }, { class: "form-control no-border-form-control" } %>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <%= f.select :price_gteq, Room::PRICES.map{|k, v| [v, k]}, { id: "price_lteq", prompt: "Price (min)" }, { class: "form-control no-border-form-control" } %>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <%= f.select :price_lteq, Room::PRICES.map{|k, v| [v, k]}, { id: "price_gteq", prompt: "Price (max)" }, { class: "form-control no-border-form-control" } %>
+    </div>
+  </div>
+</div>

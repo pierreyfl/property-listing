@@ -50,12 +50,16 @@ class PagesController < ApplicationController
   end
 
   def search
-    @rooms_address = Room.where(active: true).all
+    @rooms_address = Room.active.all
     @search = @rooms_address.ransack(params[:q])
 
     filters = {}
 
     if params[:q]
+      unless is_rent = params[:q][:is_rent_eq].presence
+        filters[:is_rent] = is_rent
+      end
+
       if params[:q][:accommodate_gteq] && params[:q][:accommodate_gteq] != "" && params[:q][:accommodate_gteq] != "0"
         filters[:home_type] = { gte: params[:q][:accommodate_gteq] }
       end
@@ -151,7 +155,6 @@ class PagesController < ApplicationController
   end
 
   def index
-    @rooms = Room.where(active: true).limit(3)
     # STEP 1
     if params[:search].present? && params[:search].strip != ""
       session[:loc_search] = params[:search]
@@ -159,9 +162,9 @@ class PagesController < ApplicationController
 
     # STEP 2
     if session[:loc_search] && session[:loc_search] != ""
-      @rooms_address = Room.where(active: true).near(session[:loc_search], 5, order: 'distance')
+      @rooms_address = Room.for_buy.active.near(session[:loc_search], 5, order: 'distance')
     else
-      @rooms_address = Room.where(active: true).all
+      @rooms_address = Room.for_buy.active.all
     end
 
     # STEP 3

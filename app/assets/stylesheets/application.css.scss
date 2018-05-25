@@ -42,13 +42,30 @@ a {
 }
 
 .navbar-default .navbar-brand {
-  color: #FF5A5F;
+  color: #f08b34;
   font-size: 2em;
   font-weight: 400;
 }
 
-.navbar-default .navbar-nav > li > a {
-    color: #fff;
+.navbar-menu {
+  li {
+    a {
+      color:#666;
+      border-bottom: 2px solid transparent;
+    }
+    &.active {
+      a {
+        color: #f08b34 !important;
+        border-bottom: 2px solid #f08b34;
+      }
+    }
+  }
+}
+
+.navbar-right {
+  .separator {
+    padding:15px 0;
+  }
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
@@ -58,6 +75,66 @@ a {
 
 a.black {
     color: black !important;
+}
+
+//FOOTER
+.road-map {
+  margin-top: 50px;
+  padding: 50px 0 30px 0;
+  background-color:#f3f3f3;
+  h4 {
+    color: #f08b34;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .list-group {
+    .list-group-item {
+      background: transparent;
+      border:0;
+      border-radius:0;
+      padding-left:0;
+      a {
+        color:#666;
+      }
+    }
+  }
+}
+.footer {
+  background-color: #6f7173;
+  padding: 10px 0;
+  .navbar {
+    margin-bottom: 0px;
+    li {
+      a {
+        color: #fafafa;
+        &:hover {
+          background: transparent;
+        }
+      }
+    }
+  }
+  .socials {
+    padding-top: 5px;
+    li {
+      margin-right: 10px;
+      a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid #fff;
+        padding: 0;
+        .fa {
+          margin: 12px 8px;
+          &.fa-facebook-f {
+            margin: 12px 10px;
+          }
+          &:before {
+            padding: 5px;
+          }
+        }
+      }
+    }
+  }
 }
 
 //BUTTONS
@@ -75,24 +152,26 @@ a.black {
   padding: 9px 27px;
 }
 
-.btn-small {
-  padding: 5px 15px;
-  margin-top: 15px;
+.navbar {
+  .btn-small {
+    padding: 5px 15px;
+    margin-top: 10px;
+  }
 }
 
 .btn:hover, .btn:focus {
   color: #fff;
 }
 
-.btn.btn-default {
-  width: 100%;
-  border-color: #c4c4c4;
-  background: white;
-  color: #484848;
-  border-radius: 2px;
-  padding: 10px 0;
-  margin-top: 10px;
-}
+// .btn.btn-default {
+//   width: 100%;
+//   border-color: #c4c4c4;
+//   background: white;
+//   color: #484848;
+//   border-radius: 2px;
+//   padding: 10px 0;
+//   margin-top: 10px;
+// }
 
 .btn.btn-normal {
   border: 1px solid #ff5a5f;
@@ -313,6 +392,42 @@ a.black {
   font-size: 14px;
 }
 
+.room-list {
+  .media {
+    border: 1px solid #dce0e0;
+    .media-left {
+      img {
+        min-height: 150px;
+      }
+    }
+    .media-heading {
+      color: #f08b34;
+    }
+    .media-body {
+      padding: 10px 10px 10px 0;
+    }
+    .media-footer {
+      .btn-link {
+        padding: 10px 10px 10px 0px;
+        color:#232323;
+        font-weight: normal;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.btn-readmore {
+  border: 1px solid #f08b34;
+  color:#f08b34;
+  font-weight: normal;
+  &:hover, &:focus {
+    border-color:#f08b34;
+    background: #f08b34;
+    color:#fff;
+  }
+}
+
 // RESERVATIONS
 .reservation-table td {
   width: 100%;
@@ -372,6 +487,54 @@ a.black {
   background-size: cover;
   background-position: center;
   height: 326px;
+}
+
+.pages-index .search{
+  background: url('images/banner-bg.jpg') no-repeat;
+  background-size: 100% 100%;
+  padding: 30px 0 50px;
+}
+
+.search {
+  .nav-tabs {
+    border-bottom: 0;
+    margin-bottom: 15px;
+    > li, > li.active {
+      > a {
+        color: #232323;
+        background: transparent;
+        border: 0;
+        padding: 5px 10px;
+        border-radius: 6px;
+      }
+    }
+    > li.active {
+      a {
+        background: #f08b34;
+        color: #fff;
+      }
+    }
+  }
+  .input-group {
+    .input-group-btn {
+      &:first-child {
+        .btn {
+          color: #232323;
+          font-weight: normal;
+          border-radius:0;
+        }
+      }
+      &:last-child {
+        .btn {
+          background: #f08b34;
+          border-color: #f08b34;
+        }
+      }
+    }
+  }
+  #link-more-options {
+    color: #f08b34;
+  }
 }
 
 .banner {
