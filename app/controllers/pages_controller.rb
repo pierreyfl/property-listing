@@ -51,13 +51,18 @@ class PagesController < ApplicationController
 
   def search
     # @rooms_address = Room.active.all
+    @rooms_address = Room.active
     @search = Room.active.ransack(params[:q])
 
     filters = {}
 
     if params[:q]
-      unless is_rent = params[:q][:is_rent_eq].presence
-        filters[:is_rent] = is_rent
+      if is_rent = params[:q][:is_rent_eq].presence
+        if (is_rent == 'true' || is_rent == '1')
+          filters[:is_rent] = true
+        else
+          filters[:is_rent] = [nil, false]
+        end
       end
 
       if params[:q][:accommodate_gteq] && params[:q][:accommodate_gteq] != "" && params[:q][:accommodate_gteq] != "0"
