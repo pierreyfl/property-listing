@@ -1,9 +1,9 @@
 <ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#home">Buy</a></li>
-  <li><a data-toggle="tab" href="#rent">Rent</a></li>
+  <li class="<%= (params[:q].blank? || (params[:q] && params[:q][:is_rent_eq] == 'false')) ? 'active' : '' %>"><a data-toggle="tab" href="#home" id="tab-buy">Buy</a></li>
+  <li class="<%= (params[:q] && params[:q][:is_rent_eq] == 'true') ? 'active' : '' %>"><a data-toggle="tab" href="#rent" id="tab-rent">Rent</a></li>
   <li><a data-toggle="tab" href="#new_home">New homes</a></li>
 </ul>
-
+<%= f.hidden_field :is_rent_eq %>
 <div class="input-group">
   <div class="input-group-btn">
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Country <span class="caret"></span></button>

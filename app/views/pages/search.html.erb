@@ -1,21 +1,26 @@
 <div id="main">
-  <div id="left">
+  <div id="left" class="search">
     <!-- SEARCH PANEL -->
-
-    <div class="row">
-      <div class="col-md-offset-4 col-md-4">
-        <button id="filter" class="btn btn-default" data-toggle="collapse" data-target="#collapsePanel">
-          More filters <i class="fa fa-chevron-down"></i>
-        </button>
+    <%= search_form_for @search, url: search_path do |f| %>
+      <div class="content">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= render partial: "pages/filter", locals: { f: f } %>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <br/>
-      <div class="collapse" id="collapsePanel">
+      <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+          <button id="filter" class="btn btn-default" data-toggle="collapse" data-target="#collapsePanel">
+            More filters <i class="fa fa-chevron-down"></i>
+          </button>
+        </div>
+      </div>
 
-        <%= search_form_for @search, url: search_path, remote: true do |f| %>
-
+      <div class="row">
+        <br/>
+        <div class="collapse" id="collapsePanel">
           <div class="row">
             <div class="col-md-6">
               <label>Price Range:</label>
@@ -121,15 +126,15 @@
           <div class="row text-center">
             <%= f.submit "Search", class: "btn btn-form" %>
           </div>
-
-        <% end %>
+        </div>
+        <br/>
       </div>
-      <br/>
+    </div>
+  <% end %>
 
-      <div class="row" id="room_listing">
-        <%= render partial: "rooms/rooms_list", locals: {rooms: @arrRooms} %>
-      </div>
-
+  <div class="row" id="room_listing">
+    <div class="col-md-9">
+      <%= render partial: "rooms/rooms_list", locals: {rooms: @arrRooms} %>
     </div>
   </div>
 </div>
@@ -139,7 +144,6 @@
 
     <div id="map" style="width: 100%; height: 100%;"></div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbdhrGL62_fFR-hckf74ihwPLkmrZLLSQ"></script>
     <script>
       function initialize(rooms) {
         var location = {lat: 44.5403, lng: -78.5463}

@@ -1,11 +1,11 @@
 <div class="search">
-  <div class="container"> 
+  <div class="container">
     <div class="row">
       <div class="col-sm-offset-2 col-sm-8 banner">
         <h1><span class="text-red">Property</span> Search Properties For Sale</h1>
       </div>
 
-      <%= search_form_for @search, url: search_path, remote: true do |f| %>
+      <%= search_form_for @search, url: search_path do |f| %>
 
         <div class="content col-sm-offset-2 col-sm-8">
           <div class="panel panel-default">
@@ -99,13 +99,6 @@
 </div>
 
 <div class="container">
-  <!-- HOMES -->
-  <div><h3>Homes</h3></div>
-  <br/>
-
-  <div class="row">
-    <%= render partial: "rooms/rooms_list", locals: {rooms: @arrRooms} %>
-  </div>
 
   <!-- CITIES -->
   <div><h3>Cities</h3></div>
@@ -156,22 +149,5 @@
     onSelect: function(selected) {
       $('#start_date').datepicker("option", "maxDate", selected);
     }
-  });
-
-  $(function () {
-    $("#autolocation").geocomplete();
-    $("#link-more-options").click(function(e) {
-      e.preventDefault();
-      if ($("#search-more-options").css('display') == 'none') {
-        $("#search-more-options").show();
-        $(this).find('.fa-angle-down').show();
-        $(this).find('.fa-angle-up').hide();
-      } else {
-        $("#search-more-options").hide();
-        $(this).find('.fa-angle-down').hide();
-        $(this).find('.fa-angle-up').show();
-      }
-      return false;
-    });
   });
 </script>

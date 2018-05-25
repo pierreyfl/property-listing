@@ -50,8 +50,8 @@ class PagesController < ApplicationController
   end
 
   def search
-    @rooms_address = Room.active.all
-    @search = @rooms_address.ransack(params[:q])
+    # @rooms_address = Room.active.all
+    @search = Room.active.ransack(params[:q])
 
     filters = {}
 
