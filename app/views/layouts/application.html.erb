@@ -1,29 +1,200 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>AirKong</title>
-    <%= csrf_meta_tags %>
-    <%= action_cable_meta_tag %>
+<head>
+  <!-- Basic Page Needs
+  ================================================== -->
+  <title>AirKong</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbdhrGL62_fFR-hckf74ihwPLkmrZLLSQ&libraries=places"></script>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://fonts.googleapis.com/css?family=Varela" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/hot-sneaks/jquery-ui.css">
-  </head>
+  <%= csrf_meta_tags %>
+  <%= action_cable_meta_tag %>
 
-  <% page_class = [controller_name, action_name].join('-') %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbdhrGL62_fFR-hckf74ihwPLkmrZLLSQ&libraries=places"></script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body class="<%= page_class %>">
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/message' %>
-    <% if current_user %>
-      <input type="hidden" id="user_id" value="<%= current_user.id %>">
-    <% end %>
-    <div class="<%= "container" unless ["pages-index"].include?(page_class) %>">
-      <%= yield %>
+<body>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+
+<!-- Compare Properties Widget
+================================================== -->
+<div class="compare-slide-menu">
+
+  <div class="csm-trigger"></div>
+
+  <div class="csm-content">
+    <h4>Compare Properties <div class="csm-mobile-trigger"></div></h4>
+
+    <div class="csm-properties">
+
+      <!-- Property -->
+      <div class="listing-item compact">
+        <a href="single-property-page-2.html" class="listing-img-container">
+          <div class="remove-from-compare"><i class="fa fa-close"></i></div>
+          <div class="listing-badges">
+            <span>For Sale</span>
+          </div>
+          <div class="listing-img-content">
+            <span class="listing-compact-title">Eagle Apartments <i>$420,000</i></span>
+          </div>
+          <img src="assets/listing-01.jpg" alt="">
+        </a>
+      </div>
+
+      <!-- Property -->
+      <div class="listing-item compact">
+        <a href="single-property-page-2.html" class="listing-img-container">
+          <div class="remove-from-compare"><i class="fa fa-close"></i></div>
+          <div class="listing-badges">
+            <span>For Sale</span>
+          </div>
+          <div class="listing-img-content">
+            <span class="listing-compact-title">Selway Apartments <i>$420,000</i></span>
+          </div>
+          <img src="assets/listing-03.jpg" alt="">
+        </a>
+      </div>
+
+      <!-- Property -->
+      <div class="listing-item compact">
+        <a href="single-property-page-2.html" class="listing-img-container">
+          <div class="remove-from-compare"><i class="fa fa-close"></i></div>
+          <div class="listing-badges">
+            <span>For Sale</span>
+          </div>
+          <div class="listing-img-content">
+            <span class="listing-compact-title">Oak Tree Villas <i>$535,000</i></span>
+          </div>
+          <img src="assets/listing-05.jpg" alt="">
+        </a>
+      </div>
+
     </div>
-    <%= render 'shared/footer' %>
-  </body>
+
+    <div class="csm-buttons">
+      <a href="compare-properties.html" class="button">Compare</a>
+      <a href="#" class="button reset">Reset</a>
+    </div>
+  </div>
+
+</div>
+<!-- Compare Properties Widget / End -->
+
+<!-- Header Container
+================================================== -->
+<%= render 'shared/header' %>
+<div class="clearfix"></div>
+<!-- Header Container / End -->
+
+<!-- Content -->
+<%= yield %>
+
+<!-- Footer
+================================================== -->
+<div id="footer" class="sticky-footer">
+  <!-- Main -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 col-sm-6">
+        <img class="footer-logo" src="assets/logo.png" alt="">
+        <br><br>
+        <p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper.</p>
+      </div>
+
+      <div class="col-md-4 col-sm-6 ">
+        <h4>Helpful Links</h4>
+        <ul class="footer-links">
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Sign Up</a></li>
+          <li><a href="#">My Account</a></li>
+          <li><a href="#">Add Property</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+
+        <ul class="footer-links">
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Our Agents</a></li>
+          <li><a href="#">How It Works</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="col-md-3  col-sm-12">
+        <h4>Contact Us</h4>
+        <div class="text-widget">
+          <span>12345 Little Lonsdale St, Melbourne</span> <br>
+          Phone: <span>(123) 123-456 </span><br>
+          E-Mail:<span> <a href="#">office@example.com</a> </span><br>
+        </div>
+
+        <ul class="social-icons margin-top-20">
+          <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+          <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+          <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+          <li><a class="vimeo" href="#"><i class="icon-vimeo"></i></a></li>
+        </ul>
+
+      </div>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="copyrights">© 2016 Findeo. All Rights Reserved.</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<!-- Footer / End -->
+
+
+<!-- Back To Top Button -->
+<div id="backtotop"><a href="#"></a></div>
+
+<div id="style-switcher">
+  <h2>Color Switcher <a href="#"><i class="sl sl-icon-settings"></i></a></h2>
+
+  <div>
+    <ul class="colors" id="color1">
+      <li><a href="#" class="blue" title="Blue"></a></li>
+      <li><a href="#" class="green" title="Green"></a></li>
+      <li><a href="#" class="orange" title="Orange"></a></li>
+      <li><a href="#" class="navy" title="Navy"></a></li>
+      <li><a href="#" class="yellow" title="Yellow"></a></li>
+      <li><a href="#" class="peach" title="Peach"></a></li>
+      <li><a href="#" class="beige" title="Beige"></a></li>
+      <li><a href="#" class="purple" title="Purple"></a></li>
+      <li><a href="#" class="celadon" title="Celadon"></a></li>
+      <li><a href="#" class="pink" title="Pink"></a></li>
+      <li><a href="#" class="red" title="Red"></a></li>
+      <li><a href="#" class="brown" title="Brown"></a></li>
+      <li><a href="#" class="cherry" title="Cherry"></a></li>
+      <li><a href="#" class="cyan" title="Cyan"></a></li>
+      <li><a href="#" class="gray" title="Gray"></a></li>
+      <li><a href="#" class="olive" title="Olive"></a></li>
+    </ul>
+  </div>
+
+</div>
+<!-- Style Switcher / End -->
+
+
+</div>
+<!-- Wrapper / End -->
+
+  <% if current_user %>
+    <input type="hidden" id="user_id" value="<%= current_user.id %>">
+  <% end %>
+
+</body>
 </html>
