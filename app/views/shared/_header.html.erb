@@ -8,7 +8,7 @@
 
         <!-- Logo -->
         <div id="logo">
-          <a href="<%= root_path %>"><img src="assets/logo.png" alt=""></a>
+          <a href="<%= root_path %>"><img src="/assets/logo.png" alt=""></a>
         </div>
 
         <!-- Mobile Navigation -->
@@ -24,12 +24,12 @@
         <!-- Main Navigation -->
         <nav id="navigation" class="style-1">
           <ul id="responsive">
-            <li><a class="current" href="#">Buy</a></li>
-            <li><a href="#">Rent</a></li>
-            <li><a href="#">New homes</a></li>
-            <li><a href="#">Sold</a></li>
-            <li><a href="#">News & advice</a></li>
-            <li><a href="#">Classifieds</a></li>
+            <li><a class="current" href="<%= root_path %>">Buy</a></li>
+            <li><a href="<%= root_path %>">Rent</a></li>
+            <li><a href="<%= root_path %>">New homes</a></li>
+            <li><a href="<%= root_path %>">Sold</a></li>
+            <li><a href="<%= root_path %>">News & advice</a></li>
+            <li><a href="<%= root_path %>">Classifieds</a></li>
           </ul>
         </nav>
         <div class="clearfix"></div>
@@ -40,7 +40,7 @@
 
       <!-- Right Side Content / End -->
       <div class="right-side">
-        <nav id="navigation" class="style-1">
+        <nav id="navigation" class="style-1 pull-right">
           <ul id="responsive">
             <% if !user_signed_in? %>
               <li><%= link_to "Login", new_user_session_path, class: "black" %></li>

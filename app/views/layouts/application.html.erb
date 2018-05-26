@@ -9,13 +9,13 @@
   <%= csrf_meta_tags %>
   <%= action_cable_meta_tag %>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbdhrGL62_fFR-hckf74ihwPLkmrZLLSQ&libraries=places"></script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body>
-
+<%= render 'shared/message' %>
 <!-- Wrapper -->
 <div id="wrapper">
 
@@ -41,7 +41,7 @@
           <div class="listing-img-content">
             <span class="listing-compact-title">Eagle Apartments <i>$420,000</i></span>
           </div>
-          <img src="assets/listing-01.jpg" alt="">
+          <img src="/assets/listing-01.jpg" alt="">
         </a>
       </div>
 
@@ -55,7 +55,7 @@
           <div class="listing-img-content">
             <span class="listing-compact-title">Selway Apartments <i>$420,000</i></span>
           </div>
-          <img src="assets/listing-03.jpg" alt="">
+          <img src="/assets/listing-03.jpg" alt="">
         </a>
       </div>
 
@@ -69,7 +69,7 @@
           <div class="listing-img-content">
             <span class="listing-compact-title">Oak Tree Villas <i>$535,000</i></span>
           </div>
-          <img src="assets/listing-05.jpg" alt="">
+          <img src="/assets/listing-05.jpg" alt="">
         </a>
       </div>
 
@@ -91,70 +91,17 @@
 <!-- Header Container / End -->
 
 <!-- Content -->
-<%= yield %>
+<% if controller_name == 'pages' %>
+  <%= yield %>
+<% else %>
+  <div class="container">
+    <%= yield %>
+  </div>
+<% end %>
 
 <!-- Footer
 ================================================== -->
-<div id="footer" class="sticky-footer">
-  <!-- Main -->
-  <div class="container">
-    <div class="row">
-      <div class="col-md-5 col-sm-6">
-        <img class="footer-logo" src="assets/logo.png" alt="">
-        <br><br>
-        <p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper.</p>
-      </div>
-
-      <div class="col-md-4 col-sm-6 ">
-        <h4>Helpful Links</h4>
-        <ul class="footer-links">
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Sign Up</a></li>
-          <li><a href="#">My Account</a></li>
-          <li><a href="#">Add Property</a></li>
-          <li><a href="#">Pricing</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-        </ul>
-
-        <ul class="footer-links">
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Our Agents</a></li>
-          <li><a href="#">How It Works</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-        <div class="clearfix"></div>
-      </div>
-
-      <div class="col-md-3  col-sm-12">
-        <h4>Contact Us</h4>
-        <div class="text-widget">
-          <span>12345 Little Lonsdale St, Melbourne</span> <br>
-          Phone: <span>(123) 123-456 </span><br>
-          E-Mail:<span> <a href="#">office@example.com</a> </span><br>
-        </div>
-
-        <ul class="social-icons margin-top-20">
-          <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-          <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-          <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-          <li><a class="vimeo" href="#"><i class="icon-vimeo"></i></a></li>
-        </ul>
-
-      </div>
-
-    </div>
-
-    <!-- Copyright -->
-    <div class="row">
-      <div class="col-md-12">
-        <div class="copyrights">© 2016 Findeo. All Rights Reserved.</div>
-      </div>
-    </div>
-
-  </div>
-
-</div>
+<%= render 'shared/footer' %>
 <!-- Footer / End -->
 
 
