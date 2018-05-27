@@ -1,104 +1,664 @@
-<div id="main" class="container">
-  <div id="left" class="search">
-    <!-- SEARCH PANEL -->
-    <%= render 'shared/search_form' %>
+<div class="fs-container">
 
-    <div class="row" id="room_listing">
-      <div class="col-md-9">
-        <%= render partial: "rooms/rooms_list", locals: {rooms: @arrRooms} %>
+  <div class="fs-inner-container">
+
+    <!-- Map -->
+    <div id="map-container">
+        <div id="map" data-map-zoom="4" data-map-scroll="true">
+            <!-- map goes here -->
+        </div>
+
+        <!-- Map Navigation -->
+      <a href="#" id="geoLocation" title="Your location"></a>
+      <ul id="mapnav-buttons" class="top">
+          <li><a href="#" id="prevpoint" title="Previous point on map">Prev</a></li>
+          <li><a href="#" id="nextpoint" title="Next point on mp">Next</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+
+  <div class="fs-inner-container">
+    <div class="fs-content">
+
+      <!-- Search -->
+      <section class="search margin-bottom-30">
+
+        <div class="row">
+          <div class="col-md-12">
+
+            <!-- Title -->
+            <h4 class="search-title">Find Your Home</h4>
+
+            <!-- Form -->
+            <div class="main-search-box no-shadow">
+
+
+              <!-- Row With Forms -->
+              <div class="row with-forms">
+
+                <!-- Main Search Input -->
+                <div class="col-fs-6">
+                  <input type="text" placeholder="Enter address e.g. street, city or state" value=""/>
+                </div>
+
+                <!-- Status -->
+                <div class="col-fs-3">
+                  <select data-placeholder="Any Status" class="chosen-select-no-single" >
+                    <option>Any Status</option>
+                    <option>For Sale</option>
+                    <option>For Rent</option>
+                  </select>
+                </div>
+
+                <!-- Property Type -->
+                <div class="col-fs-3">
+                  <select data-placeholder="Any Type" class="chosen-select-no-single" >
+                    <option>Any Type</option>
+                    <option>Apartments</option>
+                    <option>Houses</option>
+                    <option>Commercial</option>
+                    <option>Garages</option>
+                    <option>Lots</option>
+                  </select>
+                </div>
+
+              </div>
+              <!-- Row With Forms / End -->
+
+
+              <!-- Row With Forms -->
+              <div class="row with-forms">
+
+                <!-- Min Price -->
+                <div class="col-fs-3">
+
+                  <!-- Select Input -->
+                  <div class="select-input disabled-first-option">
+                    <input type="text" placeholder="Min Area" data-unit="Sq Ft">
+                    <select>
+                      <option>Min Area</option>
+                      <option>300</option>
+                      <option>400</option>
+                      <option>500</option>
+                      <option>700</option>
+                      <option>800</option>
+                      <option>1000</option>
+                      <option>1500</option>
+                    </select>
+                  </div>
+                  <!-- Select Input / End -->
+
+                </div>
+
+                <!-- Max Price -->
+                <div class="col-fs-3">
+
+                  <!-- Select Input -->
+                  <div class="select-input disabled-first-option">
+                    <input type="text" placeholder="Max Area" data-unit="Sq Ft">
+                    <select>
+                      <option>Max Area</option>
+                      <option>300</option>
+                      <option>400</option>
+                      <option>500</option>
+                      <option>700</option>
+                      <option>800</option>
+                      <option>1000</option>
+                      <option>1500</option>
+                    </select>
+                  </div>
+                  <!-- Select Input / End -->
+
+                </div>
+
+
+                <!-- Min Price -->
+                <div class="col-fs-3">
+
+                  <!-- Select Input -->
+                  <div class="select-input disabled-first-option">
+                    <input type="text" placeholder="Min Price" data-unit="USD">
+                    <select>
+                      <option>Min Price</option>
+                      <option>1 000</option>
+                      <option>2 000</option>
+                      <option>3 000</option>
+                      <option>4 000</option>
+                      <option>5 000</option>
+                      <option>10 000</option>
+                      <option>15 000</option>
+                      <option>20 000</option>
+                      <option>30 000</option>
+                      <option>40 000</option>
+                      <option>50 000</option>
+                      <option>60 000</option>
+                      <option>70 000</option>
+                      <option>80 000</option>
+                      <option>90 000</option>
+                      <option>100 000</option>
+                      <option>110 000</option>
+                      <option>120 000</option>
+                      <option>130 000</option>
+                      <option>140 000</option>
+                      <option>150 000</option>
+                    </select>
+                  </div>
+                  <!-- Select Input / End -->
+
+                </div>
+
+
+                <!-- Max Price -->
+                <div class="col-fs-3">
+
+                  <!-- Select Input -->
+                  <div class="select-input disabled-first-option">
+                    <input type="text" placeholder="Max Price" data-unit="USD">
+                    <select>
+                      <option>Max Price</option>
+                      <option>1 000</option>
+                      <option>2 000</option>
+                      <option>3 000</option>
+                      <option>4 000</option>
+                      <option>5 000</option>
+                      <option>10 000</option>
+                      <option>15 000</option>
+                      <option>20 000</option>
+                      <option>30 000</option>
+                      <option>40 000</option>
+                      <option>50 000</option>
+                      <option>60 000</option>
+                      <option>70 000</option>
+                      <option>80 000</option>
+                      <option>90 000</option>
+                      <option>100 000</option>
+                      <option>110 000</option>
+                      <option>120 000</option>
+                      <option>130 000</option>
+                      <option>140 000</option>
+                      <option>150 000</option>
+                    </select>
+                  </div>
+                  <!-- Select Input / End -->
+
+                </div>
+
+              </div>
+              <!-- Row With Forms / End -->
+
+
+              <!-- Search Button -->
+              <button class="button fs-map-btn">Update</button>
+
+              <!-- More Search Options -->
+              <a href="#" class="more-search-options-trigger margin-top-20" data-open-title="More Options" data-close-title="Less Options"></a>
+
+              <div class="more-search-options relative">
+                <div class="more-search-options-container margin-top-30">
+
+                  <!-- Row With Forms -->
+                  <div class="row with-forms">
+
+                    <!-- Age of Home -->
+                    <div class="col-fs-3">
+                      <select data-placeholder="Age of Home" class="chosen-select-no-single" >
+                        <option label="blank"></option>
+                        <option>Age of Home (Any)</option>
+                        <option>0 - 1 Years</option>
+                        <option>0 - 5 Years</option>
+                        <option>0 - 10 Years</option>
+                        <option>0 - 20 Years</option>
+                        <option>0 - 50 Years</option>
+                        <option>50 + Years</option>
+                      </select>
+                    </div>
+
+                    <!-- Rooms Area -->
+                    <div class="col-fs-3">
+                      <select data-placeholder="Rooms" class="chosen-select-no-single" >
+                        <option label="blank"></option>
+                        <option>Rooms (Any)</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+
+                    <!-- Min Area -->
+                    <div class="col-fs-3">
+                      <select data-placeholder="Beds" class="chosen-select-no-single" >
+                        <option label="blank"></option>
+                        <option>Beds (Any)</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+
+                    <!-- Max Area -->
+                    <div class="col-fs-3">
+                      <select data-placeholder="Baths" class="chosen-select-no-single" >
+                        <option label="blank"></option>
+                        <option>Baths (Any)</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+
+                  </div>
+                  <!-- Row With Forms / End -->
+
+
+                  <!-- Checkboxes -->
+                  <div class="checkboxes in-row">
+
+                    <input id="check-2" type="checkbox" name="check">
+                    <label for="check-2">Air Conditioning</label>
+
+                    <input id="check-3" type="checkbox" name="check">
+                    <label for="check-3">Swimming Pool</label>
+
+                    <input id="check-4" type="checkbox" name="check" >
+                    <label for="check-4">Central Heating</label>
+
+                    <input id="check-5" type="checkbox" name="check">
+                    <label for="check-5">Laundry Room</label>
+
+
+                    <input id="check-6" type="checkbox" name="check">
+                    <label for="check-6">Gym</label>
+
+                    <input id="check-7" type="checkbox" name="check">
+                    <label for="check-7">Alarm</label>
+
+                    <input id="check-8" type="checkbox" name="check">
+                    <label for="check-8">Window Covering</label>
+
+                  </div>
+                  <!-- Checkboxes / End -->
+
+                </div>
+
+              </div>
+              <!-- More Search Options / End -->
+
+
+            </div>
+            <!-- Box / End -->
+          </div>
+        </div>
+
+      </section>
+      <!-- Search / End -->
+
+
+
+      <!-- Sorting / Layout Switcher -->
+      <div class="row fs-switcher">
+
+        <div class="col-md-6">
+          <!-- Showing Results -->
+          <p class="showing-results">14 Results Found </p>
+        </div>
+
+        <div class="col-md-6">
+          <!-- Layout Switcher -->
+          <div class="layout-switcher">
+            <a href="#" class="list"><i class="fa fa-th-list"></i></a>
+            <a href="#" class="grid"><i class="fa fa-th-large"></i></a>
+          </div>
+        </div>
       </div>
+
+
+
+      <!-- Listings -->
+      <div class="listings-container list-layout row fs-listings">
+
+        <!-- Listing Item -->
+        <div class="listing-item">
+
+          <a href="single-property-page-1.html" class="listing-img-container">
+
+            <div class="listing-badges">
+              <span class="featured">Featured</span>
+              <span>For Sale</span>
+            </div>
+
+            <div class="listing-img-content">
+              <span class="listing-price">$275,000 <i>$520 / sq ft</i></span>
+              <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
+              <span class="compare-button with-tip" data-tip-content="Add to Compare"></span>
+            </div>
+
+            <div class="listing-carousel">
+              <div><img src="/assets/listing-01.jpg" alt=""></div>
+              <div><img src="/assets/listing-01b.jpg" alt=""></div>
+              <div><img src="/assets/listing-01c.jpg" alt=""></div>
+            </div>
+          </a>
+
+          <div class="listing-content">
+
+            <div class="listing-title">
+              <h4><a href="single-property-page-1.html">Eagle Apartments</a></h4>
+              <a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom" class="listing-address popup-gmaps">
+                <i class="fa fa-map-marker"></i>
+                9364 School St. Lynchburg, NY
+              </a>
+
+              <a href="single-property-page-1.html" class="details button border">Details</a>
+            </div>
+
+            <ul class="listing-details">
+              <li>530 sq ft</li>
+              <li>1 Bedroom</li>
+              <li>3 Rooms</li>
+              <li>1 Bathroom</li>
+            </ul>
+
+            <div class="listing-footer">
+              <a href="#"><i class="fa fa-user"></i> David Strozier</a>
+              <span><i class="fa fa-calendar-o"></i> 1 day ago</span>
+            </div>
+
+          </div>
+
+        </div>
+        <!-- Listing Item / End -->
+
+
+        <!-- Listing Item -->
+        <div class="listing-item">
+
+          <a href="single-property-page-1.html" class="listing-img-container">
+
+            <div class="listing-badges">
+              <span>For Rent</span>
+            </div>
+
+            <div class="listing-img-content">
+              <span class="listing-price">$900 <i>monthly</i></span>
+              <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
+              <span class="compare-button with-tip" data-tip-content="Add to Compare"></span>
+            </div>
+
+            <img src="/assets/listing-02.jpg" alt="">
+
+          </a>
+
+          <div class="listing-content">
+
+            <div class="listing-title">
+              <h4><a href="single-property-page-1.html">Serene Uptown</a></h4>
+              <a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom" class="listing-address popup-gmaps">
+                <i class="fa fa-map-marker"></i>
+                6 Bishop Ave. Perkasie, PA
+              </a>
+
+              <a href="single-property-page-1.html" class="details button border">Details</a>
+            </div>
+
+            <ul class="listing-details">
+              <li>440 sq ft</li>
+              <li>1 Bedroom</li>
+              <li>1 Room</li>
+              <li>1 Bathroom</li>
+            </ul>
+
+            <div class="listing-footer">
+              <a href="#"><i class="fa fa-user"></i> Harriette Clark</a>
+              <span><i class="fa fa-calendar-o"></i> 2 days ago</span>
+            </div>
+
+          </div>
+
+        </div>
+        <!-- Listing Item / End -->
+
+
+        <!-- Listing Item -->
+        <div class="listing-item">
+
+          <a href="single-property-page-1.html" class="listing-img-container">
+
+            <div class="listing-badges">
+              <span class="featured">Featured</span>
+              <span>For Rent</span>
+            </div>
+
+            <div class="listing-img-content">
+              <span class="listing-price">$1700 <i>monthly</i></span>
+              <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
+              <span class="compare-button with-tip" data-tip-content="Add to Compare"></span>
+            </div>
+
+            <img src="/assets/listing-03.jpg" alt="">
+
+          </a>
+
+          <div class="listing-content">
+
+            <div class="listing-title">
+              <h4><a href="single-property-page-1.html">Meridian Villas</a></h4>
+              <a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom" class="listing-address popup-gmaps">
+                <i class="fa fa-map-marker"></i>
+                778 Country St. Panama City, FL
+              </a>
+
+              <a href="single-property-page-1.html" class="details button border">Details</a>
+            </div>
+
+            <ul class="listing-details">
+              <li>1450 sq ft</li>
+              <li>1 Bedroom</li>
+              <li>2 Rooms</li>
+              <li>2 Rooms</li>
+            </ul>
+
+            <div class="listing-footer">
+              <a href="#"><i class="fa fa-user"></i> Chester Miller</a>
+              <span><i class="fa fa-calendar-o"></i> 4 days ago</span>
+            </div>
+
+          </div>
+          <!-- Listing Item / End -->
+
+        </div>
+        <!-- Listing Item / End -->
+
+
+        <!-- Listing Item -->
+        <div class="listing-item">
+
+          <a href="single-property-page-1.html" class="listing-img-container">
+
+            <div class="listing-badges">
+              <span>For Sale</span>
+            </div>
+
+            <div class="listing-img-content">
+              <span class="listing-price">$420,000 <i>$770 / sq ft</i></span>
+              <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
+              <span class="compare-button with-tip" data-tip-content="Add to Compare"></span>
+            </div>
+
+            <div class="listing-carousel">
+              <div><img src="/assets/listing-04.jpg" alt=""></div>
+              <div><img src="/assets/listing-04b.jpg" alt=""></div>
+            </div>
+
+          </a>
+
+          <div class="listing-content">
+
+            <div class="listing-title">
+              <h4><a href="single-property-page-1.html">Selway Apartments</a></h4>
+              <a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom" class="listing-address popup-gmaps">
+                <i class="fa fa-map-marker"></i>
+                33 William St. Northbrook, IL
+              </a>
+
+              <a href="single-property-page-1.html" class="details button border">Details</a>
+            </div>
+
+            <ul class="listing-details">
+              <li>540 sq ft</li>
+              <li>1 Bedroom</li>
+              <li>3 Rooms</li>
+              <li>2 Bathroom</li>
+            </ul>
+
+            <div class="listing-footer">
+              <a href="#"><i class="fa fa-user"></i> Kristen Berry</a>
+              <span><i class="fa fa-calendar-o"></i> 3 days ago</span>
+            </div>
+
+          </div>
+          <!-- Listing Item / End -->
+
+        </div>
+        <!-- Listing Item / End -->
+
+
+        <!-- Listing Item -->
+        <div class="listing-item">
+
+          <a href="single-property-page-1.html" class="listing-img-container">
+            <div class="listing-badges">
+              <span>For Sale</span>
+            </div>
+
+            <div class="listing-img-content">
+              <span class="listing-price">$535,000 <i>$640 / sq ft</i></span>
+              <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
+              <span class="compare-button with-tip" data-tip-content="Add to Compare"></span>
+            </div>
+
+            <img src="/assets/listing-05.jpg" alt="">
+          </a>
+
+          <div class="listing-content">
+
+            <div class="listing-title">
+              <h4><a href="single-property-page-1.html">Oak Tree Villas</a></h4>
+              <a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom" class="listing-address popup-gmaps">
+                <i class="fa fa-map-marker"></i>
+                71 Lower River Dr. Bronx, NY
+              </a>
+
+              <a href="single-property-page-1.html" class="details button border">Details</a>
+            </div>
+
+            <ul class="listing-details">
+              <li>350 sq ft</li>
+              <li>1 Bedroom</li>
+              <li>2 Rooms</li>
+              <li>1 Bathroom</li>
+            </ul>
+
+            <div class="listing-footer">
+              <a href="#"><i class="fa fa-user"></i> Mabel Gagnon</a>
+              <span><i class="fa fa-calendar-o"></i> 4 days ago</span>
+            </div>
+
+          </div>
+          <!-- Listing Item / End -->
+
+        </div>
+        <!-- Listing Item / End -->
+
+
+        <!-- Listing Item -->
+        <div class="listing-item">
+
+          <a href="single-property-page-1.html" class="listing-img-container">
+            <div class="listing-badges">
+              <span>For Rent</span>
+            </div>
+
+            <div class="listing-img-content">
+              <span class="listing-price">$500 <i>monthly</i></span>
+              <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
+              <span class="compare-button with-tip" data-tip-content="Add to Compare"></span>
+            </div>
+
+            <img src="/assets/listing-06.jpg" alt="">
+          </a>
+
+          <div class="listing-content">
+
+            <div class="listing-title">
+              <h4><a href="single-property-page-1.html">Old Town Manchester</a></h4>
+              <a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom" class="listing-address popup-gmaps">
+                <i class="fa fa-map-marker"></i>
+                7843 Durham Avenue, MD
+              </a>
+
+              <a href="single-property-page-1.html" class="details button border">Details</a>
+            </div>
+
+            <ul class="listing-details">
+              <li>850 sq ft</li>
+              <li>2 Bedroom</li>
+              <li>3 Rooms</li>
+              <li>1 Bathroom</li>
+            </ul>
+
+            <div class="listing-footer">
+              <a href="#"><i class="fa fa-user"></i> Charles Watson</a>
+              <span><i class="fa fa-calendar-o"></i> 3 days ago</span>
+            </div>
+
+          </div>
+
+        </div>
+        <!-- Listing Item / End -->
+
+      </div>
+      <!-- Listings Container / End -->
+
+
+      <!-- Pagination Container -->
+      <div class="row fs-listings">
+        <div class="col-md-12">
+
+          <!-- Pagination -->
+          <div class="clearfix"></div>
+          <div class="pagination-container margin-top-10 margin-bottom-45">
+            <nav class="pagination">
+              <ul>
+                <li><a href="#" class="current-page">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li class="blank">...</li>
+                <li><a href="#">22</a></li>
+              </ul>
+            </nav>
+
+            <nav class="pagination-next-prev">
+              <ul>
+                <li><a href="#" class="prev">Previous</a></li>
+                <li><a href="#" class="next">Next</a></li>
+              </ul>
+            </nav>
+          </div>
+
+        </div>
+      </div>
+      <!-- Pagination Container / End -->
+
+
     </div>
   </div>
 
-  <div id="right">
-    <!-- GOOGLE MAP -->
-
-    <div id="map" style="width: 100%; height: 100%;"></div>
-  </div>
 </div>
-
-<script>
-  function initialize(rooms) {
-    var location = {lat: 44.5403, lng: -78.5463}
-    if (rooms.length > 0) {
-      location = {lat: rooms[0].latitude, lng: rooms[0].longitude}
-    }
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: location,
-      zoom: 12
-    });
-    var marker, infowindow;
-    rooms.forEach(function(room){
-      marker = new google.maps.Marker({
-        position: {lat: room.latitude, lng: room.longitude},
-        map: map
-      });
-      infowindow = new google.maps.InfoWindow({
-        content: "<div class='map_price'>$" + room.price + "</div>"
-      });
-      infowindow.open(map, marker);
-    });
-  }
-  google.maps.event.addDomListener(window, 'load', function () {
-    initialize(<%= raw @arrRooms.to_json %>)
-  });
-</script>
-
-<script>
-  // function initialize() {
-
-  // }
-
-  $('#start_date').datepicker({
-    dateFormat: 'dd-mm-yy',
-    minDate: 0,
-    maxDate: '3m',
-    onSelect: function(selected) {
-      $('#end_date').datepicker("option", "minDate", selected);
-      $('#end_date').attr("disabled", false);
-    }
-  });
-
-  $('#end_date').datepicker({
-    dateFormat: 'dd-mm-yy',
-    minDate: 0,
-    maxDate: '3m',
-    onSelect: function(selected) {
-      $('#start_date').datepicker("option", "maxDate", selected);
-    }
-  });
-
-  var open = true;
-
-  $('#filter').click(function(){
-    if (open) {
-      $('#collapsePanel').show();
-      $('#filter').html("More filters <i class='fa fa-chevron-up'></i>")
-    } else {
-      $('#collapsePanel').hide();
-      $('#filter').html("More filters <i class='fa fa-chevron-down'></i>")
-    }
-    open = !open;
-    return false
-  });
-</script>
-
-<script>
-  $(function () {
-    $("#q_price_gteq").val('100');
-    $("#q_price_lteq").val('500');
-    $("#slider-range").slider({
-      range: true,
-      min: 0,
-      max: 1000,
-      values: [100, 500],
-      slide: function(event, ui) {
-        $("#q_price_gteq").val(ui.values[0]);
-        $("#q_price_lteq").val(ui.values[1]);
-      }
-    });
-    $(".ui-widget-header").css('background', '#00A699');
-    $(".ui-state-default, .ui-widget-content").css('background', 'white');
-    $(".ui-state-default, .ui-widget-content").css('border-color', '#00A699');
-  });
-</script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+
+  <!-- Basic Page Needs
+  ================================================== -->
+  <title>AirKong</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <%= csrf_meta_tags %>
+  <%= action_cable_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbdhrGL62_fFR-hckf74ihwPLkmrZLLSQ&libraries=places"></script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+</head>
+
+<body class="overflow-hidden">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+
+<!-- Header Container
+================================================== -->
+<%= render 'shared/header' %>
+<div class="clearfix"></div>
+<!-- Header Container / End -->
+
+
+<!-- Content
+================================================== -->
+<%= yield %>
+
+
+</div>
+<!-- Wrapper / End -->
+
+
+</body>
+</html>
