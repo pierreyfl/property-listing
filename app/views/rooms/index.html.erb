@@ -25,6 +25,7 @@
             </div>
             <div class="col-md-7">
               <h4>
+                <%= room.price %>
                 <%= room.listing_name %>
                 <% if user_signed_in? %>
                   <%= favourite_link(room) %>

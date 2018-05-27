@@ -6,6 +6,8 @@
 @import "bootstrap-datepicker/bootstrap-datepicker";
 @import "social-share-button";
 
+
+
 .select:before {
   top: 10px !important;
 }
@@ -49,7 +51,7 @@ a {
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #fff;
+    color: #000;
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {

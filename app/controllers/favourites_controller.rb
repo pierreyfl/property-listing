@@ -1,4 +1,5 @@
 class FavouritesController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     target = Likeable.find_by_resource_id(params[:resource_name], params[:resource_id])

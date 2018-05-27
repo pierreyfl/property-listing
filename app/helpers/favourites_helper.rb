@@ -1,7 +1,7 @@
 module FavouritesHelper
 
   def favourite_link(resource)
-    if current_user.likes? resource
+    if (user_signed_in?) && (current_user.likes? resource)
       link_to unfavourite_path(resource_name: resource.class,
         resource_id: resource.id),
         method: :delete do
