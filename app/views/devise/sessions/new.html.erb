@@ -13,7 +13,7 @@
 
       <div>
         <% if devise_mapping.rememberable? %>
-          <%= f.check_box :remember_me %> Remember Me
+          <%= f.check_box :remember_me, class: "form-checkbox" %> Remember Me
         <% end %>
         <span class="pull-right">
           <%= link_to "Forgot Password", new_user_password_path %>

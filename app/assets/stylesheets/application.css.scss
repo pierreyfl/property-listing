@@ -281,8 +281,10 @@ a.black {
 }
 
 .form-group input[type="radio"] {
+  width: 15px;
   height: 15px;
   margin-right: 10px;
+  display: inline;
 }
 
 .btn-group label {
@@ -657,4 +659,14 @@ a.black {
 
 #add-card .error {
   color: #E4584C;
+}
+
+.btn-login {
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+.form-checkbox {
+  width: 20px;
+  height: 20px;
 }

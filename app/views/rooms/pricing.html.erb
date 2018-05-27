@@ -21,9 +21,8 @@
             </div>
             <div class="row">
               <div class="form-group">
-                <%= f.radio_button :is_rent, 1, checked: (f.object.is_rent) %> <label>Rent<label> &nbsp;
-                <%= f.radio_button :is_rent, 0, checked: (!f.object.is_rent) %> <label>Buy<label>
-
+                <%= f.radio_button :is_rent, 1, checked: (f.object.is_rent) %> Rent &nbsp;
+                <%= f.radio_button :is_rent, 0, checked: (!f.object.is_rent) %> Buy
 
               </div>
             </div>
