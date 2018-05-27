@@ -109,6 +109,8 @@ GEM
       faraday
       multi_json
     erubi (1.7.1)
+    exchange (1.2.2)
+      nokogiri (~> 1, >= 1.0.0)
     execjs (2.7.0)
     faker (1.8.7)
       i18n (>= 0.7)
@@ -336,6 +338,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   country_select
   devise (~> 4.2)
+  exchange (~> 1.2, >= 1.2.2)
   faker
   fullcalendar-rails (~> 3.4)
   geocoder (~> 1.4)

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  put 'preferences/update/(:setting)' => 'preferences#update', as: 'preferences'
+
   root 'pages#index'
 
   devise_for :users,
