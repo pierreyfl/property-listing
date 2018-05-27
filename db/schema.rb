@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180415171218) do
+ActiveRecord::Schema.define(version: 20180527055923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,16 @@ ActiveRecord::Schema.define(version: 20180415171218) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "property_preferences", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "room_id"
+    t.boolean "favourite", default: false
+    t.boolean "saved", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_property_preferences_on_user_id"
+  end
+
   create_table "reservations", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "room_id"
@@ -175,13 +185,15 @@ ActiveRecord::Schema.define(version: 20180415171218) do
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
-  create_table "settings", force: :cascade do |t|
-    t.boolean "enable_sms", default: true
-    t.boolean "enable_email", default: true
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_settings_on_user_id"
+  create_table "settings", id: :serial, force: :cascade do |t|
+    t.string "var", null: false
+    t.text "value"
+    t.string "target_type", null: false
+    t.integer "target_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["target_type", "target_id", "var"], name: "index_settings_on_target_type_and_target_id_and_var", unique: true
+    t.index ["target_type", "target_id"], name: "index_settings_on_target_type_and_target_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -233,6 +245,7 @@ ActiveRecord::Schema.define(version: 20180415171218) do
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "photos", "rooms"
+  add_foreign_key "property_preferences", "users"
   add_foreign_key "reservations", "rooms"
   add_foreign_key "reservations", "users"
   add_foreign_key "reviews", "reservations"
@@ -240,5 +253,4 @@ ActiveRecord::Schema.define(version: 20180415171218) do
   add_foreign_key "reviews", "users", column: "guest_id"
   add_foreign_key "reviews", "users", column: "host_id"
   add_foreign_key "rooms", "users"
-  add_foreign_key "settings", "users"
 end

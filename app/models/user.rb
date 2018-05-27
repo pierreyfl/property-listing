@@ -1,6 +1,15 @@
 class User < ApplicationRecord
 
   include Likeable::UserMethods
+  
+  has_settings do |s|
+    s.key :preferences,
+      defaults: {
+        currency: 'USD',
+        enable_email: true,
+        enable_sms: true
+      }
+  end
 
   rolify
   # Include default devise modules. Others available are:
@@ -16,7 +25,6 @@ class User < ApplicationRecord
   has_many :host_reviews, class_name: "HostReview", foreign_key: "host_id"
   has_many :notifications
 
-  has_one :setting
 
   # Use polymorphic association since agent and agency admin need login feature, the reason for not using STI(single table inheritance)
   # is under the consideration of future maintenance.
@@ -32,11 +40,7 @@ class User < ApplicationRecord
   #
   belongs_to :userable, polymorphic: true, optional: true
 
-  after_create :add_setting
 
-  def add_setting
-    Setting.create(user: self, enable_sms: true, enable_email: true)
-  end
 
   def self.from_omniauth(auth)
     user = User.where(email: auth.info.email).first
