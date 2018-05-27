@@ -1,6 +1,6 @@
 class AgentsController < ApplicationController
-  # before_action :authenticate_user!, except: [:show]
-  # before_action :authenticate_agency_admin, except: [:show]
+  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_agency_admin, except: [:show]
   before_action only: [:show] do
     track_referer(params[:id], 'Agent')
   end
@@ -10,8 +10,7 @@ class AgentsController < ApplicationController
   end
 
   def index
-    @agents = Agent.all
-    # @agents = current_agency.agents
+    @agents = current_agency.agents
   end
 
   def new
