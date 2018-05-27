@@ -1,0 +1,61 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <h2><%= @agency.name %></h2>
+
+        <!-- Breadcrumbs -->
+        <nav id="breadcrumbs">
+          <ul>
+            <li><a href="<%= root_path %>">Home</a></li>
+            <li><a href="<%= agencies_path %>">Agencies</a></li>
+            <li><%= @agency.name %></li>
+          </ul>
+        </nav>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <!-- Agency -->
+      <div class="agent agent-page agency">
+
+        <div class="agent-avatar">
+          <img src="<%= @agency.user&.image %>" alt="">
+        </div>
+
+        <div class="agent-content">
+          <div class="agent-name">
+            <h4><%= @agency.name %></h4>
+            <span><i class="fa fa-map-marker"></i> <%= @agency.user&.interested_location %></span>
+          </div>
+
+          <p><%= @agency.user&.description %></p>
+
+          <ul class="agent-contact-details">
+            <li><i class="sl sl-icon-call-in"></i><%= @agency.user&.phone_number %></li>
+            <li><i class="fa fa-envelope-o "></i><a href="#"><%= @agency.user&.email %></a></li>
+          </ul>
+
+          <ul class="social-icons">
+            <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+            <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

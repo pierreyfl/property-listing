@@ -1,3 +1,83 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <h2>Agents</h2>
+
+        <!-- Breadcrumbs -->
+        <nav id="breadcrumbs">
+          <ul>
+            <li><a href="<%= root_path %>">Home</a></li>
+            <li>Agents</li>
+          </ul>
+        </nav>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= render 'shared/agent_setting_sidebar' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <%= link_to "Add Agent", new_agent_path, class: 'btn btn-normal' %>
+  <br/><br/>
+
+  <div class="col-md-12">
+    <div class="row">
+
+      <!-- Agents Container -->
+      <div class="agents-grid-container">
+        <% @agents.each do |agent| %>
+        <!-- Agent -->
+          <div class="grid-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="agent">
+
+              <div class="agent-avatar">
+                <a href="<%= agent_path(agent) %>">
+                  <img src="<%= agent.photo_file_name %>" alt="">
+                  <span class="view-profile-btn">View Profile</span>
+                </a>
+              </div>
+
+              <div class="agent-content">
+                <div class="agent-name">
+                  <h4><a href="<%= agent_path(agent) %>"><%= agent.name %></a></h4>
+                  <span>Agent In <%= agent.city %></span>
+                </div>
+
+                <ul class="agent-contact-details">
+                  <li><i class="sl sl-icon-call-in"></i><%= agent.phone_number %></li>
+                  <li><i class="fa fa-envelope-o "></i><a href="#"><%= agent.email %></a></li>
+                </ul>
+
+                <ul class="social-icons">
+                  <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+                  <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+                  <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+                  <li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <div class="row">
   <div class="col-md-3">
     <%= render 'shared/agent_setting_sidebar' %>

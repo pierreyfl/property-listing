@@ -3237,7 +3237,7 @@ body #compare-list li div:last-child .clp-title,
 /* Breadcrumbs */
 #breadcrumbs {
 	position: absolute;
-	right: 15px;
+	right: 50px;
 	display: inline-block;
 	font-size: 15px;
 	font-weight: 500;
