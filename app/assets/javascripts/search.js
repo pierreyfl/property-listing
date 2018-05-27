@@ -1,4 +1,8 @@
 $(function () {
+  $("#tab-all").click(function(e) {
+    $("#q_is_rent_eq").val('');
+  });
+
   $("#tab-buy").click(function(e) {
     $("#q_is_rent_eq").val('false');
   });
@@ -7,9 +11,9 @@ $(function () {
     $("#q_is_rent_eq").val('true');
   });
 
-  if ($("#q_is_rent_eq").val() === '') {
-    $("#q_is_rent_eq").val('false');
-  }
+  // if ($("#q_is_rent_eq").val() === '') {
+  //   $("#q_is_rent_eq").val('false');
+  // }
   $("#autolocation").geocomplete();
 
   $("#link-more-options").click(function(e) {
