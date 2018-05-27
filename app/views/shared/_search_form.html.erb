@@ -1,4 +1,6 @@
 <%= search_form_for @search, url: search_path, class: "main-search-form" do |f| %>
+  <%= f.hidden_field :is_rent_eq %>
+
   <div class="search-type">
     <label class="active"><input class="first-tab" name="tab" checked="checked" type="radio">Any Status</label>
     <label><input name="tab" type="radio">For Sale</label>
@@ -11,7 +13,8 @@
 
     <!-- Main Search Input -->
     <div class="main-search-input larger-input">
-      <input type="text" class="ico-01" placeholder="Enter address e.g. street, city and state or zip" value=""/>
+      <%= text_field_tag :search, params[:search], placeholder: "Search by state, suburb or postcode", class: "ico-01", id: "autolocation" %>
+      <!-- <input type="text" class="ico-01" placeholder="Enter address e.g. street, city and state or zip" value=""/> -->
       <button class="button">Search</button>
     </div>
 

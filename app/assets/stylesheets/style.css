@@ -3155,6 +3155,7 @@ body #compare-list li div:last-child .clp-title,
     background-position: 50% 50%;
     position: relative;
     z-index: 99;
+    background-image: url("/assets/home-parallax.jpg");
 }
 
 /* fullscreen setup */
