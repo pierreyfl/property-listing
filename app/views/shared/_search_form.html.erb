@@ -1,10 +1,11 @@
 <%= search_form_for @search, url: search_path, class: "main-search-form" do |f| %>
   <%= f.hidden_field :is_rent_eq %>
+  <% is_rent = params[:q] ? params[:q][:is_rent_eq].to_s : '' %>
 
   <div class="search-type">
-    <label class="<%= params[:q].blank? ? 'active' : '' %>"><input id="tab-all" class="first-tab" name="tab" checked="checked" type="radio">Any Status</label>
-    <label class="<%= (params[:q] && params[:q][:is_rent_eq] == 'false') ? 'active' : '' %>"><input id="tab-buy" name="tab" type="radio">For Sale</label>
-    <label class="<%= (params[:q] && params[:q][:is_rent_eq] == 'true') ? 'active' : '' %>"><input id="tab-rent" name="tab" type="radio">For Rent</label>
+    <label class="<%= is_rent == '' ? 'active' : '' %>"><input id="tab-all" class="first-tab" name="tab" checked="checked" type="radio">Any Status</label>
+    <label class="<%= is_rent == 'false' ? 'active' : '' %>"><input id="tab-buy" name="tab" type="radio">For Sale</label>
+    <label class="<%= is_rent == 'true' ? 'active' : '' %>"><input id="tab-rent" name="tab" type="radio">For Rent</label>
     <div class="search-type-arrow"></div>
   </div>
 
@@ -107,19 +108,23 @@
         <!-- Checkboxes -->
         <div class="checkboxes in-row">
 
-          <input id="check-1" type="checkbox" name="q[is_tv_eq]" value="true">
+          <%= f.check_box :is_tv_eq, { id: 'check-1' }, "true", "false" %>
           <label for="check-1">TV</label>
 
-          <input id="check-2" type="checkbox" name="q[is_air_eq]" value="true">
+          <%= f.check_box :is_air_eq, { id: 'check-2' }, "true", "false" %>
+          <!-- <input id="check-2" type="checkbox" name="q[is_air_eq]" value="true"> -->
           <label for="check-2">Air Conditioning</label>
 
-          <input id="check-3" type="checkbox" name="q[is_kitchen_eq]" value="true">
+          <%= f.check_box :is_kitchen_eq, { id: 'check-3' }, "true", "false" %>
+          <!-- <input id="check-3" type="checkbox" name="q[is_kitchen_eq]" value="true"> -->
           <label for="check-3">Kitchen</label>
 
-          <input id="check-4" type="checkbox" name="q[is_internet_eq]" value="true">
+          <%= f.check_box :is_internet_eq, { id: 'check-4' }, "true", "false" %>
+          <!-- <input id="check-4" type="checkbox" name="q[is_internet_eq]" value="true"> -->
           <label for="check-4">Internet</label>
 
-          <input id="check-5" type="checkbox" name="q[is_heating_eq]" value="true">
+          <%= f.check_box :is_heating_eq, { id: 'check-5' }, "true", "false" %>
+          <!-- <input id="check-5" type="checkbox" name="q[is_heating_eq]" value="true"> -->
           <label for="check-5">Central Heating</label>
 
         </div>
