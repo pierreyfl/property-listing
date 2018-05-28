@@ -483,6 +483,14 @@ a.black {
   height: 100%;
 }
 
+#left-map {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 450px;
+  height: 100%;
+}
+
 .map_price {
   text-align: center;
   font-size: 16px;
