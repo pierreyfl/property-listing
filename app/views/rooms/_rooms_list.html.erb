@@ -6,7 +6,7 @@
       </div>
       <div class="panel-body">
         <%= link_to room.listing_name, room, class: "room", data: {room_id: room.id, source: :search} %><br/>
-         - <%= room.home_type %> - <%= pluralize(room.bed_room, "bed") %>
+         <%= with_prefered_currency(room.price) %>- <%= room.home_type %> - <%= pluralize(room.bed_room, "bed") %>
         <div id="star_<%= room.id %>"></div> <%= pluralize(room.average_rating, "review") %>
       </div>
     </div>

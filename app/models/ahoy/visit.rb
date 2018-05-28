@@ -20,7 +20,8 @@ class Ahoy::Visit < ApplicationRecord
     visitors_ids = Ahoy::Event.visitors_ids(resource, id)
     Ahoy::Visit.where(id: visitors_ids)
       .where('started_at >= ?', 1.send(view_by.to_sym).ago)
-      .group_by_hour(:started_at).count
+      .group_by_hour(:started_at)
+      .count
 
   end
 
@@ -29,7 +30,8 @@ class Ahoy::Visit < ApplicationRecord
     visitors_ids = Ahoy::Event.visitors_ids(resource, id)
     Ahoy::Visit.where(id: visitors_ids)
       .group(:referring_domain)
-      .where('started_at >= ?', 1.send(view_by.to_sym).ago).count
+      .where('started_at >= ?', 1.send(view_by.to_sym).ago)
+      .count
   end
 
 

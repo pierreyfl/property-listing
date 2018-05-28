@@ -11,7 +11,8 @@ class Ahoy::Event < ApplicationRecord
     -> (resource, id, view_by="year") {
       where_props("#{resource}_id".to_sym => id)
       .where('time >= ?', 1.send(view_by.to_sym).ago)
-      .group_by_hour(:time).count
+      .group_by_hour(:time)
+      .count
     }
 
   scope :visitors_ids,
