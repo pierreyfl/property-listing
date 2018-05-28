@@ -26,4 +26,6 @@
 //= require cable
 //= require turbolinks
 //= require social-share-button
+//= require ahoy
+//= require room
 //= require_tree .

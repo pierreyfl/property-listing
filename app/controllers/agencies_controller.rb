@@ -1,6 +1,6 @@
 class AgenciesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authenticate_super_admin
+  # before_action :authenticate_user!
+  # before_action :authenticate_super_admin
   def index
     @agencies = Agency.all
   end

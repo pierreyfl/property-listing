@@ -1,7 +1,7 @@
 module PreferencesHelper
   def prefered_currency
     return current_user.settings(:preferences).currency if user_signed_in?
-    return currencies.include?(session[:currency]) ? session[:currency] : 'GBP'
+    return currencies.include?(session[:currency]) ? session[:currency] : 'USD'
   end
 
   def with_prefered_currency(amount)

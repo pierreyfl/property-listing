@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
 
   before_action :set_room, except: [:index, :new, :create]
+  before_action :trak_property, only: [:show]
   before_action :authenticate_user!, except: [:show, :preload, :preview]
   before_action :is_authorised, only: [:listing, :pricing, :description, :photo_upload, :amenities, :location, :update, :lifestyles]
 
@@ -93,6 +94,10 @@ class RoomsController < ApplicationController
   end
 
   private
+
+  def trak_property
+    ahoy.track "view", {room_id: @room.id}
+  end
 
   def is_conflict(start_date, end_date, room)
     check = room.reservations.where("(? < start_date AND end_date < ?) AND status = ?", start_date, end_date, 1)
