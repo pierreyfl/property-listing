@@ -49,18 +49,12 @@
   <div class="col-sm-4">
     <h4>Views by Trafic source</h4>
     <table class="table">
-      <tr>
-        <th>Direct</th>
-        <td></td>
-      </tr>
-      <tr>
-        <th>Search</th>
-        <td><%= @by_search %></td>
-      </tr>
-      <tr>
-        <th>Unkown</th>
-        <td></td>
-      </tr>
+      <% @visitors_by_source.each do |source, count| %>
+        <tr>
+          <th><%= source || "Direct"  %></th>
+          <td><%= count %></td>
+        </tr>
+      <% end %>
     </table>
   </div>
   <div class="col-sm-4">

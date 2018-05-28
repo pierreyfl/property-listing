@@ -14,4 +14,9 @@ class Ahoy::Event < ApplicationRecord
       .group_by_hour(:time).count
     }
 
+  scope :visitors_ids,
+    -> (resource, id) {
+      where_props("#{resource}_id".to_sym => id).pluck(:visit_id).uniq
+    }
+
 end

@@ -6,11 +6,8 @@ class Ahoy::Visit < ApplicationRecord
 
   def self.visitors_by_country(resource, id, view_by="year")
 
-    visitors = Ahoy::Event.where_props(
-      "#{resource}_id".to_sym => id
-    ).pluck(:visit_id).uniq
-    
-    Ahoy::Visit.where(id: visitors)
+    visitors_ids = Ahoy::Event.visitors_ids(resource, id)
+    Ahoy::Visit.where(id: visitors_ids)
       .group(:country)
       .where('started_at >= ?', 1.send(view_by.to_sym).ago)
       .count
@@ -20,14 +17,19 @@ class Ahoy::Visit < ApplicationRecord
 
   def self.visits_by_hour(resource, id, view_by="year")
 
-    visitors = Ahoy::Event.where_props(
-      "#{resource}_id".to_sym => id
-    ).pluck(:visit_id).uniq
-
-    Ahoy::Visit.where(id: visitors)
+    visitors_ids = Ahoy::Event.visitors_ids(resource, id)
+    Ahoy::Visit.where(id: visitors_ids)
       .where('started_at >= ?', 1.send(view_by.to_sym).ago)
       .group_by_hour(:started_at).count
 
+  end
+
+  def self.visitors_by_source(resource, id, view_by="year")
+
+    visitors_ids = Ahoy::Event.visitors_ids(resource, id)
+    Ahoy::Visit.where(id: visitors_ids)
+      .group(:referring_domain)
+      .where('started_at >= ?', 1.send(view_by.to_sym).ago).count
   end
 
 
