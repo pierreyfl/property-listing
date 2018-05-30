@@ -1,4 +1,7 @@
 <div class="row">
+  <h2><%= @resource.listing_name %></h2>
+</div>
+<div class="row">
   <div class="col-sm-2">
     <div class="dropdown">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -6,22 +9,7 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li>
-          <%= link_to "Last Minute", analytics_show_path(view_by: :minute) %>
-        </li>
-        <li>
-          <%= link_to "Last Hour", analytics_show_path(view_by: :hour) %>
-        </li>
-        <li>
-          <%= link_to "Last Week", analytics_show_path(view_by: :week) %>
-        </li>
-        <li>
-          <%= link_to "Last Month", analytics_show_path(view_by: :month) %>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <%= link_to "Last Year", analytics_show_path(view_by: :year) %>
-        </li>
+        <%= view_by_links %>
       </ul>
     </div>
   </div>

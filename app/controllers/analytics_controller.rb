@@ -5,6 +5,8 @@ class AnalyticsController < ApplicationController
     id = session[:id] = params[:id] ? params[:id].to_i : session[:id]
     resource = session[:resource] = params[:resource] ? params[:resource] : session[:resource]
 
+    @resource = resource.capitalize.constantize.find(id)
+
     @viewing_by   = params[:view_by] || "day"
 
     if ['room'].include?(resource)
