@@ -79,4 +79,5 @@ Rails.application.routes.draw do
   delete 'favourites/:resource_name/:resource_id' => 'favourites#destroy', as: 'unfavourite'
 
   mount ActionCable.server => '/cable'
+  mount Searchjoy::Engine, at: "searchjoy"
 end

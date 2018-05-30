@@ -116,7 +116,7 @@ class PagesController < ApplicationController
       search = params[:search]
     end
 
-    @rooms = @rooms_address.search search, where: filters, match: :word_middle
+    @rooms = @rooms_address.search search, where: filters, match: :word_middle, track: {user_id: 1}
 
     @arrRooms = @rooms.to_a
     # STEP 4

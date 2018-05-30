@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180528073759) do
+ActiveRecord::Schema.define(version: 20180528184848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -220,6 +220,23 @@ ActiveRecord::Schema.define(version: 20180528073759) do
     t.integer "instant", default: 1
     t.boolean "is_rent"
     t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
+  create_table "searchjoy_searches", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "search_type"
+    t.string "query"
+    t.string "normalized_query"
+    t.integer "results_count"
+    t.datetime "created_at"
+    t.string "convertable_type"
+    t.bigint "convertable_id"
+    t.datetime "converted_at"
+    t.index ["convertable_type", "convertable_id"], name: "index_searchjoy_searches_on_convertable_type_and_convertable_id"
+    t.index ["created_at"], name: "index_searchjoy_searches_on_created_at"
+    t.index ["search_type", "created_at"], name: "index_searchjoy_searches_on_search_type_and_created_at"
+    t.index ["search_type", "normalized_query", "created_at"], name: "index_searchjoy_searches_on_search_type_query"
+    t.index ["user_id"], name: "index_searchjoy_searches_on_user_id"
   end
 
   create_table "settings", id: :serial, force: :cascade do |t|
