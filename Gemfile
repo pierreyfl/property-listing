@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'searchkick'
 
 gem 'faker'
 
@@ -80,3 +79,5 @@ gem 'omniauth-stripe-connect', '~> 2.10.0'
 gem 'chartkick', '~> 2.2.4'
 gem 'city-state'
 gem 'rolify'
+
+gem 'searchkick', '~> 3.1'
