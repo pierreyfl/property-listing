@@ -81,3 +81,4 @@ gem 'city-state'
 gem 'rolify'
 
 gem 'searchkick', '~> 3.1'
+gem 'redis', '~> 4.0', '>= 4.0.1'

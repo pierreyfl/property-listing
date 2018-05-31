@@ -1,14 +1,30 @@
 <div class="row">
   <div class="search">
     <%= form_tag root_path, method: :get do %>
-      <%= label_tag 'q', 'Search Property' %>
-      <%= text_field_tag :q, nil, placeholder: "Type keyword" %>
-    <% end %>
+      <%= collection_select('country', 'locale', CS.countries, :first, :last) %>
+      <%= text_field_tag :q, nil, placeholder: "Search by region, city or address", size: 50 %>
+      <span class="dropdown">
+        <span class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          More Options
+          <span class="caret"></span>
+        </span>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <div>
+              <h5>PROPERTY TYPE</h5>
+              <%= check_box_tag 'type[house]' %>
+              <%= label_tag 'type[house]','house' %>
+              <%= check_box_tag 'type[land]' %>
+              <%= label_tag 'type[land]','land' %>
+            </div>
+          </div>
+        </span>
+      <% end %>
   </div>
 </div>
 
 <div class="row">
-  <% @rooms.each do |room| %>
-    <%= room.listing_name %> <br>
-  <% end %>
+<% @rooms.each do |room| %>
+  <%= room.listing_name %>
+  <br>
+<% end %>
 </div>
