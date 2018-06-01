@@ -3,6 +3,7 @@
     <%= form_tag root_path, method: :get do %>
       <%= collection_select('country', 'locale', CS.countries, :first, :last) %>
       <%= text_field_tag :q, nil, placeholder: "Search by region, city or address", size: 50 %>
+      <%= submit_tag "Search" %>
       <span class="dropdown">
         <span class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           More Options
@@ -10,13 +11,13 @@
         </span>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <div>
+              <h5>PRICE</h5>
+              <%= text_field_tag 'price[min]', nil, placeholder: "Min", size: 5 %>
+              <%= text_field_tag 'price[max]', nil, placeholder: "Min", size: 5 %>
+            </div>
+            <div>
               <h5>PROPERTY TYPE</h5>
-              <%= check_box_tag 'type[house]' %>
-              <%= label_tag 'type[house]','house' %>
-              <%= check_box_tag 'type[land]' %>
-              <%= label_tag 'type[land]','land' %>
-              <%= check_box_tag 'type[villa]' %>
-              <%= label_tag 'type[villa]','villa' %>
+              <%= property_types %>
             </div>
           </div>
         </span>
@@ -29,6 +30,7 @@
   <%= property.name %>
   <%= property.type %>
   <%= property.availability %>
+  <%= property.price %>
   <br>
 <% end %>
 </div>
