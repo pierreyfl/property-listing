@@ -13,7 +13,18 @@
             <div>
               <h5>PRICE</h5>
               <%= text_field_tag 'price[min]', nil, placeholder: "Min", size: 5 %>
-              <%= text_field_tag 'price[max]', nil, placeholder: "Min", size: 5 %>
+              <%= text_field_tag 'price[max]', nil, placeholder: "Max", size: 5 %>
+            </div>
+            <div>
+              <h5>BEDROOMS</h5>
+              <%= text_field_tag 'bedrooms[min]', nil, placeholder: "Min Beds", size: 5 %>
+              <%= text_field_tag 'bedrooms[max]', nil, placeholder: "Max Beds", size: 5 %>
+            </div>
+            <div>
+              <h5>BATHROOMS</h5>
+              <%= text_field_tag 'bathrooms', nil, placeholder: "Min", size: 5 %>
+              <h5>PARKING</h5>
+              <%= text_field_tag 'parking', nil, placeholder: "Min", size: 5 %>
             </div>
             <div>
               <h5>PROPERTY TYPE</h5>
@@ -29,8 +40,9 @@
 <% @properties.each do |property| %>
   <%= property.name %>
   <%= property.type %>
-  <%= property.availability %>
+  <%= property.parking %>
   <%= property.price %>
+  <%= property.bedrooms %>
   <br>
 <% end %>
 </div>
