@@ -25,6 +25,5 @@
 //= require chartkick
 //= require cable
 //= require turbolinks
+//= require gmaps
 //= require_tree .
-
-

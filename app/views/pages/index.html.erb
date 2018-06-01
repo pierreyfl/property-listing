@@ -22,9 +22,9 @@
             </div>
             <div>
               <h5>BATHROOMS</h5>
-              <%= text_field_tag 'bathrooms', nil, placeholder: "Min", size: 5 %>
+              <%= text_field_tag 'bathrooms', nil, placeholder: "", size: 5 %>
               <h5>PARKING</h5>
-              <%= text_field_tag 'parking', nil, placeholder: "Min", size: 5 %>
+              <%= text_field_tag 'parking', nil, placeholder: "", size: 5 %>
             </div>
             <div>
               <h5>PROPERTY TYPE</h5>
@@ -37,12 +37,18 @@
 </div>
 
 <div class="row">
-<% @properties.each do |property| %>
-  <%= property.name %>
-  <%= property.type %>
-  <%= property.parking %>
-  <%= property.price %>
-  <%= property.bedrooms %>
-  <br>
-<% end %>
+
+  <div class="col-sm-6">
+    <% @properties.each do |property| %>
+      <img src="http://via.placeholder.com/400x150" alt="" style="padding-top:10px;">
+      <h2><%= property.name.capitalize %></h2>
+      <p><%= property.address %></p>
+      <p><%= property.description %></p>
+      <hr>
+    <% end %>
+  </div>
+  <div class="col-sm-6">
+     <%= tag.div nil, id: 'map', data: { properties: @properties.to_json } %>
+  </div>
+
 </div>

@@ -1,0 +1,39 @@
+$(document).on("turbolinks:load", function() {
+
+  var map = new GMaps({
+    el: '#map',
+    lat: -12.043333,
+    lng: -77.028333
+  });
+
+  window.map = map;
+
+  var properties = JSON.parse(document.querySelector("#map").dataset.properties);
+  window.properties = properties;
+
+  var bounds = new google.maps.LatLngBounds();
+
+  properties.forEach(function (property) {
+    if (property.latitude && property.longitude){
+        var marker = map.addMarker({
+        lat: property.latitude,
+        lng: property.longitude,
+        title: property.address,
+        infoWindow: {
+          content: `
+          <h5>
+            <a href='/properties/${property.id}'>
+              ${property.name}
+            </a>
+          </h5>
+          <p>
+            ${property.address}
+          </p>
+          `
+        }
+      });
+      bounds.extend(marker.position);
+    }
+  });
+  map.fitBounds(bounds);
+});
