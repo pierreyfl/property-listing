@@ -13,7 +13,7 @@ end.id
 
 puts "Agent with id #{agent_id} created!, creating properties..." if agent_id
 
-30.times do |i|
+300.times do |i|
   Property.create do |p|
     p.agent_id               = agent_id
     p.name                   = Faker::Lorem.word

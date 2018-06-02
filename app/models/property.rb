@@ -9,7 +9,11 @@ class Property < ApplicationRecord
 
   validates :type, presence: true
 
-  searchkick
+  searchkick locations: [:location]
+
+  def search_data
+    attributes.merge location: { lat: latitude, lon: longitude }
+  end
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?

@@ -1,0 +1,6 @@
+<div id="properties-list">
+  <% @properties.each do |property| %>
+  <h1><%= property.name %></h1>
+  <% end %>
+  <%= paginate @properties, remote: true %>
+</div>
