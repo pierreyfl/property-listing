@@ -5,7 +5,7 @@ function addMarkers() {
   var properties = window.properties = JSON.parse(element.dataset.properties);
 
   map.removeMarkers();
-  
+
   properties.forEach(function (property) {
     if (property.latitude && property.longitude){
         var marker = map.addMarker({
@@ -28,6 +28,10 @@ function addMarkers() {
     }
   });
 
+  setSafeBounds(element);
+}
+
+function setSafeBounds(element) {
   var l = element.dataset.l;
   if(l){
     var latlngs   = l.split(',');
@@ -49,8 +53,7 @@ $(document).on("turbolinks:load", function() {
 
   addMarkers();
 
-  document.querySelector("#redo-search").addEventListener("click", function(e) {
-    e.preventDefault();
+  map.addListener("dragend", function() {
 
     var bounds = map.getBounds();
     var location = bounds.getSouthWest().toUrlValue() + "," + bounds.getNorthEast().toUrlValue();
