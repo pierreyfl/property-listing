@@ -1,16 +1,11 @@
-$(document).on("turbolinks:load", function() {
+var map;
 
-  var map = new GMaps({
-    el: '#map',
-    lat: -12.043333,
-    lng: -77.028333
-  });
+function addMarkers() {
+  var element = document.querySelector("#properties-list");
+  var properties = window.properties = JSON.parse(element.dataset.properties);
 
-  window.map = map;
-
-  var properties = JSON.parse(document.querySelector("#map").dataset.properties);
-  window.properties = properties;
-
+  map.removeMarkers();
+  
   properties.forEach(function (property) {
     if (property.latitude && property.longitude){
         var marker = map.addMarker({
@@ -33,7 +28,7 @@ $(document).on("turbolinks:load", function() {
     }
   });
 
-  var l = document.querySelector("#map").dataset.l;
+  var l = element.dataset.l;
   if(l){
     var latlngs   = l.split(',');
     var southWest = new google.maps.LatLng(latlngs[0], latlngs[1]);
@@ -43,7 +38,16 @@ $(document).on("turbolinks:load", function() {
   }else{
     map.fitZoom();
   }
+}
 
+$(document).on("turbolinks:load", function() {
+  var map = window.map = new GMaps({
+    el: '#map',
+    lat: -12.043333,
+    lng: -77.028333
+  });
+
+  addMarkers();
 
   document.querySelector("#redo-search").addEventListener("click", function(e) {
     e.preventDefault();
