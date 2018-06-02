@@ -14,15 +14,4 @@ class Property < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
-  def marker
-    {
-      lat:    self.latitude,
-      lng:    self.longitude,
-      title:  self.name.capitalize,
-      infoWindow: {
-        content: "<h4>#{self.name}</h4><p>#{self.address}</p>"
-      }
-    }
-  end
-
 end

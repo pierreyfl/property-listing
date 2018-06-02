@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :properties
-  root 'pages#index'
+  root 'properties#index'
 
   devise_for :users,
               path: '',

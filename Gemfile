@@ -82,3 +82,4 @@ gem 'rolify'
 
 gem 'searchkick', '~> 3.1'
 gem 'redis', '~> 4.0', '>= 4.0.1'
+gem 'kaminari', '~> 1.1', '>= 1.1.1'

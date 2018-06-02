@@ -1,0 +1,15 @@
+<div class="row">
+  <%= render 'properties_search_bar' %>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <% @properties.each do |property| %>
+      <h1><%= property.name %></h1>
+    <% end %>
+  </div>
+  <div class="col-sm-6">
+    <%= tag.div nil, id: 'map', data: { properties: @properties.to_json } %>
+  </div>
+</div>
+
+<%= paginate @properties %>
