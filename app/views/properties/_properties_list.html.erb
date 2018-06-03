@@ -1,6 +1,12 @@
 <%= tag.div id: "properties-list", data: { properties: @properties.to_json, l: params[:l] } do %>
   <% @properties.each do |property| %>
   <h1><%= property.name %></h1>
+  <h4><%= property.type %></h4>
+  <p>Price: $<%= property.price %></p>
+  <p>Beds: <%= property.bedrooms %></p>
+  <p>Bath: <%= property.bathrooms %></p>
+  <p>Car Spaces: <%= property.parking %></p>
+  <hr>
   <% end %>
   <%= paginate @properties, remote: true %>
 <% end %>

@@ -67,7 +67,6 @@ gem 'omniauth-facebook', '~> 4.0'
 gem "paperclip", "~> 5.1.0"
 gem 'aws-sdk', '~> 2.8'
 gem 'geocoder', '~> 1.4'
-gem 'jquery-ui-rails', '~> 5.0'
 gem 'ransack', '~> 1.8'
 # AirKong
 gem 'twilio-ruby'
@@ -83,3 +82,4 @@ gem 'rolify'
 gem 'searchkick', '~> 3.1'
 gem 'redis', '~> 4.0', '>= 4.0.1'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
+gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'

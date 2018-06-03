@@ -13,8 +13,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require rails-ujs
-//= require jquery-ui/datepicker
-//= require jquery-ui/slider
+//= require jquery-ui
 //= require bootstrap-datepicker
 //= require plugins/countrypicker.min.js
 //= require toastr
