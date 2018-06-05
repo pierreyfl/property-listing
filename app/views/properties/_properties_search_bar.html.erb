@@ -5,7 +5,7 @@
         <%= content_tag(:option, country, value: code) %>
       <% end %>
     <% end %>
-    <%= f.text_field :near, id: :searchbox, placeholder: "Search by region, city or address", size: 50 %>
+    <%= f.text_field :near, value: session[:neartext], id: :searchbox, placeholder: "Search by region, city or address", size: 50 %>
     <%= f.submit "Search" %>
 
     <!-- more options / filters -->
@@ -18,7 +18,7 @@
         <div>
           <h5>PRICE</h5>
           <%= f.label 'price[min]', :min %>
-          <%= f.select 'price[min]', (3000..9000).step(2000).to_a.unshift('any') %> <br>
+          <%= f.select 'price[min]', (3000..9000).step(2000).to_a.unshift('any'), selected: 5 %> <br>
           <%= f.label 'price[max]', :max %>
           <%= f.select 'price[max]', (3000..9000).step(2000).to_a.unshift('any') %> <br>
         </div>
