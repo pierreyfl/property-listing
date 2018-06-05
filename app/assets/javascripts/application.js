@@ -25,4 +25,5 @@
 //= require cable
 //= require turbolinks
 //= require gmaps
+//= require theme
 //= require_tree .

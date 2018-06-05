@@ -46,6 +46,7 @@ function setSafeBounds(element) {
 
 $(document).on("turbolinks:load", function() {
 
+
   $("#searchbox").geocomplete();
 
   var map = window.map = new GMaps({
@@ -53,6 +54,7 @@ $(document).on("turbolinks:load", function() {
     lat: -12.043333,
     lng: -77.028333
   });
+
 
   addMarkers();
 
