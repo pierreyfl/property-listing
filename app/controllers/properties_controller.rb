@@ -1,7 +1,7 @@
 class PropertiesController < ApplicationController
 
   def index
-    @properties = Property.search("*", page: params[:page], per_page: 2, where: conditions)
+    @properties = Property.search("*", page: params[:page], per_page: 3, where: conditions)
   end
 
   private
