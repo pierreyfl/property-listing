@@ -34,8 +34,9 @@
         <!-- Property Type -->
         <div class="col-md-4">
           <select name="type" data-placeholder="Any Type" class="chosen-select-no-single" >
-            <% %w(any_type apartment house commercial garage lot).each do |type| %>
-            <%= content_tag(:option, type.tr('_', ' ').capitalize, value: type) %>
+            <option value="any">Any Type</option>
+            <% %w(apartment house commercial garage lot).each do |type| %>
+            <%= content_tag(:option, type.capitalize, value: type) %>
             <% end %>
           </select>
         </div>
@@ -107,9 +108,10 @@
 
             <!-- Min Area -->
             <div class="col-md-6">
-              <select data-placeholder="Beds" class="chosen-select-no-single" >
+              <select name="bedrooms" data-placeholder="Beds" class="chosen-select-no-single" >
                 <option label="blank"></option>
-                <% (1..5).to_a.unshift('Beds (Any)').each do |option| %>
+                <option value="any">Beds (Any)</option>
+                <% (1..5).to_a.each do |option| %>
                   <%= content_tag(:option, option, value: option) %>
                 <% end %>
               </select>

@@ -6,9 +6,9 @@ class PropertiesController < ApplicationController
 
     @fil = get_filters
 
-    # byebug
-    @properties = Property.all.limit(5)
-    # @properties = Property.search("*", page: params[:page], per_page: 2, where: @fil)
+    byebug
+    # @properties = Property.all.limit(5)
+    @properties = Property.search("*", page: params[:page], per_page: 2, where: @fil)
 
     # byebug
   end
@@ -19,6 +19,7 @@ class PropertiesController < ApplicationController
         "l",
         "near",
         "type",
+        "tab", # param for availability -> for sale / rent
         "price",
         "parking",
         "bathrooms",
@@ -35,7 +36,7 @@ class PropertiesController < ApplicationController
     def get_filters
       return if session[:filters].nil?
       filters = session[:filters].deep_symbolize_keys
-      filters[:price] = string_to_range(filters[:price])
+      filters[:price] = string_to_range(filters[:price]) if session[:filters]['price']
       # filters[:bedrooms] = string_to_range(filters[:bedrooms])
       # filters[:bathrooms] = filters[:bathrooms].to_i
       # byebug
@@ -77,35 +78,41 @@ class PropertiesController < ApplicationController
         session[:filters].merge!(location)
     end
 
+    def tab
+      availability = params[:tab]
+      return session[:filters].delete('availability') if availability == 'any'
+      session[:filters]['availability'] = availability if availability.present?
+    end
+
 
     def price
       min = params[:price][:min].to_i
-      max = params[:price][:max].to_i.zero? ? (1.0 / 0.0) : params[:price][:max].to_i
+      max = params[:price][:max].to_i
+      return session[:filters].delete('price') if (min.zero? && max.zero?)
+
+      max = max.zero? ? (1.0 / 0.0) : params[:price][:max].to_i
       session[:filters].merge!(price: min..max)
     end
 
 
     def type
-      session[:filters]['type'] = params[:type].keys
+      type = params[:type]
+      return session[:filters].delete('type') if type == 'any'
+      session[:filters]['type'] = type if type.present?
     end
 
 
     def bedrooms
-      min = params[:bedrooms][:min].to_i
-      max = params[:bedrooms][:max].to_i
-      if (min.zero? && max.zero?)
-        session[:filters].delete('bedrooms')
-        return
-      end
-      max = max.zero? ? (1.0 / 0.0) : params[:bedrooms][:max].to_i
-      session[:filters].merge!(bedrooms: min..max)
+      bedrooms = params[:bedrooms]
+      return session[:filters].delete('bedrooms') if bedrooms.to_i.zero?
+      session[:filters]['bedrooms'] = bedrooms
     end
 
 
     def bathrooms
       bathrooms = params[:bathrooms]
-      return if bathrooms.to_i.zero?
-      session[:filters].merge!(bathrooms: bathrooms)
+      return session[:filters].delete('bathrooms') if bathrooms.to_i.zero?
+      session[:filters]['bathrooms'] = bathrooms
     end
 
 

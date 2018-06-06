@@ -17,24 +17,33 @@
 
             <!-- Main Search Input -->
             <div class="col-fs-6">
-              <%= f.text_field :near, id: :searchbox, placeholder: "Enter address e.g. street, city and state or zip"  %>
+              <%= f.text_field :near, value: session[:neartext] ,id: :searchbox, placeholder: "Enter address e.g. street, city and state or zip"  %>
             </div>
 
             <!-- Status -->
             <div class="col-fs-3">
               <select name="tab" data-placeholder="Any Status" class="chosen-select-no-single" >
-                <% {any: 'Any Status', sale: 'For Sale', rent: 'For Rent'}.each do |value, option| %>
-                  <%= tag.option option, value: value %>
-                <% end %>
+                  <%= options_for_select(
+                    { 'Any Status' => :any,
+                      'For Sale' => :sale,
+                      'For Rent' => :rent
+                    }, session[:filters]['availability']
+                  ) %>
               </select>
             </div>
 
             <!-- Property Type -->
             <div class="col-fs-3">
               <select name="type" data-placeholder="Any Type" class="chosen-select-no-single" >
-                <% %w(any_type apartment house commercial garage lot).each do |type| %>
-                <%= content_tag(:option, type.tr('_', ' ').capitalize, value: type) %>
-                <% end %>
+                <%= options_for_select(
+                  { 'Any Type' => :any,
+                    'Apartments' => :apartment,
+                    'Houses' => :house,
+                    'Comercial' => :commercial,
+                    'Garages' => :garage,
+                    'Lots' => :lot,
+                  }, session[:filters]['type']
+                ) %>
               </select>
             </div>
 
@@ -86,7 +95,7 @@
 
               <!-- Select Input -->
               <div class="select-input disabled-first-option">
-                <%= f.text_field 'price[min]', placeholder: 'Min Price', data: { unit: 'USD' } %>
+                <%= f.text_field 'price[min]', value: session[:filters]['price'].begin, placeholder: 'Min Price', data: { unit: 'USD' } %>
                 <select>
                   <option>Min Price</option>
                   <% (
@@ -107,7 +116,7 @@
 
               <!-- Select Input -->
               <div class="select-input disabled-first-option">
-                <%= f.text_field 'price[max]', placeholder: 'Max Price', data: { unit: 'USD' } %>
+                <%= f.text_field 'price[max]', value: session[:filters]['price'].end, placeholder: 'Max Price', data: { unit: 'USD' } %>
                 <select>
                   <option>Max Price</option>
                   <% (
