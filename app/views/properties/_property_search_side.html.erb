@@ -10,263 +10,193 @@
       <!-- Form -->
       <div class="main-search-box no-shadow">
 
+        <%= form_with(url: properties_path, local: true, method: :get) do |f| %>
 
-        <!-- Row With Forms -->
-        <div class="row with-forms">
+          <!-- Row With Forms -->
+          <div class="row with-forms">
 
-          <!-- Main Search Input -->
-          <div class="col-fs-6">
-            <input type="text" placeholder="Enter address e.g. street, city or state" value=""/>
-          </div>
+            <!-- Main Search Input -->
+            <div class="col-fs-6">
+              <%= f.text_field :near, id: :searchbox, placeholder: "Enter address e.g. street, city and state or zip"  %>
+            </div>
 
-          <!-- Status -->
-          <div class="col-fs-3">
-            <select data-placeholder="Any Status" class="chosen-select-no-single" >
-              <option>Any Status</option>
-              <option>For Sale</option>
-              <option>For Rent</option>
-            </select>
-          </div>
-
-          <!-- Property Type -->
-          <div class="col-fs-3">
-            <select data-placeholder="Any Type" class="chosen-select-no-single" >
-              <option>Any Type</option>
-              <option>Apartments</option>
-              <option>Houses</option>
-              <option>Commercial</option>
-              <option>Garages</option>
-              <option>Lots</option>
-            </select>
-          </div>
-
-        </div>
-        <!-- Row With Forms / End -->
-
-
-        <!-- Row With Forms -->
-        <div class="row with-forms">
-
-          <!-- Min Price -->
-          <div class="col-fs-3">
-
-            <!-- Select Input -->
-            <div class="select-input disabled-first-option">
-              <input type="text" placeholder="Min Area" data-unit="Sq Ft">
-              <select>
-                <option>Min Area</option>
-                <option>300</option>
-                <option>400</option>
-                <option>500</option>
-                <option>700</option>
-                <option>800</option>
-                <option>1000</option>
-                <option>1500</option>
+            <!-- Status -->
+            <div class="col-fs-3">
+              <select name="tab" data-placeholder="Any Status" class="chosen-select-no-single" >
+                <% {any: 'Any Status', sale: 'For Sale', rent: 'For Rent'}.each do |value, option| %>
+                  <%= tag.option option, value: value %>
+                <% end %>
               </select>
             </div>
-            <!-- Select Input / End -->
 
-          </div>
-
-          <!-- Max Price -->
-          <div class="col-fs-3">
-
-            <!-- Select Input -->
-            <div class="select-input disabled-first-option">
-              <input type="text" placeholder="Max Area" data-unit="Sq Ft">
-              <select>
-                <option>Max Area</option>
-                <option>300</option>
-                <option>400</option>
-                <option>500</option>
-                <option>700</option>
-                <option>800</option>
-                <option>1000</option>
-                <option>1500</option>
+            <!-- Property Type -->
+            <div class="col-fs-3">
+              <select name="type" data-placeholder="Any Type" class="chosen-select-no-single" >
+                <% %w(any_type apartment house commercial garage lot).each do |type| %>
+                <%= content_tag(:option, type.tr('_', ' ').capitalize, value: type) %>
+                <% end %>
               </select>
             </div>
-            <!-- Select Input / End -->
 
           </div>
+          <!-- Row With Forms / End -->
 
 
-          <!-- Min Price -->
-          <div class="col-fs-3">
+          <!-- Row With Forms -->
+          <div class="row with-forms">
 
-            <!-- Select Input -->
-            <div class="select-input disabled-first-option">
-              <input type="text" placeholder="Min Price" data-unit="USD">
-              <select>
-                <option>Min Price</option>
-                <option>1 000</option>
-                <option>2 000</option>
-                <option>3 000</option>
-                <option>4 000</option>
-                <option>5 000</option>
-                <option>10 000</option>
-                <option>15 000</option>
-                <option>20 000</option>
-                <option>30 000</option>
-                <option>40 000</option>
-                <option>50 000</option>
-                <option>60 000</option>
-                <option>70 000</option>
-                <option>80 000</option>
-                <option>90 000</option>
-                <option>100 000</option>
-                <option>110 000</option>
-                <option>120 000</option>
-                <option>130 000</option>
-                <option>140 000</option>
-                <option>150 000</option>
-              </select>
+            <!-- Min Price -->
+            <div class="col-fs-3">
+
+              <!-- Select Input -->
+              <!-- _TODO <div class="select-input disabled-first-option"> -->
+              <div class="select-input disabled-first-option">
+                <%= f.text_field 'area[:min]', placeholder: 'Min Area', data: { unit: 'Sq Ft' } %>
+                <select>
+                  <option>Min Area</option>
+                  <% ((300..1000).step(100).to_a << 1500).each do |option| %>
+                    <%= tag.option option, value: option %>
+                  <% end %>
+                </select>
+              </div>
+              <!-- Select Input / End -->
+
             </div>
-            <!-- Select Input / End -->
+
+            <!-- Max Price -->
+            <div class="col-fs-3">
+
+              <!-- Select Input -->
+              <div class="select-input disabled-first-option">
+                <%= f.text_field 'area[:max]', placeholder: 'Max Area', data: { unit: 'Sq Ft' } %>
+                <select>
+                  <option>Max Area</option>
+                  <% ((300..1000).step(100).to_a << 1500).each do |option| %>
+                    <%= tag.option option, value: option %>
+                  <% end %>
+                </select>
+              </div>
+              <!-- Select Input / End -->
+
+            </div>
+
+
+            <!-- Min Price -->
+            <div class="col-fs-3">
+
+              <!-- Select Input -->
+              <div class="select-input disabled-first-option">
+                <%= f.text_field 'price[min]', placeholder: 'Min Price', data: { unit: 'USD' } %>
+                <select>
+                  <option>Min Price</option>
+                  <% (
+                    ((1000..10_000).step(1000).to_a << 15_000) +
+                    (20_000..150_000).step(10_000).to_a
+                   ).each do |option| %>
+                   <%= tag.option option, value: option %>
+                 <% end %>
+                </select>
+              </div>
+              <!-- Select Input / End -->
+
+            </div>
+
+
+            <!-- Max Price -->
+            <div class="col-fs-3">
+
+              <!-- Select Input -->
+              <div class="select-input disabled-first-option">
+                <%= f.text_field 'price[max]', placeholder: 'Max Price', data: { unit: 'USD' } %>
+                <select>
+                  <option>Max Price</option>
+                  <% (
+                    ((1000..10_000).step(1000).to_a << 15_000) +
+                    (20_000..150_000).step(10_000).to_a
+                   ).each do |option| %>
+                   <%= tag.option option, value: option %>
+                 <% end %>
+                </select>
+              </div>
+              <!-- Select Input / End -->
+
+            </div>
 
           </div>
+          <!-- Row With Forms / End -->
 
 
-          <!-- Max Price -->
-          <div class="col-fs-3">
+          <!-- Search Button -->
+          <button class="button fs-map-btn">Update</button>
 
-            <!-- Select Input -->
-            <div class="select-input disabled-first-option">
-              <input type="text" placeholder="Max Price" data-unit="USD">
-              <select>
-                <option>Max Price</option>
-                <option>1 000</option>
-                <option>2 000</option>
-                <option>3 000</option>
-                <option>4 000</option>
-                <option>5 000</option>
-                <option>10 000</option>
-                <option>15 000</option>
-                <option>20 000</option>
-                <option>30 000</option>
-                <option>40 000</option>
-                <option>50 000</option>
-                <option>60 000</option>
-                <option>70 000</option>
-                <option>80 000</option>
-                <option>90 000</option>
-                <option>100 000</option>
-                <option>110 000</option>
-                <option>120 000</option>
-                <option>130 000</option>
-                <option>140 000</option>
-                <option>150 000</option>
-              </select>
-            </div>
-            <!-- Select Input / End -->
+          <!-- More Search Options -->
+          <a href="#" class="more-search-options-trigger margin-top-20" data-open-title="More Options" data-close-title="Less Options"></a>
 
-          </div>
+          <div class="more-search-options relative">
+            <div class="more-search-options-container margin-top-30">
 
-        </div>
-        <!-- Row With Forms / End -->
+              <!-- Row With Forms -->
+              <div class="row with-forms">
 
+                <!-- Age of Home -->
+                <div class="col-fs-3">
+                  <select name="age" data-placeholder="Age of Home" class="chosen-select-no-single" >
+                    <option label="blank"></option>
+                    <option value="any">Age of Home (Any)</option>
+                    <% [1,5,10,20,50].each do |option| %>
+                      <%= tag.option ("0 - #{option}"), value: option %>
+                    <% end %>
+                    <option value="51">50 + Years</option>
+                  </select>
+                </div>
 
-        <!-- Search Button -->
-        <button class="button fs-map-btn">Update</button>
+                <!-- Rooms Area -->
+                <div class="col-fs-3">
+                  <select name="bedrooms" data-placeholder="Rooms" class="chosen-select-no-single" >
+                    <option label="blank"></option>
+                    <option value="any">Rooms (Any)</option>
+                    <% (1..5).each do |option| %>
+                      <%= tag.option option, value: option %>
+                    <% end %>
+                  </select>
+                </div>
 
-        <!-- More Search Options -->
-        <a href="#" class="more-search-options-trigger margin-top-20" data-open-title="More Options" data-close-title="Less Options"></a>
+                <!-- Min Area -->
+                <div class="col-fs-3">
+                  <select name="beds" data-placeholder="Beds" class="chosen-select-no-single" >
+                    <option label="blank"></option>
+                    <option value="any">Beds (Any)</option>
+                    <% (1..5).each do |option| %>
+                      <%= tag.option option, value: option %>
+                    <% end %>
+                  </select>
+                </div>
 
-        <div class="more-search-options relative">
-          <div class="more-search-options-container margin-top-30">
+                <!-- Max Area -->
+                <div class="col-fs-3">
+                  <select data-placeholder="Baths" class="chosen-select-no-single" >
+                    <option label="blank"></option>
+                    <option value="any">Baths (Any)</option>
+                    <% (1..5).each do |option| %>
+                      <%= tag.option option, value: option %>
+                    <% end %>
+                  </select>
+                </div>
 
-            <!-- Row With Forms -->
-            <div class="row with-forms">
-
-              <!-- Age of Home -->
-              <div class="col-fs-3">
-                <select data-placeholder="Age of Home" class="chosen-select-no-single" >
-                  <option label="blank"></option>
-                  <option>Age of Home (Any)</option>
-                  <option>0 - 1 Years</option>
-                  <option>0 - 5 Years</option>
-                  <option>0 - 10 Years</option>
-                  <option>0 - 20 Years</option>
-                  <option>0 - 50 Years</option>
-                  <option>50 + Years</option>
-                </select>
               </div>
+              <!-- Row With Forms / End -->
 
-              <!-- Rooms Area -->
-              <div class="col-fs-3">
-                <select data-placeholder="Rooms" class="chosen-select-no-single" >
-                  <option label="blank"></option>
-                  <option>Rooms (Any)</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
 
-              <!-- Min Area -->
-              <div class="col-fs-3">
-                <select data-placeholder="Beds" class="chosen-select-no-single" >
-                  <option label="blank"></option>
-                  <option>Beds (Any)</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
+              <!-- Checkboxes -->
+              <div class="checkboxes in-row">
+                <%= amenities_check_list_helper %>
               </div>
-
-              <!-- Max Area -->
-              <div class="col-fs-3">
-                <select data-placeholder="Baths" class="chosen-select-no-single" >
-                  <option label="blank"></option>
-                  <option>Baths (Any)</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
+              <!-- Checkboxes / End -->
 
             </div>
-            <!-- Row With Forms / End -->
-
-
-            <!-- Checkboxes -->
-            <div class="checkboxes in-row">
-
-              <input id="check-2" type="checkbox" name="check">
-              <label for="check-2">Air Conditioning</label>
-
-              <input id="check-3" type="checkbox" name="check">
-              <label for="check-3">Swimming Pool</label>
-
-              <input id="check-4" type="checkbox" name="check" >
-              <label for="check-4">Central Heating</label>
-
-              <input id="check-5" type="checkbox" name="check">
-              <label for="check-5">Laundry Room</label>
-
-
-              <input id="check-6" type="checkbox" name="check">
-              <label for="check-6">Gym</label>
-
-              <input id="check-7" type="checkbox" name="check">
-              <label for="check-7">Alarm</label>
-
-              <input id="check-8" type="checkbox" name="check">
-              <label for="check-8">Window Covering</label>
-
-            </div>
-            <!-- Checkboxes / End -->
-
-          </div>
-
+          <% end %>
         </div>
         <!-- More Search Options / End -->
-
 
       </div>
       <!-- Box / End -->

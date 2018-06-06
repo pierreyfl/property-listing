@@ -1,11 +1,22 @@
 module PropertiesHelper
 
-  def property_types
+  def amenities
+    [
+      'Air Conditioning',
+      'Swimming Pool',
+      'Central Heating',
+      'Laundry Room',
+      'Gym',
+      'Alarm',
+      'Window Covering'
+    ]
+  end
+
+  def amenities_check_list_helper
     tags = ''
-    Property.types.each do |k,v|
-      tags << check_box_tag("type[#{k}]", nil, false).to_s
-      tags << label_tag("type[#{k}]",k).to_s
-      tags << tag.br
+    amenities.each_with_index do |amenity, index|
+      tags << tag.input(type: 'checkbox', name: "amenities[#{amenity.downcase.tr(' ', '_')}]", id: "check-#{index + 2}").to_s
+      tags << tag.label(amenity, for: "check-#{index + 2}").to_s
     end
     tags.html_safe
   end

@@ -2,13 +2,19 @@
   <h2>Find Your Dream Home</h2>
 
   <!-- Main Search -->
-  <form class="main-search-form">
+  <%= form_with(url: properties_path, class: "main-search-form", local: true, method: :get) do |f| %>
 
     <!-- Type -->
     <div class="search-type">
-      <label class="active"><input class="first-tab" name="tab" checked="checked" type="radio">Any Status</label>
-      <label><input name="tab" type="radio">For Sale</label>
-      <label><input name="tab" type="radio">For Rent</label>
+      <label class="active">
+        <%= f.radio_button :tab, :any, class: 'first-tab', checked: true %>Any Status
+      </label>
+      <label>
+        <%= f.radio_button :tab, :sale %>For Sale
+      </label>
+      <label>
+        <%= f.radio_button :tab, :rent %>For Rent
+      </label>
       <div class="search-type-arrow"></div>
     </div>
 
@@ -18,7 +24,7 @@
 
       <!-- Main Search Input -->
       <div class="main-search-input larger-input">
-        <input type="text" class="ico-01" placeholder="Enter address e.g. street, city and state or zip" value=""/>
+        <%= f.text_field :near, id: :searchbox, placeholder: "Enter address e.g. street, city and state or zip", class: "ico-01"  %>
         <button class="button">Search</button>
       </div>
 
@@ -27,23 +33,19 @@
 
         <!-- Property Type -->
         <div class="col-md-4">
-          <select data-placeholder="Any Type" class="chosen-select-no-single" >
-            <option>Any Type</option>
-            <option>Apartments</option>
-            <option>Houses</option>
-            <option>Commercial</option>
-            <option>Garages</option>
-            <option>Lots</option>
+          <select name="type" data-placeholder="Any Type" class="chosen-select-no-single" >
+            <% %w(any_type apartment house commercial garage lot).each do |type| %>
+            <%= content_tag(:option, type.tr('_', ' ').capitalize, value: type) %>
+            <% end %>
           </select>
         </div>
-
 
         <!-- Min Price -->
         <div class="col-md-4">
 
           <!-- Select Input -->
           <div class="select-input">
-            <input type="text" placeholder="Min Price" data-unit="USD">
+            <%= f.text_field 'price[min]', placeholder: 'Min price', data: {unit: "USD"} %>
           </div>
           <!-- Select Input / End -->
 
@@ -55,7 +57,7 @@
 
           <!-- Select Input -->
           <div class="select-input">
-            <input type="text" placeholder="Max Price" data-unit="USD">
+            <%= f.text_field 'price[max]', placeholder: 'Max price', data: {unit: "USD"} %>
           </div>
           <!-- Select Input / End -->
 
@@ -79,7 +81,7 @@
 
               <!-- Select Input -->
               <div class="select-input">
-                <input type="text" placeholder="Min Area" data-unit="Sq Ft">
+                <%= f.text_field 'area[min]', placeholder: 'Min Area', data: {unit: "Sq Ft"} %>
               </div>
               <!-- Select Input / End -->
 
@@ -90,7 +92,7 @@
 
               <!-- Select Input -->
               <div class="select-input">
-                <input type="text" placeholder="Max Area" data-unit="Sq Ft">
+                <%= f.text_field 'area[max]', placeholder: 'Max Area', data: {unit: "Sq Ft"} %>
               </div>
               <!-- Select Input / End -->
 
@@ -107,12 +109,9 @@
             <div class="col-md-6">
               <select data-placeholder="Beds" class="chosen-select-no-single" >
                 <option label="blank"></option>
-                <option>Beds (Any)</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                <% (1..5).to_a.unshift('Beds (Any)').each do |option| %>
+                  <%= content_tag(:option, option, value: option) %>
+                <% end %>
               </select>
             </div>
 
@@ -120,12 +119,9 @@
             <div class="col-md-6">
               <select data-placeholder="Baths" class="chosen-select-no-single" >
                 <option label="blank"></option>
-                <option>Baths (Any)</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                <% (1..5).to_a.unshift('Beds (Any)').each do |option| %>
+                  <%= content_tag(:option, option, value: option) %>
+                <% end %>
               </select>
             </div>
 
@@ -136,27 +132,7 @@
           <!-- Checkboxes -->
           <div class="checkboxes in-row">
 
-            <input id="check-2" type="checkbox" name="check">
-            <label for="check-2">Air Conditioning</label>
-
-            <input id="check-3" type="checkbox" name="check">
-            <label for="check-3">Swimming Pool</label>
-
-            <input id="check-4" type="checkbox" name="check" >
-            <label for="check-4">Central Heating</label>
-
-            <input id="check-5" type="checkbox" name="check">
-            <label for="check-5">Laundry Room</label>
-
-
-            <input id="check-6" type="checkbox" name="check">
-            <label for="check-6">Gym</label>
-
-            <input id="check-7" type="checkbox" name="check">
-            <label for="check-7">Alarm</label>
-
-            <input id="check-8" type="checkbox" name="check">
-            <label for="check-8">Window Covering</label>
+            <%= amenities_check_list_helper %>
 
           </div>
           <!-- Checkboxes / End -->
@@ -169,7 +145,7 @@
     </div>
     <!-- Box / End -->
 
-  </form>
+  <% end %>
   <!-- Main Search -->
 
 </div>
