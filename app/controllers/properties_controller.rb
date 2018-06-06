@@ -1,19 +1,17 @@
 class PropertiesController < ApplicationController
 
   def index
-    @conditions = {}
-    set_filters
-
-    @fil = get_filters
-
-    byebug
-    # @properties = Property.all.limit(5)
-    @properties = Property.search("*", page: params[:page], per_page: 2, where: @fil)
-
-    # byebug
+    @properties = Property.search("*", page: params[:page], per_page: 2, where: conditions)
   end
 
   private
+
+    def conditions
+      set_filters
+      get_filters || {}
+    end
+
+
     def set_filters
       filters = [
         "l",
@@ -33,13 +31,11 @@ class PropertiesController < ApplicationController
       end
     end
 
+
     def get_filters
       return if session[:filters].nil?
       filters = session[:filters].deep_symbolize_keys
       filters[:price] = string_to_range(filters[:price]) if session[:filters]['price']
-      # filters[:bedrooms] = string_to_range(filters[:bedrooms])
-      # filters[:bathrooms] = filters[:bathrooms].to_i
-      # byebug
       return filters
     end
 
