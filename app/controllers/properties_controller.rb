@@ -18,6 +18,7 @@ class PropertiesController < ApplicationController
         :near,
         :type,
         :tab, # param for availability -> for sale / rent
+        :area,
         :price,
         :parking,
         :bathrooms,
@@ -36,6 +37,7 @@ class PropertiesController < ApplicationController
       return if session[:filters].nil?
       filters = session[:filters].deep_symbolize_keys
       filters[:price] = string_to_range(filters[:price]) if session[:filters]['price']
+      filters[:area] = string_to_range(filters[:area]) if session[:filters]['area']
       return filters
     end
 
@@ -88,6 +90,16 @@ class PropertiesController < ApplicationController
 
       max = max.zero? ? (1.0 / 0.0) : params[:price][:max].to_i
       session[:filters].merge!(price: min..max)
+    end
+
+
+    def area
+      min = params[:area][:min].to_i
+      max = params[:area][:max].to_i
+      return session[:filters].delete('area') if (min.zero? && max.zero?)
+
+      max = max.zero? ? (1.0 / 0.0) : params[:area][:max].to_i
+      session[:filters].merge!(area: min..max)
     end
 
 
