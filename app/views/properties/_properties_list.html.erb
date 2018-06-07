@@ -4,8 +4,7 @@
   <% @properties.each do |property| %>
       <!-- Listing Item -->
       <div class="listing-item">
-
-        <a href="single-property-page-1.html" class="listing-img-container">
+        <%= link_to property_path(property), class: "listing-img-container" do %>
 
           <div class="listing-badges">
             <span class="featured">Featured</span>
@@ -23,20 +22,21 @@
             <div><%= image_tag "listing-01b.jpg" %></div>
             <div><%= image_tag "listing-01c.jpg" %></div>
           </div>
-        </a>
+       <% end %>
 
         <div class="listing-content">
 
           <div class="listing-title">
             <h4>
-              <%= link_to property.name.capitalize, ""  %>
+              <%= link_to property.name.capitalize, property_path(property) %>
             </h4>
             <a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom" class="listing-address popup-gmaps">
               <i class="fa fa-map-marker"></i>
               <%= property.address %>
             </a>
-
-            <a href="single-property-page-1.html" class="details button border">Details</a>
+            <%= link_to property_path(property), class: "details button border" do %>
+              Details
+            <% end %>
           </div>
 
           <ul class="listing-details">

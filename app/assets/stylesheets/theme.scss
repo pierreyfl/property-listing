@@ -1,2 +1,8 @@
 @import "style";
 @import "colors/main";
+
+
+#wrapper > div.container > div > div > a {
+  width: 100%;
+  text-align: center;
+}

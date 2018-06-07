@@ -95,7 +95,7 @@
 
               <!-- Select Input -->
               <div class="select-input disabled-first-option">
-                <%= f.text_field 'price[min]', value: session[:filters]['price'].begin, placeholder: 'Min Price', data: { unit: 'USD' } %>
+                <%#= f.text_field 'price[min]', value: session[:filters]['price'].begin, placeholder: 'Min Price', data: { unit: 'USD' } %>
                 <select>
                   <option>Min Price</option>
                   <% (
@@ -116,7 +116,7 @@
 
               <!-- Select Input -->
               <div class="select-input disabled-first-option">
-                <%= f.text_field 'price[max]', value: session[:filters]['price'].end, placeholder: 'Max Price', data: { unit: 'USD' } %>
+                <%#= f.text_field 'price[max]', value: session[:filters]['price'].end, placeholder: 'Max Price', data: { unit: 'USD' } %>
                 <select>
                   <option>Max Price</option>
                   <% (

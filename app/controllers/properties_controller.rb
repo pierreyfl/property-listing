@@ -6,11 +6,15 @@ class PropertiesController < ApplicationController
 
     @fil = get_filters
 
-    byebug
+    #byebug
     # @properties = Property.all.limit(5)
     @properties = Property.search("*", page: params[:page], per_page: 2, where: @fil)
 
     # byebug
+  end
+  
+  def show
+    @property = Property.find(params[:id])
   end
 
   private
