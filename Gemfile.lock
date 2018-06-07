@@ -52,17 +52,17 @@ GEM
       safely_block (>= 0.2.1)
       user_agent_parser
     arel (8.0.0)
-    autoprefixer-rails (8.3.0)
+    autoprefixer-rails (8.5.0)
       execjs
-    aws-sdk (2.11.35)
-      aws-sdk-resources (= 2.11.35)
-    aws-sdk-core (2.11.35)
+    aws-sdk (2.11.39)
+      aws-sdk-resources (= 2.11.39)
+    aws-sdk-core (2.11.39)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.35)
-      aws-sdk-core (= 2.11.35)
+    aws-sdk-resources (2.11.39)
+      aws-sdk-core (= 2.11.39)
     aws-sigv4 (1.0.2)
-    bcrypt (3.1.11)
+    bcrypt (3.1.12)
     bindex (0.5.0)
     bootstrap-datepicker-rails (1.8.0.1)
       railties (>= 3.0)
@@ -154,7 +154,6 @@ GEM
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     jwt (1.5.6)
-<<<<<<< HEAD
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -167,7 +166,6 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
-=======
     keytar (1.5.3)
       activesupport
     ledermann-rails-settings (2.4.3)
@@ -176,7 +174,6 @@ GEM
       activesupport
       keytar (>= 1.5.2)
       redis
->>>>>>> wip/users
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -201,7 +198,7 @@ GEM
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    nio4r (2.3.0)
+    nio4r (2.3.1)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     oauth2 (1.4.0)
@@ -281,12 +278,9 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redis (4.0.1)
-<<<<<<< HEAD
-=======
     referer-parser (0.3.0)
     request_store (1.4.1)
       rack (>= 1.4)
->>>>>>> wip/users
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -306,19 +300,15 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-<<<<<<< HEAD
-    searchkick (3.1.0)
-=======
     searchjoy (0.3.2)
       activerecord (>= 4)
       chartkick (>= 2)
       groupdate (>= 3)
-    searchkick (3.0.3)
->>>>>>> wip/users
+    searchkick (3.1.0)
       activemodel (>= 4.2)
       elasticsearch (>= 5)
       hashie
-    selenium-webdriver (3.11.0)
+    selenium-webdriver (3.12.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
     sixarm_ruby_unaccent (1.2.0)
@@ -354,13 +344,13 @@ GEM
       nokogiri (>= 1.6, < 2.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.9)
+    uglifier (4.1.10)
       execjs (>= 0.3.0, < 3)
     unicode_utils (1.4.0)
     user_agent_parser (2.4.1)
     warden (1.2.7)
       rack (>= 1.0)
-    web-console (3.6.1)
+    web-console (3.6.2)
       actionview (>= 5.0)
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
@@ -393,14 +383,10 @@ DEPENDENCIES
   groupdate (~> 4.0, >= 4.0.1)
   jbuilder (~> 2.5)
   jquery-rails
-<<<<<<< HEAD
   jquery-ui-rails (~> 6.0, >= 6.0.1)
   kaminari (~> 1.1, >= 1.1.1)
-=======
-  jquery-ui-rails (~> 5.0)
   ledermann-rails-settings (~> 2.4, >= 2.4.3)
   likeable (~> 0.1.2)
->>>>>>> wip/users
   listen (>= 3.0.5, < 3.2)
   momentjs-rails (~> 2.17.1)
   omniauth (~> 1.6)
@@ -415,18 +401,11 @@ DEPENDENCIES
   rails (~> 5.1.2)
   rails-assets-card!
   ransack (~> 1.8)
-<<<<<<< HEAD
   redis (~> 4.0, >= 4.0.1)
   rolify
   sass-rails (~> 5.0)
-  searchkick (~> 3.1)
-=======
-  redis
-  rolify
-  sass-rails (~> 5.0)
   searchjoy (~> 0.3.2)
-  searchkick
->>>>>>> wip/users
+  searchkick (~> 3.1)
   selenium-webdriver
   social-share-button (~> 1.1)
   spring
@@ -440,4 +419,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

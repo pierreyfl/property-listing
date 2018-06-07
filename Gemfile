@@ -27,7 +27,6 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-gem 'redis' #, '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -78,13 +77,10 @@ gem 'rails-assets-card', source: 'https://rails-assets.org'
 gem 'omniauth-stripe-connect', '~> 2.10.0'
 gem 'city-state'
 gem 'rolify'
-<<<<<<< HEAD
-
 gem 'searchkick', '~> 3.1'
 gem 'redis', '~> 4.0', '>= 4.0.1'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
-=======
 gem 'social-share-button', '~> 1.1'
 gem 'likeable', '~> 0.1.2'
 gem 'ledermann-rails-settings', '~> 2.4', '>= 2.4.3'
@@ -93,4 +89,3 @@ gem 'ahoy_matey', '~> 2.1'
 gem 'groupdate', '~> 4.0', '>= 4.0.1'
 gem 'chartkick', '~> 2.3', '>= 2.3.4'
 gem 'searchjoy', '~> 0.3.2'
->>>>>>> wip/users
