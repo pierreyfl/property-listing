@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   resources :properties
+=======
+
+  get 'analytics/show'
+
+  put 'preferences/update/(:setting)' => 'preferences#update', as: 'preferences'
+
+>>>>>>> wip/users
   root 'pages#index'
 
   devise_for :users,
@@ -71,5 +79,9 @@ Rails.application.routes.draw do
   post '/notification_settings' => 'settings#update'
   get '/notifications' => 'notifications#index'
 
+  post 'favourites/:resource_name/:resource_id' => 'favourites#create', as: 'favourite'
+  delete 'favourites/:resource_name/:resource_id' => 'favourites#destroy', as: 'unfavourite'
+
   mount ActionCable.server => '/cable'
+  mount Searchjoy::Engine, at: "searchjoy"
 end

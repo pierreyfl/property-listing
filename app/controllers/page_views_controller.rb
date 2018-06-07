@@ -1,6 +1,6 @@
 class PageViewsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authenticate_agent, only: [:index]
+  # before_action :authenticate_user!
+  # before_action :authenticate_agent, only: [:index]
 
   def index
     @page_views = current_agent.page_views

@@ -7,9 +7,5 @@ class CreateSettings < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-
-    User.find_each do |user|
-      Setting.create(user: user, enable_email: true, enable_sms: true)
-    end
   end
 end

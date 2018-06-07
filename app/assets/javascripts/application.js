@@ -25,4 +25,7 @@
 //= require cable
 //= require gmaps
 //= require theme
+//= require social-share-button
+//= require ahoy
+//= require room
 //= require_tree .

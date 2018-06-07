@@ -1,6 +1,7 @@
 class Room < ApplicationRecord
 
   searchkick
+  include Likeable
 
   ACCOMADATION_TYPES = {
     0 => "Any", 1 => "House", 2 => "Apartment", 3 => "Town house", 4 => "Villa", 5 => "Land", 6 => "Acreage", 7 => "Rural", 8 => "Block of Units",

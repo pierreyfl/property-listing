@@ -11,7 +11,7 @@ gem 'faker'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -27,7 +27,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+gem 'redis' #, '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -53,6 +53,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'pry-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -75,11 +76,21 @@ gem 'momentjs-rails', '~> 2.17.1'
 gem 'stripe', '~> 3.0.0'
 gem 'rails-assets-card', source: 'https://rails-assets.org'
 gem 'omniauth-stripe-connect', '~> 2.10.0'
-gem 'chartkick', '~> 2.2.4'
 gem 'city-state'
 gem 'rolify'
+<<<<<<< HEAD
 
 gem 'searchkick', '~> 3.1'
 gem 'redis', '~> 4.0', '>= 4.0.1'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
+=======
+gem 'social-share-button', '~> 1.1'
+gem 'likeable', '~> 0.1.2'
+gem 'ledermann-rails-settings', '~> 2.4', '>= 2.4.3'
+gem 'exchange', '~> 1.2', '>= 1.2.2'
+gem 'ahoy_matey', '~> 2.1'
+gem 'groupdate', '~> 4.0', '>= 4.0.1'
+gem 'chartkick', '~> 2.3', '>= 2.3.4'
+gem 'searchjoy', '~> 0.3.2'
+>>>>>>> wip/users

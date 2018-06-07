@@ -13,12 +13,19 @@
     <!-- Listing name -->
     <div class="row">
       <div class="col-md-8">
-        <h1><%= @room.listing_name %></h1>
+        <h1>
+          <%= @room.listing_name %>
+          <%= favourite_link(@room) %>
+        </h1>
         <%= @room.address %>
       </div>
       <div class="col-md-4 text-center">
+        <div>
+          <%= link_to "View Analytics", analytics_show_path(id: @room.id, resource: :room) %>
+        </div>
         <%= image_tag avatar_url(@room.user), class: "img-circle avatar-large" %><br/><br/>
         <%= @room.user.fullname %>
+        <%= social_share_button_tag(@room.listing_name) %> <button type="button" name="print" onclick="window.print();return false;" ><i class="fa fa-print"></i></button>
       </div>
     </div>
     <hr/>
