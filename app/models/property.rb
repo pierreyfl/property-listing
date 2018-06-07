@@ -5,6 +5,7 @@ class Property < ApplicationRecord
   enum type: [:land, :apartment, :villa, :townhouse, :house]
   enum availability: [:inactive, :rent, :sale, :both]
 
+  # this is a pending filter....
   bitmask :amenities, as: [
     :air_conditioning,
     :swimming_pool,
@@ -18,6 +19,7 @@ class Property < ApplicationRecord
   def self.amenities
     self.bitmasks[:amenities]
   end
+  # ....
 
   belongs_to :agent, class_name: 'User', foreign_key: :agent_id
 
