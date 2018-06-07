@@ -54,6 +54,8 @@ GEM
     aws-sigv4 (1.0.2)
     bcrypt (3.1.11)
     bindex (0.5.0)
+    bitmask_attributes (1.0.0)
+      activerecord (>= 3.1)
     bootstrap-datepicker-rails (1.8.0.1)
       railties (>= 3.0)
     bootstrap-sass (3.3.7)
@@ -327,6 +329,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk (~> 2.8)
+  bitmask_attributes (~> 1.0)
   bootstrap-datepicker-rails
   bootstrap-sass (~> 3.3.6)
   byebug

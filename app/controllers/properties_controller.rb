@@ -14,20 +14,20 @@ class PropertiesController < ApplicationController
 
     def set_filters
       filters = [
-        "l",
-        "near",
-        "type",
-        "tab", # param for availability -> for sale / rent
-        "price",
-        "parking",
-        "bathrooms",
-        "bedrooms"
+        :l,
+        :near,
+        :type,
+        :tab, # param for availability -> for sale / rent
+        :price,
+        :parking,
+        :bathrooms,
+        :bedrooms
       ]
 
       session[:filters] = {}
 
-      params.keys.each do |key|
-        method(key.to_sym).call if filters.include?(key)
+      params.keys.map(&:to_sym).each do |key|
+        method(key).call if filters.include?(key)
       end
     end
 
