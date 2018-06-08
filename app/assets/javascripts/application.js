@@ -28,4 +28,5 @@
 //= require social-share-button
 //= require ahoy
 //= require room
+//= require turbolinks
 //= require_tree .

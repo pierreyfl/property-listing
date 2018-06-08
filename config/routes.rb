@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
   resources :properties
-=======
 
   get 'analytics/show'
 
   put 'preferences/update/(:setting)' => 'preferences#update', as: 'preferences'
 
->>>>>>> wip/users
   root 'pages#index'
 
   devise_for :users,

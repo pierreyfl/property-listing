@@ -10,25 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180528184848) do
+ActiveRecord::Schema.define(version: 20180607070218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
 
   create_table "agencies", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "search_visibility", default: 0, null: false
-    t.string "location"
-    t.string "contact_no"
-    t.text "description"
-    t.string "email"
-    t.string "cover_photo_file_name"
-    t.string "cover_photo_content_type"
-    t.integer "cover_photo_file_size"
-    t.datetime "cover_photo_updated_at"
   end
 
   create_table "agents", force: :cascade do |t|
@@ -53,22 +43,6 @@ ActiveRecord::Schema.define(version: 20180528184848) do
     t.string "cover_photo_content_type"
     t.integer "cover_photo_file_size"
     t.datetime "cover_photo_updated_at"
-    t.integer "search_visibility", default: 0, null: false
-  end
-
-  create_table "amenities", force: :cascade do |t|
-    t.string "name"
-    t.boolean "available"
-    t.integer "property_package_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "articles", force: :cascade do |t|
-    t.string "title"
-    t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "ahoy_events", force: :cascade do |t|
@@ -118,36 +92,11 @@ ActiveRecord::Schema.define(version: 20180528184848) do
     t.index ["room_id"], name: "index_calendars_on_room_id"
   end
 
-  create_table "classfied_lists", force: :cascade do |t|
-    t.string "title"
-    t.decimal "price"
-    t.integer "time_length"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "favorites", force: :cascade do |t|
-    t.string "favoritable_type", null: false
-    t.integer "favoritable_id", null: false
-    t.string "favoritor_type", null: false
-    t.integer "favoritor_id", null: false
-    t.string "scope", default: "favorite", null: false
-    t.boolean "blocked", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["blocked"], name: "index_favorites_on_blocked"
-    t.index ["favoritable_id", "favoritable_type"], name: "fk_favoritables"
-    t.index ["favoritable_type", "favoritable_id"], name: "index_favorites_on_favoritable_type_and_favoritable_id"
-    t.index ["favoritor_id", "favoritor_type"], name: "fk_favorites"
-    t.index ["favoritor_type", "favoritor_id"], name: "index_favorites_on_favoritor_type_and_favoritor_id"
-    t.index ["scope"], name: "index_favorites_on_scope"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -194,7 +143,6 @@ ActiveRecord::Schema.define(version: 20180528184848) do
     t.integer "agent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "approved"
     t.integer "bedrooms"
     t.integer "bathrooms"
     t.text "description"
@@ -205,32 +153,6 @@ ActiveRecord::Schema.define(version: 20180528184848) do
     t.float "latitude"
     t.integer "availability"
     t.decimal "price"
-  end
-
-  create_table "property_packages", force: :cascade do |t|
-    t.string "name"
-    t.string "string"
-    t.integer "listing_period"
-    t.decimal "price"
-    t.date "expiry_date"
-    t.integer "listings_amount"
-    t.boolean "is_standard"
-    t.boolean "is_premium"
-    t.boolean "is_feature"
-    t.boolean "is_single"
-    t.boolean "is_multi"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "property_preferences", force: :cascade do |t|
-    t.bigint "user_id"
-    t.integer "room_id"
-    t.boolean "favourite", default: false
-    t.boolean "saved", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_property_preferences_on_user_id"
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -272,16 +194,6 @@ ActiveRecord::Schema.define(version: 20180528184848) do
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
-  end
-
-  create_table "room_visits", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "email"
-    t.string "ip"
-    t.integer "time_spent"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "room_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -338,8 +250,54 @@ ActiveRecord::Schema.define(version: 20180528184848) do
     t.index ["target_type", "target_id"], name: "index_settings_on_target_type_and_target_id"
   end
 
-# Could not dump table "users" because of following StandardError
-#   Unknown type 'bool' for column 'admin'
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "fullname"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "provider"
+    t.string "uid"
+    t.string "image"
+    t.string "phone_number"
+    t.text "description"
+    t.string "pin"
+    t.boolean "phone_verified"
+    t.string "stripe_id"
+    t.string "merchant_id"
+    t.integer "unread", default: 0
+    t.date "date_of_birth"
+    t.string "interested_location"
+    t.integer "userable_id"
+    t.string "userable_type"
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "year_of_birth"
+    t.string "gender"
+    t.string "country"
+    t.string "city"
+    t.string "state"
+    t.string "zipcode"
+    t.string "scenario"
+    t.integer "income"
+    t.string "country_w"
+    t.string "country_w2"
+    t.string "country_w3"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
 
   create_table "users_roles", id: false, force: :cascade do |t|
     t.bigint "user_id"
@@ -354,7 +312,6 @@ ActiveRecord::Schema.define(version: 20180528184848) do
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "photos", "rooms"
-  add_foreign_key "property_preferences", "users"
   add_foreign_key "reservations", "rooms"
   add_foreign_key "reservations", "users"
   add_foreign_key "reviews", "reservations"
