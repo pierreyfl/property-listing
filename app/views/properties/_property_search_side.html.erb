@@ -58,9 +58,8 @@
             <div class="col-fs-3">
 
               <!-- Select Input -->
-              <!-- _TODO <div class="select-input disabled-first-option"> -->
               <div class="select-input disabled-first-option">
-                <%= f.text_field 'area[:min]', placeholder: 'Min Area', data: { unit: 'Sq Ft' } %>
+                <%= f.text_field 'area[min]', value: session[:filters][:area].try(:begin), placeholder: 'Min Area', data: { unit: 'Sq Ft' } %>
                 <select>
                   <option>Min Area</option>
                   <% ((300..1000).step(100).to_a << 1500).each do |option| %>
@@ -77,7 +76,7 @@
 
               <!-- Select Input -->
               <div class="select-input disabled-first-option">
-                <%= f.text_field 'area[:max]', placeholder: 'Max Area', data: { unit: 'Sq Ft' } %>
+                <%= f.text_field 'area[max]', value: session[:filters][:area].try(:end).to_s.tr("Infinity", ""), placeholder: 'Max Area', data: { unit: 'Sq Ft' } %>
                 <select>
                   <option>Max Area</option>
                   <% ((300..1000).step(100).to_a << 1500).each do |option| %>
@@ -95,7 +94,7 @@
 
               <!-- Select Input -->
               <div class="select-input disabled-first-option">
-                <%#= f.text_field 'price[min]', value: session[:filters]['price'].begin, placeholder: 'Min Price', data: { unit: 'USD' } %>
+                <%= f.text_field 'price[min]', value: session[:filters][:price].try(:begin), placeholder: 'Min Price', data: { unit: 'USD' } %>
                 <select>
                   <option>Min Price</option>
                   <% (
@@ -116,7 +115,7 @@
 
               <!-- Select Input -->
               <div class="select-input disabled-first-option">
-                <%#= f.text_field 'price[max]', value: session[:filters]['price'].end, placeholder: 'Max Price', data: { unit: 'USD' } %>
+                <%= f.text_field 'price[max]', value: session[:filters][:price].try(:end).to_s.tr("Infinity", ""), placeholder: 'Max Price', data: { unit: 'USD' } %>
                 <select>
                   <option>Max Price</option>
                   <% (
@@ -151,11 +150,16 @@
                 <div class="col-fs-3">
                   <select name="age" data-placeholder="Age of Home" class="chosen-select-no-single" >
                     <option label="blank"></option>
-                    <option value="any">Age of Home (Any)</option>
-                    <% [1,5,10,20,50].each do |option| %>
-                      <%= tag.option ("0 - #{option}"), value: option %>
-                    <% end %>
-                    <option value="51">50 + Years</option>
+                    <%= options_for_select(
+                      { 'Age of Home (Any)' => :any,
+                        '0 - 1' => 1,
+                        '0 - 5' => 5,
+                        '0 - 10' => 10,
+                        '0 - 20' => 20,
+                        '0 - 50' => 50,
+                        '50 + Years' => 51
+                      }, session[:filters]['age']
+                    ) %>
                   </select>
                 </div>
 
@@ -163,10 +167,15 @@
                 <div class="col-fs-3">
                   <select name="bedrooms" data-placeholder="Rooms" class="chosen-select-no-single" >
                     <option label="blank"></option>
-                    <option value="any">Rooms (Any)</option>
-                    <% (1..5).each do |option| %>
-                      <%= tag.option option, value: option %>
-                    <% end %>
+                    <%= options_for_select(
+                      { 'Rooms (Any)' => :any,
+                        1 => 1,
+                        2 => 2,
+                        3 => 3,
+                        4 => 4,
+                        5 => 5
+                      }, session[:filters]['bedrooms']
+                    ) %>
                   </select>
                 </div>
 
@@ -183,12 +192,17 @@
 
                 <!-- Max Area -->
                 <div class="col-fs-3">
-                  <select data-placeholder="Baths" class="chosen-select-no-single" >
+                  <select name="bathrooms" data-placeholder="Baths" class="chosen-select-no-single" >
                     <option label="blank"></option>
-                    <option value="any">Baths (Any)</option>
-                    <% (1..5).each do |option| %>
-                      <%= tag.option option, value: option %>
-                    <% end %>
+                    <%= options_for_select(
+                      { 'Baths (Any)' => :any,
+                        1 => 1,
+                        2 => 2,
+                        3 => 3,
+                        4 => 4,
+                        5 => 5
+                      }, session[:filters]['bathrooms']
+                    ) %>
                   </select>
                 </div>
 

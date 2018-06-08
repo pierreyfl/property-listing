@@ -24,9 +24,10 @@ puts "Agent with id #{agent_id} created!, creating properties..." if agent_id
     p.description            = Faker::Lorem.sentence
     p.address                = Faker::Address.full_address
     p.price                  = Faker::Number.between(3990, 9999)
+    p.area                   = Faker::Number.between(300, 1500)
     p.availability           = Faker::Number.between(1, 3)
   end
-  puts "#{i.next} created..."
+  puts "#{i.next} property created..."
 end
 
 Property.reindex

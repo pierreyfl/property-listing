@@ -1,49 +1,46 @@
 class PropertiesController < ApplicationController
 
-  def index
-    @conditions = {}
-    set_filters
-
-    @fil = get_filters
-
-    #byebug
-    # @properties = Property.all.limit(5)
-    @properties = Property.search("*", page: params[:page], per_page: 2, where: @fil)
-
-    # byebug
-  end
+    def index
+      @properties = Property.search("*", page: params[:page], per_page: 3, where: conditions)
+    end
   
-  def show
-    @property = Property.find(params[:id])
-  end
+    def show
+      @property = Property.find(params[:id])
+    end
 
-  private
+    private
+
+    def conditions
+      set_filters
+      get_filters || {}
+    end
+
     def set_filters
       filters = [
-        "l",
-        "near",
-        "type",
-        "tab", # param for availability -> for sale / rent
-        "price",
-        "parking",
-        "bathrooms",
-        "bedrooms"
+        :l,
+        :near,
+        :type,
+        :tab, # param for availability -> for sale / rent
+        :area,
+        :price,
+        :parking,
+        :bathrooms,
+        :bedrooms
       ]
 
       session[:filters] = {}
 
-      params.keys.each do |key|
-        method(key.to_sym).call if filters.include?(key)
+      params.keys.map(&:to_sym).each do |key|
+        method(key).call if filters.include?(key)
       end
     end
+
 
     def get_filters
       return if session[:filters].nil?
       filters = session[:filters].deep_symbolize_keys
       filters[:price] = string_to_range(filters[:price]) if session[:filters]['price']
-      # filters[:bedrooms] = string_to_range(filters[:bedrooms])
-      # filters[:bathrooms] = filters[:bathrooms].to_i
-      # byebug
+      filters[:area] = string_to_range(filters[:area]) if session[:filters]['area']
       return filters
     end
 
@@ -96,6 +93,16 @@ class PropertiesController < ApplicationController
 
       max = max.zero? ? (1.0 / 0.0) : params[:price][:max].to_i
       session[:filters].merge!(price: min..max)
+    end
+
+
+    def area
+      min = params[:area][:min].to_i
+      max = params[:area][:max].to_i
+      return session[:filters].delete('area') if (min.zero? && max.zero?)
+
+      max = max.zero? ? (1.0 / 0.0) : params[:area][:max].to_i
+      session[:filters].merge!(area: min..max)
     end
 
 
