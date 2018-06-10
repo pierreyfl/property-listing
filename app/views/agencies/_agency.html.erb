@@ -1,0 +1,42 @@
+<!-- Agency -->
+<div class="agent agent-page agency">
+
+  <a href="agency-page.html" class="agent-avatar">
+    <!-- _TODO Fix paperclip for agency model -->
+    <img src="images/agency-01.jpg" alt="">
+  </a>
+
+  <div class="agent-content">
+    <div class="agent-name">
+      <h4>
+        <%= link_to agency.name.humanize, agency_path(agency) %>
+      </h4>
+      <span><i class="fa fa-map-marker"></i><%= agency.location %></span>
+    </div>
+
+    <p>
+      <%= agency.description %>
+    </p>
+
+    <ul class="agent-contact-details">
+      <li>
+        <i class="sl sl-icon-call-in"></i>
+        <%= number_to_phone(agency.contact_no, area_code: true) %>
+      </li>
+      <li>
+        <%= mail_to agency.email do %>
+          <i class="fa fa-envelope-o "></i>
+          <%= agency.email %>
+        <% end %>
+      </li>
+    </ul>
+
+    <ul class="social-icons">
+      <!-- _TODO add social links to agencies -->
+      <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+      <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+
+</div>

@@ -1,8 +1,8 @@
 class AgenciesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authenticate_super_admin
+  # before_action :authenticate_user!
+  # before_action :authenticate_super_admin
   def index
-    @agencies = Agency.all
+    @agencies = Agency.all.page(params[:page]).per(3)
   end
 
   def new
