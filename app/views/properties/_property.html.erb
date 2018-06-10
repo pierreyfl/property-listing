@@ -25,7 +25,7 @@
 
     <div class="listing-title">
       <h4>
-        <%= link_to property.name.capitalize, ""  %>
+        <%= link_to property.name.humanize, property_path(property)  %>
       </h4>
       <a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom" class="listing-address popup-gmaps">
         <i class="fa fa-map-marker"></i>

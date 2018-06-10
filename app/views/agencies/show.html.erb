@@ -60,12 +60,7 @@
 				<div class="tabs-container">
 					<div class="tab-content" id="tab1">
 						<!-- Main Search Input -->
-						<div class="main-search-input margin-bottom-35" id="search-input">
-              <%= form_with(url: properties_path, local: true, method: :get) do |f| %>
-                <%= f.text_field :near, id: :searchbox, placeholder: "Enter address e.g. street, city and state or zip", class: "ico-01"  %>
-                <button class="button">Search</button>
-              <% end %>
-						</div>
+						<%= render "shared/search_field" %>
 
 						<!-- Sorting / Layout Switcher -->
 						<div class="row margin-bottom-15">
@@ -100,28 +95,14 @@
 						<!-- Listings -->
 						<div class="listings-container list-layout">
 
-                <%= render :partial => "properties/property", :collection => @properties, :as => :property %>
+                <%= render partial: "properties/property", :collection => @properties, :as => :property %>
 
 						</div>
 						<!-- Listings Container / End -->
 
 
 						<!-- Pagination -->
-						<div class="pagination-container margin-top-20">
-							<nav class="pagination">
-								<ul>
-									<li><a href="#" class="current-page">1</a></li>
-									<li><a href="#">2</a></li>
-								</ul>
-							</nav>
-
-							<nav class="pagination-next-prev">
-								<ul>
-									<li><a href="#" class="prev">Previous</a></li>
-									<li><a href="#" class="next">Next</a></li>
-								</ul>
-							</nav>
-						</div>
+						<%= paginate @properties %>
 						<!-- Pagination / End -->
 					</div>
 
@@ -131,7 +112,7 @@
 						<!-- Agents Container -->
 						<div class="row">
 
-							<%= render :partial => "agents/agent", :collection => @agency.agents, :as => :agent %>
+							<%= render partial: "agents/agent", :collection => @agency.agents, :as => :agent %>
 
 						</div>
 						<!-- Agents Container / End -->
