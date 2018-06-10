@@ -48,6 +48,10 @@ class PagesController < ApplicationController
       end
     end
   end
+  
+  def bookmarks
+    @bookmarked_listing = current_user.all_liked(Property)
+  end
 
   def search
     @rooms_address = Room.where(active: true).all

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 
   include Likeable::UserMethods
+  has_many :properties
 
   has_settings do |s|
     s.key :preferences,

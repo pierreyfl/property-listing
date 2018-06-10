@@ -128,7 +128,7 @@
     						<div class="user-name"><span><%= image_tag "agent-03.jpg" %></span>Hi, <%= current_user.fullname %></div>
     						<ul>
     							<li><%= link_to edit_user_registration_path(current_user) do %><i class="sl sl-icon-user"></i> My Profile<% end %></li>
-    							<li><a href="my-bookmarks.html"><i class="sl sl-icon-star"></i> Bookmarks</a></li>
+    							<li><%= link_to bookmarked_listing_path do %><i class="sl sl-icon-star"></i> Bookmarks <% end %></li>
     							<li><a href="my-properties.html"><i class="sl sl-icon-docs"></i> My Properties</a></li>
     							<li><a href="index.html"><i class="sl sl-icon-power"></i> Log Out</a></li>
     						</ul>

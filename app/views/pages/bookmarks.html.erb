@@ -1,0 +1,65 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>Bookmarked Listings</h2>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li>Bookmarked Listings</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row">
+
+
+		<!-- Widget -->
+		<div class="col-md-4">
+			<%= render "shared/sidebar" %>
+		</div>
+
+		<div class="col-md-8">
+			<table class="manage-table bookmarks-table responsive-table">
+
+				<tr>
+					<th><i class="fa fa-file-text"></i> Property</th>
+					<th></th>
+				</tr>
+        <% @bookmarked_listing.each do |bl| %>
+				<!-- Item #1 -->
+				<tr>
+					<td class="title-container">
+            <%= image_tag "listing-05.jpg" %>
+						<div class="title">
+							<h4><%= link_to bl.name, property_path(bl) %></h4>
+							<span><%= bl.address %></span>
+							<span class="table-property-price">$<%= bl.price %></span>
+						</div>
+					</td>
+					<td class="action">
+            <%= link_to unfavourite_path(bl.class, bl.id), method: :delete, class: "delete" do %>
+              <i class="fa fa-remove"></i> Remove
+            <% end %>
+					</td>
+				</tr>
+        <% end %>
+
+			</table>
+		</div>
+
+	</div>
+</div>

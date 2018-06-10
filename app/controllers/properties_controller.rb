@@ -7,6 +7,16 @@ class PropertiesController < ApplicationController
     def show
       @property = Property.find(params[:id])
     end
+    
+    def my_properties
+      @properties = current_user.properties
+    end
+    
+    def listing
+    end
+    
+    def new
+    end
 
     private
 

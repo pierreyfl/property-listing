@@ -1,6 +1,8 @@
 class Property < ApplicationRecord
 
   self.inheritance_column = '_type'
+  include Likeable
+  belongs_to :user
 
   enum type: [:land, :apartment, :villa, :townhouse, :house]
   enum availability: [:inactive, :rent, :sale, :both]

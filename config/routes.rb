@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :properties
+  resources :properties, except: [:edit] do
+    member do
+      get 'listing'
+    end
+  end
 
   get 'analytics/show'
 
@@ -75,6 +79,8 @@ Rails.application.routes.draw do
   get '/notification_settings' => 'settings#edit'
   post '/notification_settings' => 'settings#update'
   get '/notifications' => 'notifications#index'
+  get '/bookmarked-listing' => 'pages#bookmarks'
+  get '/my_properties' => 'properties#my_properties'
 
   post 'favourites/:resource_name/:resource_id' => 'favourites#create', as: 'favourite'
   delete 'favourites/:resource_name/:resource_id' => 'favourites#destroy', as: 'unfavourite'
