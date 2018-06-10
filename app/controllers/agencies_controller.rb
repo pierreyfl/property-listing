@@ -5,6 +5,11 @@ class AgenciesController < ApplicationController
     @agencies = Agency.all.page(params[:page]).per(3)
   end
 
+  def show
+    @agency = Agency.find(params[:id])
+    @properties = @agency.properties.page(params[:page]).per(3)
+  end
+
   def new
   end
 

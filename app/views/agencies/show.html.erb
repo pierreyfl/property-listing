@@ -1,0 +1,186 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2><%= @agency.name.humanize %></h2>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li>
+						  <%= link_to "Home", root_path %>
+						</li>
+						<li>
+						  <%= link_to "Agencies", agencies_path %>
+						</li>
+						<li>
+						  <%= @agency.name.humanize %>
+						</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+
+      <%= render @agency %>
+
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row sticky-wrapper">
+
+		<div class="col-lg-8 col-md-8">
+
+			<div class="style-1 agency-tabs">
+
+				<!-- Tabs Navigation -->
+				<ul class="tabs-nav">
+					<li class="active"><a href="#tab1">Our Properties</a></li>
+					<li><a href="#tab2">Our Agents</a></li>
+				</ul>
+
+				<!-- Tabs Content -->
+				<div class="tabs-container">
+					<div class="tab-content" id="tab1">
+						<!-- Main Search Input -->
+						<div class="main-search-input margin-bottom-35" id="search-input">
+              <%= form_with(url: properties_path, local: true, method: :get) do |f| %>
+                <%= f.text_field :near, id: :searchbox, placeholder: "Enter address e.g. street, city and state or zip", class: "ico-01"  %>
+                <button class="button">Search</button>
+              <% end %>
+						</div>
+
+						<!-- Sorting / Layout Switcher -->
+						<div class="row margin-bottom-15">
+
+							<div class="col-md-6">
+								<!-- Sort by -->
+								<div class="sort-by">
+									<label>Sort by:</label>
+
+									<div class="sort-by-select">
+										<select data-placeholder="Default order" class="chosen-select-no-single" >
+											<option>Default Order</option>
+											<option>Price Low to High</option>
+											<option>Price High to Low</option>
+											<option>Newest Properties</option>
+											<option>Oldest Properties</option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<!-- Layout Switcher -->
+								<div class="layout-switcher">
+									<a href="#" class="list"><i class="fa fa-th-list"></i></a>
+									<a href="#" class="grid"><i class="fa fa-th-large"></i></a>
+								</div>
+							</div>
+						</div>
+
+
+						<!-- Listings -->
+						<div class="listings-container list-layout">
+
+                <%= render :partial => "properties/property", :collection => @properties, :as => :property %>
+
+						</div>
+						<!-- Listings Container / End -->
+
+
+						<!-- Pagination -->
+						<div class="pagination-container margin-top-20">
+							<nav class="pagination">
+								<ul>
+									<li><a href="#" class="current-page">1</a></li>
+									<li><a href="#">2</a></li>
+								</ul>
+							</nav>
+
+							<nav class="pagination-next-prev">
+								<ul>
+									<li><a href="#" class="prev">Previous</a></li>
+									<li><a href="#" class="next">Next</a></li>
+								</ul>
+							</nav>
+						</div>
+						<!-- Pagination / End -->
+					</div>
+
+
+
+					<div class="tab-content" id="tab2">
+						<!-- Agents Container -->
+						<div class="row">
+
+							<%= render :partial => "agents/agent", :collection => @agency.agents, :as => :agent %>
+
+						</div>
+						<!-- Agents Container / End -->
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<!-- Sidebar -->
+		<div class="col-lg-4 col-md-4">
+			<div class="sidebar sticky right">
+
+				<!-- Widget -->
+				<div class="widget">
+				<h3 class="margin-bottom-30 margin-top-30">Contact Us</h3>
+					<!-- Agent Widget -->
+					<div class="agefnt-widget">
+						<input type="text" placeholder="Your Email" pattern="^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$">
+						<input type="text" placeholder="Your Phone">
+						<textarea>Hi, I would like to know if you are able to help me in finding new home.</textarea>
+						<button class="button fullwidth margin-top-5">Send Message</button>
+					</div>
+					<!-- Agent Widget / End -->
+
+				</div>
+				<!-- Widget / End -->
+
+
+				<!-- Widget -->
+				<div class="widget">
+				<h3 class="margin-bottom-30 margin-top-30">Our Location</h3>
+
+				<div id="propertyMap-container" class="agency-map">
+					<div id="propertyMap" data-latitude="40.7427837" data-longitude="-73.11445617675781"></div>
+				</div>
+
+				</div>
+				<!-- Widget / End -->
+
+
+
+			</div>
+		</div>
+		<!-- Sidebar / End -->
+
+	</div>
+</div>
