@@ -42,4 +42,20 @@ class ApplicationController < ActionController::Base
     host.start_with?('www.') ? host[4..-1] : host
   end
 
+  # _TODO move this code to a better place
+  def get_filters
+    return if session[:filters].nil?
+    filters = session[:filters].deep_symbolize_keys
+    filters[:price] = string_to_range(filters[:price]) if session[:filters][:price]
+    filters[:area] = string_to_range(filters[:area]) if session[:filters][:area]
+    return filters
+  end
+
+  def string_to_range(value)
+    return if value.nil?
+    return value unless value.class == String
+    range = value.split('..').map{|d| (d=="Infinity") ? 1.0 / 0 : Integer(d)}
+    range[0]..range[1]
+  end
+
 end

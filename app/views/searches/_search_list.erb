@@ -1,0 +1,21 @@
+<div id="saved-search-list">
+  <h4>Saved searches</h4>
+  <table  class="table">
+    <% @saved_searches.each do |search| %>
+      <tr>
+        <td>
+          <%= link_to search.near, properties_path(search_id: search.id) %>
+        </td>
+        <td>
+          <%= time_ago_in_words(search.created_at) %> ago
+        </td>
+        <td>
+          <%= search.results %>
+        </td>
+        <td>
+          <%= link_to "Delete", search_path(search), method: :delete, remote: true, class: 'delete_search' %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

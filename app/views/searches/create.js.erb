@@ -1,0 +1,5 @@
+var element = $("#save-search");
+element.html("Save Search");
+element.css("pointer-events", "auto");
+
+$("#saved-search-list").replaceWith("<%= j render partial: "search_list" %>");
