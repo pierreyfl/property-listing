@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :searches, only: [:create, :destroy]
+  resources :contacts, only: [:create]
   resources :properties
   root 'pages#index'
 

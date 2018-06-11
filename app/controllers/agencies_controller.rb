@@ -6,6 +6,7 @@ class AgenciesController < ApplicationController
   end
 
   def show
+    @contact = Contact.new
     @agency = Agency.find(params[:id])
     @properties = Property.all.page(params[:page]).per(3)
     # @properties = @agency.properties.page(params[:page]).per(3)
