@@ -232,9 +232,12 @@ $(document).on("turbolinks:load", function() {
 	}
 
 	// replacing comma with dot
-	$(document).on('change', function() {
-		$("#interest").val($("#interest").val().replace(/,/g, '.'));
-	});
+	/*
+		_TODO figure out the usage
+	*/
+	// $(document).on('change', function() {
+	// 	$("#interest").val($("#interest").val().replace(/,/g, '.'));
+	// });
 
 	// Calculator
 	function mortgageCalc() {

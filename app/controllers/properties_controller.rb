@@ -1,6 +1,7 @@
 class PropertiesController < ApplicationController
 
   def index
+
     @saved_searches = Search.all # _TODO current_user.searches
     if params[:search_id].presence
       search = Search.find(params[:search_id])
@@ -30,7 +31,8 @@ class PropertiesController < ApplicationController
         :price,
         :parking,
         :bathrooms,
-        :bedrooms
+        :bedrooms,
+        :country
       ]
 
       session[:filters] = {}

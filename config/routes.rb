@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  namespace :api, constraints: { format: 'json' } do
+    namespace :v1 do
+      resources :citystates, only: [:index]
+    end
+  end
+
   resources :searches, only: [:create, :destroy]
   resources :contacts, only: [:create]
   resources :properties
