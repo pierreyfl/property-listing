@@ -1,10 +1,10 @@
 <!-- Agency -->
 <div class="agent agent-page agency">
 
-  <a href="agency-page.html" class="agent-avatar">
-    <!-- _TODO Fix paperclip for agency model -->
-    <img src="images/agency-01.jpg" alt="">
-  </a>
+  <a href="agency-page.html" class="">
+  <%= link_to agency_path(agency), class: "agent-avatar" do %>
+    <%= image_tag agency.cover_photo.url %>
+  <% end %>
 
   <div class="agent-content">
     <div class="agent-name">

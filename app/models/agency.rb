@@ -10,6 +10,10 @@ class Agency < ApplicationRecord
   # or assign a +agency_admin+ to a user, you can do this
   #   user.add_role :agency_admin, agency
   #
+
+  has_attached_file :cover_photo
+  validates_attachment_content_type :cover_photo, content_type: /\Aimage\/.*\z/
+
   resourcify
   has_many :agents
   has_many :properties, through: :agents
