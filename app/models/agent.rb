@@ -1,5 +1,5 @@
 class Agent < ApplicationRecord
-  has_many :properties, foreign_key: :resource_id
+  has_many :properties
   has_many :social_links, as: :linkable
   belongs_to :agency
   has_one :user, as: :userable
