@@ -75,12 +75,9 @@
                     </li>
                   </ul>
 
-                  <ul class="social-icons">
-                    <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-                    <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-                    <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-                    <li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
-                  </ul>
+									<!-- social_links -->
+									<%= render partial: "shared/social_link", :collection => agent.social_links, :as => :social_link %>
+
                   <div class="clearfix"></div>
                 </div>
 

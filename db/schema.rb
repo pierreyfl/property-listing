@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180609082758) do
+ActiveRecord::Schema.define(version: 20180611044614) do
 
   create_table "agencies", force: :cascade do |t|
     t.string "name"
@@ -261,6 +261,16 @@ ActiveRecord::Schema.define(version: 20180609082758) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_settings_on_user_id"
+  end
+
+  create_table "social_links", force: :cascade do |t|
+    t.integer "site"
+    t.string "url"
+    t.string "linkable_type"
+    t.integer "linkable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["linkable_type", "linkable_id"], name: "index_social_links_on_linkable_type_and_linkable_id"
   end
 
 # Could not dump table "users" because of following StandardError
