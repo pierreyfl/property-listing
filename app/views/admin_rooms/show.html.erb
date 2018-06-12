@@ -1,0 +1,87 @@
+
+
+<table class="table">
+  <tr>
+    <th>home_type</th>
+    <td><%= @room.home_type %></td>
+  </tr>
+  <tr>
+    <th>room_type</th>
+    <td><%= @room.room_type %></td>
+  </tr>
+  <tr>
+    <th>accommodate</th>
+    <td><%= @room.accommodate %></td>
+  </tr>
+  <tr>
+    <th>bed_room</th>
+    <td><%= @room.bed_room %></td>
+  </tr>
+  <tr>
+    <th>bath_room</th>
+    <td><%= @room.bath_room %></td>
+  </tr>
+  <tr>
+    <th>listing_name</th>
+    <td><%= @room.listing_name %></td>
+  </tr>
+  <tr>
+    <th>summary</th>
+    <td><%= @room.summary %></td>
+  </tr>
+  <tr>
+    <th>address</th>
+    <td><%= @room.address %></td>
+  </tr>
+  <tr>
+    <th>is_tv</th>
+    <td><%= @room.is_tv %></td>
+  </tr>
+  <tr>
+    <th>is_kitchen</th>
+    <td><%= @room.is_kitchen %></td>
+  </tr>
+  <tr>
+    <th>is_air</th>
+    <td><%= @room.is_air %></td>
+  </tr>
+  <tr>
+    <th>is_heating</th>
+    <td><%= @room.is_heating %></td>
+  </tr>
+  <tr>
+    <th>is_internet</th>
+    <td><%= @room.is_internet %></td>
+  </tr>
+  <tr>
+    <th>price</th>
+    <td><%= @room.price %></td>
+  </tr>
+  <tr>
+    <th>is_rent</th>
+    <td><%= @room.is_rent %></td>
+  </tr>
+
+</table>
+
+
+
+  <div>
+    <button id="btn-approve" class="btn btn-primary btn-xs">Approve</button>
+  </div>
+
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+      $('#btn-approve').click(function () {
+          $.ajax({
+              url: '/admin/rooms/<%= @room.id %>',
+              type: 'PUT',
+              data:  {active:true},
+              success: function() {
+                  location.href = '/admin/rooms';
+              }
+          })
+      })
+  })
+</script>

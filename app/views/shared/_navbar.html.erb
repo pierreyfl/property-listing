@@ -60,7 +60,8 @@
   </div><!--/.container-fluid -->
 </nav>
 
-<% if (user_signed_in?) && !current_page?(root_path) && !current_page?(search_path)%>
+<% if (user_signed_in?) && !current_page?(root_path) && !current_page?(search_path) %>
+  <% unless current_user.has_role? :super_admin %>
   <nav class="navbar navbar-default" style="background-color: #565A5C">
     <div class="container">
       <ul class="nav navbar-nav">
@@ -74,4 +75,19 @@
       </ul>
     </div>
   </nav>
+  <% else %>
+  <nav class="navbar navbar-default" style="background-color: #565A5C">
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li <% if current_page?(dashboard_path) %> class="active" <% end %> ><%= link_to "Dashboard", dashboard_path %></li>
+        <li<% if current_page?(packages_path) %> class="active" <% end %> ><%= link_to "Manage Packages", packages_path %></li>
+        <li<% if current_page?(classfied_lists_path) %> class="active" <% end %> ><%= link_to "Classified Packages", classfied_lists_path %></li>
+        <li<% if current_page?(articles_path) %> class="active" <% end %> ><%= link_to "Articles", articles_path %></li>
+        <li<% if current_page?(agency_roles_path) %> class="active" <% end %> ><%= link_to "Agent and Agency Role Settings", agency_roles_path %></li>
+        <li<% if current_page?(agencies_path) %> class="active" <% end %> ><%= link_to "Agencies", agencies_path %></li>
+        <li<% if current_page?(page_views_path) %> class="active" <% end %> ><%= link_to "Page Views", page_views_path %></li>
+      </ul>
+    </div>
+  </nav>
+  <% end %>
 <% end %>

@@ -1,0 +1,55 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>My Subscription</h2>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li>My Subscription</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row">
+
+
+		<!-- Widget -->
+		<div class="col-md-3">
+			<%= render "shared/sidebar" %>
+		</div>
+
+		<div class="col-md-9">
+        <h3>
+           My Subscriptions
+        </h3>
+  			<table class="basic-table">
+        
+  				<tr>
+  					<th>Package Name</th>
+  					<th>Price</th>
+            <th>Listing Period</th>
+            <th>Listing Type</th>
+            <th>Single/Multi</th>
+  				</tr>
+          
+  			</table>
+        <%= link_to "Add more", new_package_path, class: "button", style: "margin-top: 50px;" %>
+  		</div>
+		</div>
+
+	</div>
+</div>

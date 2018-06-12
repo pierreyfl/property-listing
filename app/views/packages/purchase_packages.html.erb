@@ -1,0 +1,139 @@
+<style>
+  .package-price {
+        text-align: center;
+        margin-top: 30px !important;
+        font-size: 30px !important;
+        color: #274abb !important;
+  }
+  </style>
+
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>Purchase Packages</h2>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li>Purchase Packages</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row">
+
+
+		<!-- Widget -->
+		<div class="col-md-3">
+			<%= render "shared/sidebar" %>
+		</div>
+
+		<div class="col-md-9">
+			<div class="style-1">
+
+				<!-- Tabs Navigation -->
+				<ul class="tabs-nav">
+					<li class="active"><a href="#tab1">For Sale</a></li>
+					<li><a href="#tab2">For Rent</a></li>
+					<li><a href="#tab3">Development</a></li>
+				</ul>
+
+				<!-- Tabs Content -->
+				<div class="tabs-container">
+					<div class="tab-content" id="tab1">
+            <div class="col-md-12">For Sale - Standard Listing</div>
+            <% @standard_package.each do |p| %>
+      			<div class="col-md-4">
+
+      				<!-- Blog Post -->
+      				<div class="blog-post">
+
+      					<!-- Content -->
+      					<div class="post-content">
+      						<h3 style="text-align: center;"><%= link_to p.name, subscriptions_path(user_id: current_user.id, package_id: p.id), method: :post %></h3>
+      						<h3 class="package-price">$<%= p.price %></h3>
+                  <p style="text-align: center;"><%= p.listing_period %> Days Listing Period </p>
+                  <p style="text-align: center;">1 year to use credits </p>
+      						
+      					</div>
+      					
+
+      				</div>
+      				<!-- Blog Post / End -->
+
+      			</div>
+            <% end %>
+            <div class="col-md-12">For Sale - Premium Listing</div>
+            <% @premium_package.each do |p| %>
+      			<div class="col-md-4">
+
+      				<!-- Blog Post -->
+      				<div class="blog-post">
+
+      					<!-- Content -->
+      					<div class="post-content">
+      						<h3 style="text-align: center;"><a href="#"><%= p.name %></a></h3>
+      						<h3 class="package-price">$<%= p.price %></h3>
+                  <p style="text-align: center;"><%= p.listing_period %> Days Listing Period </p>
+                  <p style="text-align: center;">1 year to use credits </p>
+      						
+      					</div>
+      					
+
+      				</div>
+      				<!-- Blog Post / End -->
+
+      			</div>
+            <% end %>
+            <div class="col-md-12">For Sale - Featured Upgrade</div>
+            <% @feature_package.each do |p| %>
+      			<div class="col-md-4">
+
+      				<!-- Blog Post -->
+      				<div class="blog-post">
+
+      					<!-- Content -->
+      					<div class="post-content">
+      						<h3 style="text-align: center;"><a href="#"><%= p.name %></a></h3>
+      						<h3 class="package-price">$<%= p.price %></h3>
+                  <p style="text-align: center;"><%= p.listing_period %> Days Listing Period </p>
+                  <p style="text-align: center;">1 year to use credits </p>
+      						
+      					</div>
+      					
+
+      				</div>
+      				<!-- Blog Post / End -->
+
+      			</div>
+            <% end %>
+					</div>
+
+					<div class="tab-content" id="tab2">
+					  
+					</div>
+
+					<div class="tab-content" id="tab3">Suspendisse ut laoreet massa. Etiam vel dolor eu quam varius tempor eu eu mi. Duis auctor interdum ligula ut faucibus. Vivamus lorem ipsum dolor sit amet in tincidunt augue. Aenean at ligula justo, sed gravida metus. </div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+			

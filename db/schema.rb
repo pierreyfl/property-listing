@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180609064827) do
+ActiveRecord::Schema.define(version: 20180611175941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,21 @@ ActiveRecord::Schema.define(version: 20180609064827) do
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
 
+  create_table "amenities", force: :cascade do |t|
+    t.string "name"
+    t.boolean "available"
+    t.integer "property_package_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "calendars", force: :cascade do |t|
     t.date "day"
     t.integer "price"
@@ -90,6 +105,14 @@ ActiveRecord::Schema.define(version: 20180609064827) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_calendars_on_room_id"
+  end
+
+  create_table "classfied_lists", force: :cascade do |t|
+    t.string "title"
+    t.decimal "price"
+    t.integer "time_length"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -156,7 +179,30 @@ ActiveRecord::Schema.define(version: 20180609064827) do
     t.integer "amenities"
     t.decimal "area"
     t.bigint "user_id"
+    t.boolean "approved"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.integer "building_age"
     t.index ["user_id"], name: "index_properties_on_user_id"
+  end
+
+  create_table "property_packages", force: :cascade do |t|
+    t.string "name"
+    t.string "string"
+    t.integer "listing_period"
+    t.decimal "price"
+    t.date "expiry_date"
+    t.integer "listings_amount"
+    t.boolean "is_standard"
+    t.boolean "is_premium"
+    t.boolean "is_feature"
+    t.boolean "is_single"
+    t.boolean "is_multi"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "listing_type"
+    t.string "single_multi"
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -198,6 +244,16 @@ ActiveRecord::Schema.define(version: 20180609064827) do
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
+  create_table "room_visits", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "email"
+    t.string "ip"
+    t.integer "time_spent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "room_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -254,6 +310,17 @@ ActiveRecord::Schema.define(version: 20180609064827) do
     t.index ["target_type", "target_id"], name: "index_settings_on_target_type_and_target_id"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "property_package_id"
+    t.text "notification_params"
+    t.string "status"
+    t.string "transaction_id"
+    t.datetime "purchased_at"
+    t.index ["property_package_id"], name: "index_subscriptions_on_property_package_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -298,6 +365,8 @@ ActiveRecord::Schema.define(version: 20180609064827) do
     t.string "country_w"
     t.string "country_w2"
     t.string "country_w3"
+    t.boolean "admin"
+    t.integer "wallet", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -324,4 +393,6 @@ ActiveRecord::Schema.define(version: 20180609064827) do
   add_foreign_key "reviews", "users", column: "guest_id"
   add_foreign_key "reviews", "users", column: "host_id"
   add_foreign_key "rooms", "users"
+  add_foreign_key "subscriptions", "property_packages"
+  add_foreign_key "subscriptions", "users"
 end

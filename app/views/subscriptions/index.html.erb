@@ -1,0 +1,65 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>My Subscriptions</h2>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li>My Subscriptions</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row">
+
+
+		<!-- Widget -->
+		<div class="col-md-3">
+			<%= render "shared/sidebar" %>
+		</div>
+
+		<div class="col-md-9">
+      <h3>
+         My Subscriptions
+      </h3>
+      <p>Listing available: <%= current_user.wallet %>
+			<table class="basic-table">
+      
+				<tr>
+          <th>ID</th>
+					<th>Package Name</th>
+					<th>Price</th>
+          <th>Listing Period</th>
+          <th>Listing Type</th>
+				</tr>
+        <% @subscriptions.each do |subscription| %>
+				<tr>
+          <td><%= subscription.transaction_id %></td>
+					<td><%= subscription.property_package.name %></td>
+					<td><%= subscription.purchased_at %></td>
+          <td><%= subscription.property_package.listing_period %></td>
+          <td><%= subscription.property_package.listing_type %></td>
+					
+				</tr>
+        <% end %>
+        
+			</table>
+      <%= link_to "Add more package", purchase_packages_path, class: "button", style: "margin-top: 50px;" %>
+		</div>
+
+	</div>
+</div>

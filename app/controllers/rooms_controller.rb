@@ -1,5 +1,4 @@
 class RoomsController < ApplicationController
-
   before_action :set_room, except: [:index, :new, :create]
   before_action :trak_property, only: [:show]
   before_action :authenticate_user!, except: [:show, :preload, :preview]
@@ -94,6 +93,17 @@ class RoomsController < ApplicationController
     render json: output
   end
 
+  def log
+    user_id = nil
+    email = ''
+    if user_signed_in?
+      user_id = current_user.id
+      email = current_user.email
+    end
+
+    RoomVisit.create(:user_id => user_id, :email => email, :room_id => params[:room_id], :time_spent => params[:timeSpent], :ip => request.remote_ip )
+  end
+
   private
 
   def trak_property
@@ -121,6 +131,7 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:is_rent, :home_type, :room_type, :accommodate, :bed_room, :bath_room, :listing_name, :summary, :address, :is_tv, :is_kitchen, :is_air, :is_heating, :is_internet, :price, :active, :instant)
+
   end
 
 end

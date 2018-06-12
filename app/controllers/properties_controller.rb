@@ -16,6 +16,17 @@ class PropertiesController < ApplicationController
     end
     
     def new
+      @property = current_user.properties.build
+    end
+    
+    def create
+      @property = current_user.properties.build(property_params)
+      if @property.save
+        redirect_to root_path, notice: "Saved..."
+      else
+        flash[:alert] = "Something went wrong..."
+        render :new
+      end
     end
 
     private
@@ -148,6 +159,10 @@ class PropertiesController < ApplicationController
       return value unless value.class == String
       range = value.split('..').map{|d| (d=="Infinity") ? 1.0 / 0 : Integer(d)}
       range[0]..range[1]
+    end
+    
+    def property_params
+      params.require(:property).permit(:name, :area, :bedrooms, :bathrooms, :description, :parking, :address, :city, :state, :zip, :building_age, :type, :longitude, :latitude, :availability, :price)
     end
 
 end

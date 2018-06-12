@@ -2,6 +2,7 @@ class User < ApplicationRecord
 
   include Likeable::UserMethods
   has_many :properties
+  has_many :subscriptions
 
   has_settings do |s|
     s.key :preferences,
@@ -100,3 +101,6 @@ class User < ApplicationRecord
   end
 
 end
+
+
+

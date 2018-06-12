@@ -10,10 +10,11 @@ Rails.application.routes.draw do
   put 'preferences/update/(:setting)' => 'preferences#update', as: 'preferences'
 
   root 'pages#index'
+  get 'classfied_lists/index'
 
   devise_for :users,
               path: '',
-              path_names: {sign_in: 'login', sign_out: 'logout', edit: 'profile', sign_up: 'registration'},
+              path_names: {sign_in: 'login', sign_out: 'logout', edit: 'profile/:id', sign_up: 'registration'},
               controllers: {omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}
 
   resources :users, only: [:show] do
@@ -42,6 +43,21 @@ Rails.application.routes.draw do
 
   resources :guest_reviews, only: [:create, :destroy]
   resources :host_reviews, only: [:create, :destroy]
+  resources :subscriptions
+  post "/hook" => "subscriptions#hook"
+  
+   scope '/admin' do
+    get '/overview' => 'pages#overview'
+    resources :packages do
+      resources :amenities
+    end
+    resources :classfied_lists
+    resources :articles
+    resources :stats
+    resources :rooms, controller: :admin_rooms
+   end
+
+  get '/log-room-visit' => 'rooms#log'
 
   get '/your_trips' => 'reservations#your_trips'
   get '/your_reservations' => 'reservations#your_reservations'
@@ -81,6 +97,7 @@ Rails.application.routes.draw do
   get '/notifications' => 'notifications#index'
   get '/bookmarked-listing' => 'pages#bookmarks'
   get '/my_properties' => 'properties#my_properties'
+  get '/purchase_packages' => 'packages#purchase_packages'
 
   post 'favourites/:resource_name/:resource_id' => 'favourites#create', as: 'favourite'
   delete 'favourites/:resource_name/:resource_id' => 'favourites#destroy', as: 'unfavourite'

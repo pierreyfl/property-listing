@@ -1,8 +1,8 @@
 class Property < ApplicationRecord
-
   self.inheritance_column = '_type'
   include Likeable
   belongs_to :user
+  belongs_to :agent, optional: true 
 
   enum type: [:land, :apartment, :villa, :townhouse, :house]
   enum availability: [:inactive, :rent, :sale, :both]
@@ -23,7 +23,7 @@ class Property < ApplicationRecord
   end
   # ....
 
-  belongs_to :agent, class_name: 'User', foreign_key: :agent_id
+  belongs_to :agent, class_name: 'User', foreign_key: :agent_id, optional: true
 
   validates :type, presence: true
 

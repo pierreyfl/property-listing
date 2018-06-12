@@ -1,0 +1,33 @@
+<div class="form-group">
+        <%= form.label(:name) %>
+        <%= form.text_field :name, class: "form-control", placeholder: "Enter package name"  %>
+        
+    </div>
+    
+    <div class="form-group">
+        <%= form.label(:listing_period) %>
+        <%= form.text_field :listing_period, class: "form-control", placeholder: "Listing period"  %>
+        
+    </div>
+    
+    <div class="form-group">
+        <%= form.label(:price) %>
+        <%= form.text_field :price, class: "form-control", placeholder: "Price", type: 'number'  %>
+        
+    </div>
+    <div class="form-group">
+        <%= form.label(:listings_amount) %>
+        <%= form.text_field :listings_amount, class: "form-control", placeholder: "Listings amount", type: 'number'  %>
+        
+    </div>
+    <div class="form-group">
+      <%= form.label(:listings_type) %>
+      <%= form.select :listing_type, ["Standard", "Premium", "Feature"], {}, {class: "chosen-select-no-single"} %>
+    </div>
+    <div class="form-group">
+      <%= form.label(:single_multi) %>
+      <%= form.select :single_multi, ["Single", "Multi"], {}, {class: "chosen-select-no-single"} %>
+    </div>	
+    
+    
+    

@@ -25,3 +25,4 @@ production:
   username: prop-listing
   database: property_listing_production
   password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+
