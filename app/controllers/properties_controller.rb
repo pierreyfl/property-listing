@@ -3,20 +3,20 @@ class PropertiesController < ApplicationController
   def index
 
     @saved_searches = Search.all # _TODO current_user.searches
+
     if params[:search_id].presence
       search = Search.find(params[:search_id])
-      session[:filters] = conditions = search.conditions
+      session[:filters] = search.conditions
       session[:neartext] = search.near
-    else
-      conditions = method(:conditions).call
     end
+
     @properties = Property.search("*", page: params[:page], per_page: 3, where: conditions)
   end
 
   private
 
     def conditions
-      set_filters
+      set_filters unless params[:search_id]
       get_filters || {}
     end
 
@@ -129,6 +129,28 @@ class PropertiesController < ApplicationController
       parking = params[:parking]
       return if parking.to_i.zero?
       session[:filters].merge!(parking: parking)
+    end
+
+    def country
+      country = CS.countries[params[:country].to_sym]
+
+      return if country.blank?
+      state   =  params[:state]
+      city    = params[:city]
+      near = [country, state, city].reject(&:blank?).join(', ')
+      session[:neartext] = near
+      near = Geocoder.search(near).first
+
+      location = {
+        location: {
+          near: {
+            lat: near.latitude,
+            lon: near.longitude
+            },
+            within: "100mi"
+          }
+        }
+        session[:filters].merge!(location)
     end
 
 end

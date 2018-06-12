@@ -44,7 +44,7 @@
     <!-- Country -->
     <div class="col-md-12">
       <select name="country" data-placeholder="Select Country" class="chosen-select", id="country" >
-        <option>Select Country</option>
+        <option value="">Select Country</option>
           <%= options_for_select(
             CS.countries.invert
           ) %>
@@ -57,8 +57,8 @@
   <div class="row with-forms">
     <!-- States -->
     <div class="col-md-12">
-      <select data-placeholder="All States" class="chosen-select", id="state" >
-        <option>All States</option>
+      <select name="state" data-placeholder="All States" class="chosen-select", id="state" >
+        <option value="">All States</option>
 
       </select>
     </div>
@@ -71,8 +71,8 @@
   <div class="row with-forms">
     <!-- Cities -->
     <div class="col-md-12">
-      <select data-placeholder="All Cities" class="chosen-select" id="city" >
-        <option>All Cities</option>
+      <select name="city" data-placeholder="All Cities" class="chosen-select" id="city" >
+        <option value="">All Cities</option>
 
       </select>
     </div>
@@ -85,27 +85,35 @@
 
     <!-- Min Area -->
     <div class="col-md-6">
-      <select data-placeholder="Beds" class="chosen-select-no-single" >
+      <select name="bedrooms" data-placeholder="Beds" class="chosen-select-no-single" >
         <option label="blank"></option>
-        <option>Beds (Any)</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
+        <option label="blank"></option>
+        <%= options_for_select(
+          { 'Rooms (Any)' => :any,
+            1 => 1,
+            2 => 2,
+            3 => 3,
+            4 => 4,
+            5 => 5
+          }
+        ) %>
       </select>
     </div>
 
     <!-- Max Area -->
     <div class="col-md-6">
-      <select data-placeholder="Baths" class="chosen-select-no-single" >
+      <select name="bathrooms" data-placeholder="Baths" class="chosen-select-no-single" >
         <option label="blank"></option>
-        <option>Baths (Any)</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
+        <option label="blank"></option>
+        <%= options_for_select(
+          { 'Baths (Any)' => :any,
+            1 => 1,
+            2 => 2,
+            3 => 3,
+            4 => 4,
+            5 => 5
+          }
+        ) %>
       </select>
     </div>
 

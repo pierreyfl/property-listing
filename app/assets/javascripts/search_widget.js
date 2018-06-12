@@ -14,7 +14,7 @@ $(document).on("turbolinks:load", function() {
           var items = [];
           keys = Object.keys(data.states);
           if(keys.length > 0){
-            items.push('<option value="0">All States</option>');
+            items.push('<option value="">All States</option>');
             $('#state').prop('disabled', false);
             keys.forEach(function (key){
               items.push('<option value="' + data.states[key] + '">' + key + '</option>');
@@ -51,7 +51,7 @@ $(document).on("turbolinks:load", function() {
           var items = [];
           cities = data.cities;
           if(cities.length > 0){
-            items.push('<option value="0">All Cities</option>');
+            items.push('<option value="">All Cities</option>');
             $('#city').prop('disabled', false);
             cities.forEach(function (city){
               items.push('<option value="' + city + '">' + city + '</option>');
