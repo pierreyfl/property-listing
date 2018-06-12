@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180611175941) do
+ActiveRecord::Schema.define(version: 20180612063126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,10 +107,32 @@ ActiveRecord::Schema.define(version: 20180611175941) do
     t.index ["room_id"], name: "index_calendars_on_room_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categorizations", id: false, force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "classified_listing_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_categorizations_on_category_id"
+    t.index ["classified_listing_id"], name: "index_categorizations_on_classified_listing_id"
+  end
+
   create_table "classfied_lists", force: :cascade do |t|
     t.string "title"
     t.decimal "price"
     t.integer "time_length"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "classified_listings", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -166,6 +188,7 @@ ActiveRecord::Schema.define(version: 20180611175941) do
     t.integer "agent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "approved"
     t.integer "bedrooms"
     t.integer "bathrooms"
     t.text "description"
@@ -179,7 +202,6 @@ ActiveRecord::Schema.define(version: 20180611175941) do
     t.integer "amenities"
     t.decimal "area"
     t.bigint "user_id"
-    t.boolean "approved"
     t.string "city"
     t.string "state"
     t.string "zip"
@@ -203,6 +225,16 @@ ActiveRecord::Schema.define(version: 20180611175941) do
     t.datetime "updated_at", null: false
     t.string "listing_type"
     t.string "single_multi"
+  end
+
+  create_table "property_preferences", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "room_id"
+    t.boolean "favourite", default: false
+    t.boolean "saved", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_property_preferences_on_user_id"
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -352,6 +384,7 @@ ActiveRecord::Schema.define(version: 20180611175941) do
     t.string "interested_location"
     t.integer "userable_id"
     t.string "userable_type"
+    t.boolean "admin"
     t.string "first_name"
     t.string "last_name"
     t.integer "year_of_birth"
@@ -365,7 +398,6 @@ ActiveRecord::Schema.define(version: 20180611175941) do
     t.string "country_w"
     t.string "country_w2"
     t.string "country_w3"
-    t.boolean "admin"
     t.integer "wallet", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -386,6 +418,7 @@ ActiveRecord::Schema.define(version: 20180611175941) do
   add_foreign_key "notifications", "users"
   add_foreign_key "photos", "rooms"
   add_foreign_key "properties", "users"
+  add_foreign_key "property_preferences", "users"
   add_foreign_key "reservations", "rooms"
   add_foreign_key "reservations", "users"
   add_foreign_key "reviews", "reservations"

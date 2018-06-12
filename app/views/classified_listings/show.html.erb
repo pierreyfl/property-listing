@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @classified_listing.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @classified_listing.description %>
+</p>
+
+<%= link_to 'Edit', edit_classified_listing_path(@classified_listing) %> |
+<%= link_to 'Back', classified_listings_path %>

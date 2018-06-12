@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :classified_listings
   resources :properties, except: [:edit] do
     member do
       get 'listing'
