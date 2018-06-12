@@ -1,9 +1,16 @@
 class AgenciesController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
-  before_action :authenticate_super_admin, except: [:show]
-  
+  # before_action :authenticate_user!
+  # before_action :authenticate_super_admin
+
   def index
-    @agencies = Agency.all
+    @agencies = Agency.all.page(params[:page]).per(3)
+  end
+
+  def show
+    @contact = Contact.new
+    @agency = Agency.find(params[:id])
+    @properties = Property.all.page(params[:page]).per(3)
+    # @properties = @agency.properties.page(params[:page]).per(3)
   end
 
   def new

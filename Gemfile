@@ -97,3 +97,4 @@ gem 'searchjoy', '~> 0.3.2'
 gem 'bitmask_attributes', '~> 1.0'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'paypal-sdk-rest'
+gem 'mail_form', '~> 1.7', '>= 1.7.1'

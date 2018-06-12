@@ -1,0 +1,19 @@
+<h3 class="margin-bottom-30 margin-top-30">Contact Us</h3>
+<!-- Agent Widget -->
+<div class="agefnt-widget">
+  <!-- _TODO ajaxify the form -->
+  <%= form_for @contact do |f| %>
+
+      <%= f.hidden_field :to, value: @agency.email %>
+      <%= f.text_field :email, required: true, placeholder: "Your Email", pattern: "^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$" %>
+      <%= f.text_field :phone, required: true, placeholder: "Your Phone" %>
+      <%= f.text_area :message, required: true, value: 'Hi, I would like to know if you are able to help me in finding new home.'  %>
+
+      <div class="hidden">
+        <%= f.text_field :nickname, :hint => "Leave this field blank!" %>
+      </div>
+
+      <%= f.button 'Send Message', class: 'button fullwidth margin-top-5', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending..."} %>
+  <% end %>
+</div>
+<!-- Agent Widget / End -->

@@ -1,14 +1,20 @@
 Rails.application.routes.draw do
-  resources :properties, except: [:edit] do
-    member do
-      get 'listing'
-    end
-  end
+
 
   get 'analytics/show'
 
   put 'preferences/update/(:setting)' => 'preferences#update', as: 'preferences'
 
+
+  namespace :api, constraints: { format: 'json' } do
+    namespace :v1 do
+      resources :citystates, only: [:index]
+    end
+  end
+
+  resources :searches, only: [:create, :destroy]
+  resources :contacts, only: [:create]
+  resources :properties
   root 'pages#index'
   get 'classfied_lists/index'
 

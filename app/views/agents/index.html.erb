@@ -1,29 +1,103 @@
-<div class="row">
-  <div class="col-md-3">
-    <%= render 'shared/agent_setting_sidebar' %>
-  </div>
-  <div class="col-md-9">
-    <div class="panel panel-default">
-      <div class="panel-heading">Agencts</div>
-      <div class="panel-body">
-        <div class="container">
-          <%= link_to "Add Agent", new_agent_path, class: 'btn btn-success' %>
-          <table class="table">
-            <thead>
-            <tr>
-              <th>Name</th>
-              <th>Created at</th>
-            </tr>
-            </thead>
-            <% @agents.each do |agent| %>
-              <tr>
-                <td><%= agent.name %></td>
-                <td><%= agent.created_at %></td>
-              </tr>
-            <% end %>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>Agents</h2>
+				<span>List of Our Agents</span>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li>
+              <%= link_to "Home", root_path %>
+            </li>
+						<li>Agents</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-12">
+			<!-- Main Search Input -->
+      <%= render "shared/search_field" %>
+		</div>
+
+
+		<div class="col-md-12">
+			<div class="row">
+
+				<!-- Agents Container -->
+				<div class="agents-grid-container">
+
+          <% @agents.each do |agent| %>
+            <!-- Agent -->
+            <div class="grid-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+              <div class="agent">
+
+                <div class="agent-avatar">
+                  <%= link_to agent_path(agent) do %>
+                    <%= image_tag agent.photo %>
+                    <span class="view-profile-btn">View Profile</span>
+                  <% end %>
+                </div>
+
+                <div class="agent-content">
+                  <div class="agent-name">
+                    <h4>
+                      <%= link_to agent.name, agent_path(agent) %>
+                    </h4>
+                    <span>Agent In <%= agent.city %></span>
+                  </div>
+
+                  <ul class="agent-contact-details">
+                    <li>
+                      <i class="sl sl-icon-call-in"></i>
+                      <%= number_to_phone(agent.phone_number, area_code: true) %>
+                    </li>
+                    <li>
+                      <%= mail_to agent.email do %>
+                        <i class="fa fa-envelope-o "></i>
+                        <%= agent.email %>
+                      <% end %>
+                    </li>
+                  </ul>
+
+									<!-- social_links -->
+									<%= render partial: "shared/social_link", :collection => agent.social_links, :as => :social_link %>
+
+                  <div class="clearfix"></div>
+                </div>
+
+              </div>
+            </div>
+            <!-- Agent / End -->
+          <% end %>
+
+
+				</div>
+				<!-- Agents Container / End -->
+
+			</div>
+		</div>
+
+
+		<div class="col-md-12">
+			<div class="clearfix"></div>
+			<%= paginate @agents %>
+		</div>
+
+	</div>
 </div>

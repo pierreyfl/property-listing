@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20180611175941) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+
   create_table "agencies", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -332,6 +333,22 @@ ActiveRecord::Schema.define(version: 20180611175941) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+  end
+  
+  create_table "searches", force: :cascade do |t|
+    t.text "conditions"
+    t.integer "results"
+    t.string "near"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_searches_on_user_id"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.boolean "enable_sms", default: true
+    t.boolean "enable_email", default: true
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "fullname"
@@ -371,6 +388,19 @@ ActiveRecord::Schema.define(version: 20180611175941) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  create_table "social_links", force: :cascade do |t|
+    t.integer "site"
+    t.string "url"
+    t.string "linkable_type"
+    t.integer "linkable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["linkable_type", "linkable_id"], name: "index_social_links_on_linkable_type_and_linkable_id"
+  end
+
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'bool' for column 'admin'
 
   create_table "users_roles", id: false, force: :cascade do |t|
     t.bigint "user_id"

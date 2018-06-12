@@ -4,6 +4,8 @@
   <div class="row">
     <div class="col-md-12">
 
+    <%= render "searches/search_list" %>
+
       <!-- Title -->
       <h4 class="search-title">Find Your Home</h4>
 
@@ -27,7 +29,7 @@
                     { 'Any Status' => :any,
                       'For Sale' => :sale,
                       'For Rent' => :rent
-                    }, session[:filters]['availability']
+                    }, session[:filters][:availability]
                   ) %>
               </select>
             </div>
@@ -42,7 +44,7 @@
                     'Comercial' => :commercial,
                     'Garages' => :garage,
                     'Lots' => :lot,
-                  }, session[:filters]['type']
+                  }, session[:filters][:type]
                 ) %>
               </select>
             </div>
@@ -140,6 +142,9 @@
           <!-- More Search Options -->
           <a href="#" class="more-search-options-trigger margin-top-20" data-open-title="More Options" data-close-title="Less Options"></a>
 
+          <!-- Save Search Button-->
+          <%= link_to "Save Search", searches_path(:results_found => @properties.total_entries ), method: :post, remote: true, id: "save-search" ,class: "button medium border" %>
+
           <div class="more-search-options relative">
             <div class="more-search-options-container margin-top-30">
 
@@ -158,7 +163,7 @@
                         '0 - 20' => 20,
                         '0 - 50' => 50,
                         '50 + Years' => 51
-                      }, session[:filters]['age']
+                      }, session[:filters][:age]
                     ) %>
                   </select>
                 </div>
@@ -174,7 +179,7 @@
                         3 => 3,
                         4 => 4,
                         5 => 5
-                      }, session[:filters]['bedrooms']
+                      }, session[:filters][:bedrooms]
                     ) %>
                   </select>
                 </div>
@@ -201,7 +206,7 @@
                         3 => 3,
                         4 => 4,
                         5 => 5
-                      }, session[:filters]['bathrooms']
+                      }, session[:filters][:bathrooms]
                     ) %>
                   </select>
                 </div>
