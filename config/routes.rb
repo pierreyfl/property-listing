@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :companies
+  resources :list_classifieds
   resources :classified_listings
   resources :properties, except: [:edit] do
     member do
@@ -46,7 +48,7 @@ Rails.application.routes.draw do
   resources :host_reviews, only: [:create, :destroy]
   resources :subscriptions
   post "/hook" => "subscriptions#hook"
-  
+
    scope '/admin' do
     get '/overview' => 'pages#overview'
     resources :packages do

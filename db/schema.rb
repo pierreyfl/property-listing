@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180612072704) do
+ActiveRecord::Schema.define(version: 20180612102750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,11 +135,39 @@ ActiveRecord::Schema.define(version: 20180612072704) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "listing_plan_id"
+    t.index ["listing_plan_id"], name: "index_classified_listings_on_listing_plan_id"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.bigint "classified_listing_id"
+    t.string "name"
+    t.string "country"
+    t.string "state"
+    t.string "city"
+    t.string "street"
+    t.string "building"
+    t.string "zip_code"
+    t.string "email"
+    t.string "phone_number"
+    t.string "website"
+    t.string "logo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classified_listing_id"], name: "index_companies_on_classified_listing_id"
   end
 
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "recipient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "listing_plans", force: :cascade do |t|
+    t.string "name"
+    t.integer "duration"
+    t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -421,6 +449,7 @@ ActiveRecord::Schema.define(version: 20180612072704) do
   end
 
   add_foreign_key "calendars", "rooms"
+  add_foreign_key "classified_listings", "listing_plans"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"

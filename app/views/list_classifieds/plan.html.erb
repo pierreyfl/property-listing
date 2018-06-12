@@ -1,10 +1,11 @@
+
 <!-- Titlebar
 ================================================== -->
 <div id="titlebar" class="submit-page">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h2><i class="fa fa-plus-circle"></i>New Classified Listing</h2>
+				<h2><i class="fa fa-plus-circle"></i>Company Details</h2>
 			</div>
 		</div>
 	</div>
@@ -19,9 +20,16 @@
     </div>
     <div class="col-md-8">
 
-      <%= render 'form', classified_listing: @classified_listing %>
+    <%= form_for @classified_listing, url: wizard_path, method: :put do |form| %>
+      <% ListingPlan.all.each do |plan| %>
+          <%= form.radio_button :listing_plan_id, plan.id %>
+          <%= plan.name %>
+      <% end %>
 
-      <%= link_to 'Back', classified_listings_path %>
+      <%= form.submit 'Continue' %>
+			<%= link_to 'Back', previous_wizard_path %>
+    <% end %>
+
     </div>
   </div>
 </div>

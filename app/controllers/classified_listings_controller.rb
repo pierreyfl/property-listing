@@ -24,7 +24,8 @@ class ClassifiedListingsController < ApplicationController
 
     respond_to do |format|
       if @classified_listing.save
-        format.html { redirect_to @classified_listing, notice: 'Classified listing was successfully created.' }
+        session[:listing_id] = @classified_listing.id
+        format.html { redirect_to list_classifieds_path }
         format.json { render :show, status: :created, location: @classified_listing }
       else
         format.html { render :new }
@@ -67,8 +68,10 @@ class ClassifiedListingsController < ApplicationController
         {category_ids: []},
         :title,
         :description,
+        :listing_plan_id,
         categories_attributes: [:id, :name, :_destroy],
-        services_attributes: [:id, :name, :_destroy]
+        services_attributes: [:id, :name, :_destroy],
+        company_attributes: [:name, :country, :state, :city, :street, :building, :zip_code, :email, :phone_number, :website, :logo ]
       )
     end
 end

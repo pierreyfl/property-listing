@@ -98,3 +98,4 @@ gem 'bitmask_attributes', '~> 1.0'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'paypal-sdk-rest'
 gem 'cocoon', '~> 1.2', '>= 1.2.11'
+gem 'wicked', '~> 1.3', '>= 1.3.2'
