@@ -67,7 +67,8 @@ class ClassifiedListingsController < ApplicationController
         {category_ids: []},
         :title,
         :description,
-        categories_attributes: [:id, :name, :_destroy]
+        categories_attributes: [:id, :name, :_destroy],
+        services_attributes: [:id, :name, :_destroy]
       )
     end
 end

@@ -29,6 +29,14 @@
     <%= form.text_area :description, id: :classified_listing_description %>
   </div>
 
+  <%= form.fields_for :services do |service_form| %>
+    <%= render 'service_fields', f: service_form %>
+  <% end %>
+
+  <div class="add-service">
+    <%= link_to_add_association 'Add New Service', form, :services %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
