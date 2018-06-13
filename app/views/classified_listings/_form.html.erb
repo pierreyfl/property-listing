@@ -1,18 +1,19 @@
-<%= form_with(model: classified_listing, local: true) do |form| %>
+<div class="form">
+  <%= form_with(model: classified_listing, local: true) do |form| %>
   <% if classified_listing.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(classified_listing.errors.count, "error") %> prohibited this classified_listing from being saved:</h2>
+  <div id="error_explanation">
+    <h2><%= pluralize(classified_listing.errors.count, "error") %> prohibited this classified_listing from being saved:</h2>
 
-      <ul>
+    <ul>
       <% classified_listing.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
+  </div>
   <% end %>
 
   <%= form.fields_for :categories do |category_form| %>
-    <%= render 'category_fields', f: category_form %>
+  <%= render 'category_fields', f: category_form %>
   <% end %>
 
   <div class="add-category">
@@ -30,16 +31,22 @@
   </div>
 
   <%= form.fields_for :services do |service_form| %>
-    <%= render 'service_fields', f: service_form %>
+  <%= render 'service_fields', f: service_form %>
   <% end %>
 
   <div class="add-service">
-    <%= link_to_add_association 'Add New Service', form, :services %>
+    <%= link_to_add_association 'Add Service', form, :services %>
   </div>
 
 
-
-  <div class="divider">
-    <%= form.submit 'Continue', class: "button preview margin-top-5"%>
+  <div class="row">
+    <div class="col-md-10">
+      <%= link_to 'Cancel', classified_listings_path %>
+    </div>
+    <div class="col-md-2">
+      <%= form.button 'Continue', class: "button preview margin-top-5"%>
+    </div>
   </div>
-<% end %>
+
+  <% end %>
+</div>

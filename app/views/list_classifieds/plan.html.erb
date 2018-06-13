@@ -22,12 +22,11 @@
 
     <%= form_for @classified_listing, url: wizard_path, method: :put do |form| %>
       <% ListingPlan.all.each do |plan| %>
-          <%= form.radio_button :listing_plan_id, plan.id %>
-          <%= plan.name %>
+          <%= form.label plan.name, class: 'listing-plan-label' %>
+					<%= form.radio_button :listing_plan_id, plan.id, class: 'listing-plan-radio' %>
       <% end %>
 
       <%= form.submit 'Continue' %>
-			<%= link_to 'Back', previous_wizard_path %>
     <% end %>
 
     </div>

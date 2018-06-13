@@ -21,13 +21,20 @@
 			<%= form_for @classified_listing, url: wizard_path, method: :put do |form| %>
 
 				<h2>Company</h2>
-				<%= form.fields_for :company, @classified_listing.company || Company.new do |f| %>
+				<%= form.fields_for :company, @classified_listing.company || @classified_listing.build_company do |f| %>
 						<%= render 'company_fields', f: f %>
 				<% end %>
 
-			<% end %>
+				<div class="row">
+				  <div class="col-md-10">
+				    <%= link_to 'Cancel', classified_listing_path(@classified_listing), method: :delete  %>
+				  </div>
+				  <div class="col-md-2">
+				    <%= form.button 'Continue', class: "button preview margin-top-5"%>
+				  </div>
+				</div>
 
-      <%= link_to 'Back', new_classified_listing_path %>
+			<% end %>
     </div>
   </div>
 </div>

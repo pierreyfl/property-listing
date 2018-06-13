@@ -1,7 +1,7 @@
 class ClassifiedListing < ApplicationRecord
 
   has_one :company
-  accepts_nested_attributes_for :company
+  accepts_nested_attributes_for :company, allow_destroy: true
 
   belongs_to :listing_plan, optional: true
 
