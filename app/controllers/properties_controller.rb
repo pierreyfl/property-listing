@@ -1,6 +1,5 @@
 class PropertiesController < ApplicationController
 
-<<<<<<< HEAD
     def index
       @saved_searches = Search.all # _TODO current_user.searches
 
@@ -37,20 +36,7 @@ class PropertiesController < ApplicationController
         render :new
       end
     end
-=======
-  def index
 
-    @saved_searches = Search.all # _TODO current_user.searches
-
-    if params[:search_id].presence
-      search = Search.find(params[:search_id])
-      session[:filters] = search.conditions
-      session[:neartext] = search.near
-    end
-
-    @properties = Property.search("*", page: params[:page], per_page: 3, where: conditions)
-  end
->>>>>>> origin/style-ag-pages
 
     private
 

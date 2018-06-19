@@ -166,14 +166,15 @@
     <!-- Footer
       <div class="margin-top-55"></div>
     ================================================== -->
+    <% unless current_page?(properties_path) %>
     <div id="footer" class="sticky-footer">
     	<!-- Main -->
     	<div class="container">
     		<div class="row">
     			<div class="col-md-5 col-sm-6">
-    				<%= image_tag "logo.png", class: "footer-logo" %>
+
     				<br><br>
-    				<p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper.</p>
+    				
     			</div>
 
     			<div class="col-md-4 col-sm-6 ">
@@ -219,13 +220,14 @@
     		<!-- Copyright -->
     		<div class="row">
     			<div class="col-md-12">
-    				<div class="copyrights">© 2016 Findeo. All Rights Reserved.</div>
+    				<div class="copyrights">© 2018 Findit. All Rights Reserved.</div>
     			</div>
     		</div>
 
     	</div>
 
     </div>
+    <% end %>
     <!-- Footer / End -->
 
   </body>
