@@ -1,0 +1,59 @@
+<div class="row">
+  <h2><%= @resource.listing_name %></h2>
+</div>
+<div class="row">
+  <div class="col-sm-2">
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <i class="fa fa-calendar"></i> Last <%= @viewing_by.capitalize %>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <%= view_by_links %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+    <h4>Impressions</h4>
+    <%= area_chart @impressions %>
+  </div>
+  <div class="col-sm-4">
+    <h4>Visits</h4>
+    <%= area_chart @visits %>
+  </div>
+  <div class="col-sm-4">
+    <h4>Messages</h4>
+    TODO
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-4">
+    <h4>Shares</h4>
+    TODO
+  </div>
+  <div class="col-sm-4">
+    <h4>Views by Trafic source</h4>
+    <table class="table">
+      <% @visitors_by_source.each do |source, count| %>
+        <tr>
+          <th><%= source || "Direct"  %></th>
+          <td><%= count %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="col-sm-4">
+    <h4>Visitors By Location</h4>
+    <table class="table">
+      <% @visitors.each do |country, count| %>
+        <tr>
+          <th><%= country %></th>
+          <td><%= count %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

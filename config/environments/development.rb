@@ -54,6 +54,7 @@ Rails.application.configure do
 
   config.action_cable.url = "ws://localhost:3000/cable"
   config.action_cable.allowed_request_origins = ['http://127.0.0.1:3000', 'http://localhost:3000']
+  config.web_console.whitelisted_ips = '173.0.82.126'
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 

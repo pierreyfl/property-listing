@@ -1,0 +1,50 @@
+<div class="search-bar">
+  <%= form_with(url: properties_path, class: "form", local: true, method: :get) do |f| %>
+    <%= f.select(:country) do %>
+      <% CS.countries.each do |code, country| %>
+        <%= content_tag(:option, country, value: code) %>
+      <% end %>
+    <% end %>
+    <%= f.text_field :near, value: session[:neartext], id: :searchbox, placeholder: "Search by region, city or address", size: 50 %>
+    <%= f.submit "Search" %>
+
+    <!-- more options / filters -->
+    <span class="dropdown">
+      <span class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        More Options
+        <span class="caret"></span>
+      </span>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <div>
+          <h5>PRICE</h5>
+          <%= f.label 'price[min]', :min %>
+          <%= f.select 'price[min]', (3000..9000).step(2000).to_a.unshift('any'), selected: 5 %> <br>
+          <%= f.label 'price[max]', :max %>
+          <%= f.select 'price[max]', (3000..9000).step(2000).to_a.unshift('any') %> <br>
+        </div>
+        <div>
+          <h5>BEDROOMS</h5>
+          <%= f.label 'bedrooms[min]', :min %>
+          <%= f.select 'bedrooms[min]', (1..4).to_a.unshift('any') %> <br>
+          <%= f.label 'bedrooms[max]', :max %>
+          <%= f.select 'bedrooms[max]', (1..4).to_a.unshift('any') %> <br>
+        </div>
+        <div>
+          <h5>BATHROOMS</h5>
+          <%= f.select 'bathrooms', (1..4).to_a.unshift('any') %>
+        </div>
+        <div>
+          <h5>CAR SPACES</h5>
+          <%= f.select 'parking', (1..3).to_a.unshift('any') %>
+        </div>
+        <div>
+          <h5>PROPERTY TYPE</h5>
+          <%= property_types %>
+        </div>
+      </div>
+    </span>
+    <!--  more options / filters *end* -->
+
+
+  <% end %>
+</div>

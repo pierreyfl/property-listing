@@ -1,9 +1,49 @@
-<h3>
-    Create new package
-</h3>
 
-<%= form_for @package, html: {class: ""}, :url => packages_path do |form| %>
-    <%= render "form", {form: form} %>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>Create property package</h2>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li>Create Property Packages</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row">
+
+
+		<!-- Widget -->
+		<div class="col-md-4">
+			<%= render "shared/admin_sidebar" %>
+		</div>
+
+		<div class="col-md-8">
+      <h3>
+          Create new package
+      </h3>
+
+      <%= form_for @package, html: {class: ""}, :url => packages_path do |form| %>
+          <%= render "form", {form: form} %>
     
-    <%= form.submit "Save", class: "btn btn-primary" %>
-<% end %>
+          <%= form.submit "Save", class: "btn btn-primary" %>
+      <% end %>
+		</div>
+
+	</div>
+</div>

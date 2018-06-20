@@ -1,4 +1,62 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
 
-        <%= react_component("Packages") %>
+				<h2>Property Packages</h2>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li>Property Packages</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
 
 
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row">
+
+
+		<!-- Widget -->
+		<div class="col-md-4">
+			<%= render "shared/admin_sidebar" %>
+		</div>
+
+		<div class="col-md-8">
+      <h3>
+         Property Packages
+      </h3>
+			<table class="basic-table">
+        
+				<tr>
+					<th>Package Name</th>
+					<th>Price</th>
+          <th>Listing Period</th>
+          <th>Listing Type</th>
+          <th>Single/Multi</th>
+				</tr>
+        <% @packages.each do |package| %>
+				<tr>
+					<td><%= package.name %></td>
+					<td><%= package.price %></td>
+					<td><%= package.listing_period %></td>
+					<td><%= package.listing_type %></td>
+          <td><%= package.single_multi %></td>
+				</tr>
+        <% end %>
+			</table>
+      <%= link_to "Add more", new_package_path, class: "button", style: "margin-top: 50px;" %>
+		</div>
+
+	</div>
+</div>

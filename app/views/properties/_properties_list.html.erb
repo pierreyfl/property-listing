@@ -1,0 +1,6 @@
+<%= tag.div id: "properties-list", data: { properties: @properties.to_json, l: params[:l] } do %>
+<!-- Listings -->
+<div class="listings-container list-layout row fs-listings">
+  <%= render @properties %>
+</div>
+<% end %>

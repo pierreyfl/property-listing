@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
 
-    before_action :authenticate_user!
-    before_action :authenticate_super_admin
+    #before_action :authenticate_user!
+    #before_action :authenticate_super_admin
 
 
 

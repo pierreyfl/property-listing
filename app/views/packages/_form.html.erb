@@ -21,18 +21,13 @@
         
     </div>
     <div class="form-group">
-        <%= form.check_box :is_standard   %> <%= form.label(:is_standard) %>
+      <%= form.label(:listings_type) %>
+      <%= form.select :listing_type, ["Standard", "Premium", "Feature"], {}, {class: "chosen-select-no-single"} %>
     </div>
     <div class="form-group">
-        <%= form.check_box :is_premium   %> <%= form.label(:is_premium) %>
-    </div>
-    <div class="form-group">
-        <%= form.check_box :is_feature   %> <%= form.label(:is_feature) %>
-    </div>
-    <div class="form-group">
-        <%= form.check_box :is_single   %> <%= form.label(:is_single) %>
-    </div>  
-    <div class="form-group">
-        <%= form.check_box :is_multi   %> <%= form.label(:is_multi) %>
-    </div>  
+      <%= form.label(:single_multi) %>
+      <%= form.select :single_multi, ["Single", "Multi"], {}, {class: "chosen-select-no-single"} %>
+    </div>	
+    
+    
     

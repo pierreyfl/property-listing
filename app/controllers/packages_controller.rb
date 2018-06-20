@@ -1,10 +1,8 @@
 class PackagesController < AdminController
 
   def index
-    respond_to do |format|
-      format.html { render :index and return }
-      format.json { render json: PropertyPackage.all }
-    end
+    @packages = PropertyPackage.all
+
 
   end
 
@@ -13,25 +11,25 @@ class PackagesController < AdminController
   end
 
   def create
-    package = PropertyPackage.new
-    package.name = params[:name]
-    package.price = params[:price]
-    package.listings_amount = params[:listings_amount]
-    package.listing_period = params[:listing_period]
-    package.is_standard = params[:type] == 'standard'
-    package.is_premium = params[:type] == 'premium'
-    package.is_feature = params[:type] == 'featured'
-
-    package.is_single = params[:single_multi] == 'single'
-    package.is_multi = params[:single_multi] == 'multi'
-
-    if package.save!
-      render json: package and return
+    package = PropertyPackage.new(package_params)
+     
+     
+    if package.save
+      respond_to do |format|
+        format.html { redirect_to packages_url }
+        format.json { render json: PropertyPackage.all }
+      end
+    else
+      render json: package.errors, status: :unprocessable_entity
     end
 
-    render json: package.errors, status: :unprocessable_entity
 
-
+  end
+  
+  def purchase_packages
+    @standard_package = PropertyPackage.standard
+    @premium_package = PropertyPackage.premium
+    @feature_package = PropertyPackage.feature
   end
 
   def edit
@@ -66,7 +64,7 @@ class PackagesController < AdminController
   private
 
   def package_params
-    params.require(:property_package).permit(:name, :listing_period, :price, :listings_amount, :type, :single_multi)
+    params.require(:property_package).permit(:name, :listing_period, :price, :listings_amount, :type, :single_multi, :listing_type)
   end
 
 end

@@ -1,0 +1,31 @@
+<div class="fs-container">
+
+	<div class="fs-inner-container">
+		<!-- Map -->
+		<%= render "map" %>
+  </div>
+
+
+	<div class="fs-inner-container">
+    <%= render "property_search_side" %>
+		<!-- Listings -->
+    <!-- Sorting / Layout Switcher -->
+    <div class="row fs-switcher">
+
+      <div class="col-md-6">
+        <!-- Showing Results -->
+        <p class="showing-results"><%= @properties.total_entries %> Results Found </p>
+      </div>
+
+      <div class="col-md-6">
+        <!-- Layout Switcher -->
+        <div class="layout-switcher">
+          <a href="#" class="list"><i class="fa fa-th-list"></i></a>
+          <a href="#" class="grid"><i class="fa fa-th-large"></i></a>
+        </div>
+      </div>
+    </div>
+		<%= render "properties_list" %>
+	</div>
+
+</div>

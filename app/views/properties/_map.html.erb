@@ -1,0 +1,16 @@
+<div id="map-container">
+    <div id="map" data-map-zoom="4" data-map-scroll="true">
+        <!-- map goes here -->
+    </div>
+
+    <!-- Map Navigation -->
+  <a href="#" id="geoLocation" title="Your location"></a>
+  <ul id="mapnav-buttons" class="top">
+      <li>
+        <%= link_to_prev_page @properties, 'Prev', id: "prevpoint", title: "Previous properties on map" %>
+      </li>
+      <li>
+        <%= link_to_next_page @properties, 'Next', id: "nextpoint", title: "Next properties on map" %>
+      </li>
+  </ul>
+</div>

@@ -1,0 +1,6 @@
+<div class="main-search-input margin-bottom-35" id="search-input">
+  <%= form_with(url: properties_path, local: true, method: :get) do |f| %>
+    <%= f.text_field :near, id: :searchbox, placeholder: "Enter address e.g. street, city and state or zip", class: "ico-01"  %>
+    <button class="button">Search</button>
+  <% end %>
+</div>

@@ -1,0 +1,235 @@
+<!-- Search -->
+<section class="search margin-bottom-30">
+
+  <div class="row">
+    <div class="col-md-12">
+
+    <%= render "searches/search_list" %>
+
+      <!-- Title -->
+      <h4 class="search-title">Find Your Home</h4>
+
+      <!-- Form -->
+      <div class="main-search-box no-shadow">
+
+        <%= form_with(url: properties_path, local: true, method: :get) do |f| %>
+
+          <!-- Row With Forms -->
+          <div class="row with-forms">
+
+            <!-- Main Search Input -->
+            <div class="col-fs-6">
+              <%= f.text_field :near, value: session[:neartext] ,id: :searchbox, placeholder: "Enter address e.g. street, city and state or zip"  %>
+            </div>
+
+            <!-- Status -->
+            <div class="col-fs-3">
+              <select name="tab" data-placeholder="Any Status" class="chosen-select-no-single" >
+                  <%= options_for_select(
+                    { 'Any Status' => :any,
+                      'For Sale' => :sale,
+                      'For Rent' => :rent
+                    }, session[:filters][:availability]
+                  ) %>
+              </select>
+            </div>
+
+            <!-- Property Type -->
+            <div class="col-fs-3">
+              <select name="type" data-placeholder="Any Type" class="chosen-select-no-single" >
+                <%= options_for_select(
+                  { 'Any Type' => :any,
+                    'Apartments' => :apartment,
+                    'Houses' => :house,
+                    'Comercial' => :commercial,
+                    'Garages' => :garage,
+                    'Lots' => :lot,
+                  }, session[:filters][:type]
+                ) %>
+              </select>
+            </div>
+
+          </div>
+          <!-- Row With Forms / End -->
+
+
+          <!-- Row With Forms -->
+          <div class="row with-forms">
+
+            <!-- Min Price -->
+            <div class="col-fs-3">
+
+              <!-- Select Input -->
+              <div class="select-input disabled-first-option">
+                <%= f.text_field 'area[min]', value: session[:filters][:area].try(:begin), placeholder: 'Min Area', data: { unit: 'Sq Ft' } %>
+                <select>
+                  <option>Min Area</option>
+                  <% ((300..1000).step(100).to_a << 1500).each do |option| %>
+                    <%= tag.option option, value: option %>
+                  <% end %>
+                </select>
+              </div>
+              <!-- Select Input / End -->
+
+            </div>
+
+            <!-- Max Price -->
+            <div class="col-fs-3">
+
+              <!-- Select Input -->
+              <div class="select-input disabled-first-option">
+                <%= f.text_field 'area[max]', value: session[:filters][:area].try(:end).to_s.tr("Infinity", ""), placeholder: 'Max Area', data: { unit: 'Sq Ft' } %>
+                <select>
+                  <option>Max Area</option>
+                  <% ((300..1000).step(100).to_a << 1500).each do |option| %>
+                    <%= tag.option option, value: option %>
+                  <% end %>
+                </select>
+              </div>
+              <!-- Select Input / End -->
+
+            </div>
+
+
+            <!-- Min Price -->
+            <div class="col-fs-3">
+
+              <!-- Select Input -->
+              <div class="select-input disabled-first-option">
+                <%= f.text_field 'price[min]', value: session[:filters][:price].try(:begin), placeholder: 'Min Price', data: { unit: 'USD' } %>
+                <select>
+                  <option>Min Price</option>
+                  <% (
+                    ((1000..10_000).step(1000).to_a << 15_000) +
+                    (20_000..150_000).step(10_000).to_a
+                   ).each do |option| %>
+                   <%= tag.option option, value: option %>
+                 <% end %>
+                </select>
+              </div>
+              <!-- Select Input / End -->
+
+            </div>
+
+
+            <!-- Max Price -->
+            <div class="col-fs-3">
+
+              <!-- Select Input -->
+              <div class="select-input disabled-first-option">
+                <%= f.text_field 'price[max]', value: session[:filters][:price].try(:end).to_s.tr("Infinity", ""), placeholder: 'Max Price', data: { unit: 'USD' } %>
+                <select>
+                  <option>Max Price</option>
+                  <% (
+                    ((1000..10_000).step(1000).to_a << 15_000) +
+                    (20_000..150_000).step(10_000).to_a
+                   ).each do |option| %>
+                   <%= tag.option option, value: option %>
+                 <% end %>
+                </select>
+              </div>
+              <!-- Select Input / End -->
+
+            </div>
+
+          </div>
+          <!-- Row With Forms / End -->
+
+
+          <!-- Search Button -->
+          <button class="button fs-map-btn">Update</button>
+
+          <!-- More Search Options -->
+          <a href="#" class="more-search-options-trigger margin-top-20" data-open-title="More Options" data-close-title="Less Options"></a>
+
+          <!-- Save Search Button-->
+          <%= link_to "Save Search", searches_path(:results_found => @properties.total_entries ), method: :post, remote: true, id: "save-search" ,class: "button medium border" %>
+
+          <div class="more-search-options relative">
+            <div class="more-search-options-container margin-top-30">
+
+              <!-- Row With Forms -->
+              <div class="row with-forms">
+
+                <!-- Age of Home -->
+                <div class="col-fs-3">
+                  <select name="age" data-placeholder="Age of Home" class="chosen-select-no-single" >
+                    <option label="blank"></option>
+                    <%= options_for_select(
+                      { 'Age of Home (Any)' => :any,
+                        '0 - 1' => 1,
+                        '0 - 5' => 5,
+                        '0 - 10' => 10,
+                        '0 - 20' => 20,
+                        '0 - 50' => 50,
+                        '50 + Years' => 51
+                      }, session[:filters][:age]
+                    ) %>
+                  </select>
+                </div>
+
+                <!-- Rooms Area -->
+                <div class="col-fs-3">
+                  <select name="bedrooms" data-placeholder="Rooms" class="chosen-select-no-single" >
+                    <option label="blank"></option>
+                    <%= options_for_select(
+                      { 'Rooms (Any)' => :any,
+                        1 => 1,
+                        2 => 2,
+                        3 => 3,
+                        4 => 4,
+                        5 => 5
+                      }, session[:filters][:bedrooms]
+                    ) %>
+                  </select>
+                </div>
+
+                <!-- Min Area -->
+                <div class="col-fs-3">
+                  <select name="beds" data-placeholder="Beds" class="chosen-select-no-single" >
+                    <option label="blank"></option>
+                    <option value="any">Beds (Any)</option>
+                    <% (1..5).each do |option| %>
+                      <%= tag.option option, value: option %>
+                    <% end %>
+                  </select>
+                </div>
+
+                <!-- Max Area -->
+                <div class="col-fs-3">
+                  <select name="bathrooms" data-placeholder="Baths" class="chosen-select-no-single" >
+                    <option label="blank"></option>
+                    <%= options_for_select(
+                      { 'Baths (Any)' => :any,
+                        1 => 1,
+                        2 => 2,
+                        3 => 3,
+                        4 => 4,
+                        5 => 5
+                      }, session[:filters][:bathrooms]
+                    ) %>
+                  </select>
+                </div>
+
+              </div>
+              <!-- Row With Forms / End -->
+
+
+              <!-- Checkboxes -->
+              <div class="checkboxes in-row">
+                <%= amenities_check_list_helper %>
+              </div>
+              <!-- Checkboxes / End -->
+
+            </div>
+          <% end %>
+        </div>
+        <!-- More Search Options / End -->
+
+      </div>
+      <!-- Box / End -->
+    </div>
+  </div>
+
+</section>
+<!-- Search / End -->

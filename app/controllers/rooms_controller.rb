@@ -1,11 +1,12 @@
 class RoomsController < ApplicationController
-
-  before_action :set_room, except: [:index, :new, :create, :log]
-  before_action :authenticate_user!, except: [:show, :preload, :preview, :log]
+  before_action :set_room, except: [:index, :new, :create]
+  before_action :trak_property, only: [:show]
+  before_action :authenticate_user!, except: [:show, :preload, :preview]
   before_action :is_authorised, only: [:listing, :pricing, :description, :photo_upload, :amenities, :location, :update, :lifestyles]
 
+
   def index
-    @rooms = current_user.rooms
+    @rooms = Room.all #current_user.rooms
   end
 
   def new
@@ -105,6 +106,10 @@ class RoomsController < ApplicationController
 
   private
 
+  def trak_property
+    ahoy.track "view", {room_id: @room.id}
+  end
+
   def is_conflict(start_date, end_date, room)
     check = room.reservations.where("(? < start_date AND end_date < ?) AND status = ?", start_date, end_date, 1)
     check_unavailble_in_calendar = room.calendars.where("day BETWEEN ? AND ? AND status = ?", start_date, end_date, 1).limit(1)
@@ -126,6 +131,7 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:is_rent, :home_type, :room_type, :accommodate, :bed_room, :bath_room, :listing_name, :summary, :address, :is_tv, :is_kitchen, :is_air, :is_heating, :is_internet, :price, :active, :instant)
+
   end
 
 end

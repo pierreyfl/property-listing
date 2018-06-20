@@ -1,30 +1,159 @@
 
-<div class="row">
-  <div class="col">
-    <div class="panel panel-default">
-      <div class="panel-heading"><h1><%= @agency.name %></h1></div>
-      <div class="panel-body">
-          <p><%= image_tag @agency.cover_photo.url %></p><br>
-          <h3>About us</h3>
-          <p><%= @agency.description %></p><br>
-          <p><i class="fa fa-map-marker"></i> <strong>Location :</strong> <%= @agency.location %></p>
-          <p><i class="fa fa-envelope"></i> <strong>Email :</strong> <%= @agency.email %></p>
-          <p><i class="fa fa-phone"></i> <strong>Contact No. :</strong> <%= @agency.contact_no %></p>
-          <hr>
-          <h3>Our Agents</h3>
-          <% @agency.agents.each do |agent| %>
-            <%= link_to agent do %>
-              <div>
-                <p><%= image_tag agent.photo %></p>
-                <p><%= agent.name %></p>
-              </div>
-            <% end %>
-            <p><%= agent.title %></p>
-          <% end %>
-          <% if current_user.has_role? :agency_admin %>
-            <%= link_to "Add Agent", new_agent_path, class: 'btn btn-success' %>
-          <% end %>
-      </div>
-    </div>
-  </div>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2><%= @agency.name.humanize %></h2>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li>
+						  <%= link_to "Home", root_path %>
+						</li>
+						<li>
+						  <%= link_to "Agencies", agencies_path %>
+						</li>
+						<li>
+						  <%= @agency.name.humanize %>
+						</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+
+      <%= render @agency %>
+
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row sticky-wrapper">
+
+		<div class="col-lg-8 col-md-8">
+
+			<div class="style-1 agency-tabs">
+
+				<!-- Tabs Navigation -->
+				<ul class="tabs-nav">
+					<li class="active"><a href="#tab1">Our Properties</a></li>
+					<li><a href="#tab2">Our Agents</a></li>
+				</ul>
+
+				<!-- Tabs Content -->
+				<div class="tabs-container">
+					<div class="tab-content" id="tab1">
+						<!-- Main Search Input -->
+						<%= render "shared/search_field" %>
+
+						<!-- Sorting / Layout Switcher -->
+						<div class="row margin-bottom-15">
+
+							<div class="col-md-6">
+								<!-- Sort by -->
+								<div class="sort-by">
+									<label>Sort by:</label>
+
+									<div class="sort-by-select">
+										<select data-placeholder="Default order" class="chosen-select-no-single" >
+											<option>Default Order</option>
+											<option>Price Low to High</option>
+											<option>Price High to Low</option>
+											<option>Newest Properties</option>
+											<option>Oldest Properties</option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<!-- Layout Switcher -->
+								<div class="layout-switcher">
+									<a href="#" class="list"><i class="fa fa-th-list"></i></a>
+									<a href="#" class="grid"><i class="fa fa-th-large"></i></a>
+								</div>
+							</div>
+						</div>
+
+
+						<!-- Listings -->
+						<div class="listings-container list-layout">
+
+                <%= render partial: "properties/property", :collection => @properties, :as => :property %>
+
+						</div>
+						<!-- Listings Container / End -->
+
+
+						<!-- Pagination -->
+						<%= paginate @properties %>
+						<!-- Pagination / End -->
+					</div>
+
+
+
+					<div class="tab-content" id="tab2">
+						<!-- Agents Container -->
+						<div class="row">
+
+							<%= render partial: "agents/agent", :collection => @agency.agents, :as => :agent %>
+
+						</div>
+						<!-- Agents Container / End -->
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<!-- Sidebar -->
+		<div class="col-lg-4 col-md-4">
+			<div class="sidebar sticky right">
+
+				<!-- Widget -->
+				<div class="widget">
+					<%= render "contact_form" %>
+				</div>
+				<!-- Widget / End -->
+
+
+				<!-- Widget -->
+				<div class="widget">
+				<h3 class="margin-bottom-30 margin-top-30">Our Location</h3>
+
+				<div id="propertyMap-container" class="agency-map">
+					<div id="propertyMap" data-latitude="40.7427837" data-longitude="-73.11445617675781"></div>
+				</div>
+
+				</div>
+				<!-- Widget / End -->
+
+
+
+			</div>
+		</div>
+		<!-- Sidebar / End -->
+
+	</div>
 </div>

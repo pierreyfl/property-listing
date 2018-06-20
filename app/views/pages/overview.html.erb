@@ -1,42 +1,42 @@
-<div class="row">
-  <div class="col-md-3">
-    <div class="center">
-      <%= image_tag avatar_url(current_user), class: "avatar-full" %>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading"><%= current_user.fullname %></div>
-      <div class="panel-body">
-        <div class="sidebar-list">
-          <% if current_user.confirmation_token %>
-            <li>Email Address <span class="pull-right icon-babu"><i class="fa fa-check-circle-o"></i></span></li>
-          <% end %>
-          <% if current_user.provider %>
-            <li>Facebook <span class="pull-right icon-babu"><i class="fa fa-check-circle-o"></i></span></li>
-          <% end %>
-          <% if current_user.phone_verified %>
-            <li>Phone Number <span class="pull-right icon-babu"><i class="fa fa-check-circle-o"></i></span></li>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-9">
 
-    <!-- Notification -->
-    <div class="panel panel-default">
-      <div class="panel-heading">Notifications</div>
-      <div class="panel-body">
-        <%= link_to notifications_path, style: "text-decoration: none;" do %>
-          You have <span id="num_of_unread"><%= current_user.unread %></span> notification(s).
-        <% end %>
-      </div>
-    </div>
 
-    <!-- Your Listings -->
-    <div class="panel panel-default">
-      <div class="panel-heading">Current Packages</div>
-      <div class="panel-body">
-      </div>
-    </div>
-  </div>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>Admin Overview</h2>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li>Admin Overview</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row">
+
+
+		<!-- Widget -->
+		<div class="col-md-4">
+			<%= render "shared/admin_sidebar" %>
+		</div>
+
+		<div class="col-md-8">
+			
+		</div>
+
+	</div>
 </div>

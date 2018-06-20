@@ -1,16 +1,19 @@
 class AgentsController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
-  before_action :authenticate_agency_admin, except: [:show]
+  # before_action :authenticate_user!, except: [:show]
+  # before_action :authenticate_agency_admin, except: [:show]
   before_action only: [:show] do
     track_referer(params[:id], 'Agent')
   end
 
   def show
     @agent = Agent.find(params[:id])
+    @properties = @agent.properties.page(params[:page]).per(3)
+
   end
 
   def index
-    @agents = current_agency.agents
+    # @agents = current_agency.agents
+    @agents = Agent.all.page(params[:page]).per(3)
   end
 
   def new

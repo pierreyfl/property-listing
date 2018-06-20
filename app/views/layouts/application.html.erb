@@ -1,26 +1,234 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Property Listing</title>
+    <title>FindIt</title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbdhrGL62_fFR-hckf74ihwPLkmrZLLSQ&libraries=places"></script>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "//maps.googleapis.com/maps/api/js??sensor=false&amp;language=en&key=AIzaSyDbdhrGL62_fFR-hckf74ihwPLkmrZLLSQ&libraries=places", 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Varela" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/hot-sneaks/jquery-ui.css">
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/message' %>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+
+    <!-- Compare Properties Widget
+    ================================================== -->
+    <!-- Compare Properties Widget / End -->
+
+
+    <!-- Header Container
+    ================================================== -->
+    <header id="header-container">
+
+    	<!-- Topbar -->
+    	<div id="top-bar">
+    		<div class="container">
+
+    			<!-- Left Side Content -->
+    			<div class="left-side">
+
+    				<!-- Top bar -->
+    				<ul class="top-bar-menu">
+    					<li><i class="fa fa-phone"></i> (123) 123-456 </li>
+    					<li><i class="fa fa-envelope"></i> <a href="#">office@example.com</a></li>
+    					<li>
+    						<div class="top-bar-dropdown">
+    							<span>Dropdown Menu</span>
+    							<ul class="options">
+    								<li><div class="arrow"></div></li>
+    								<li><a href="#">Nice First Link</a></li>
+    								<li><a href="#">Second Link With Long Title</a></li>
+    								<li><a href="#">Third Link</a></li>
+    							</ul>
+    						</div>
+    					</li>
+    				</ul>
+
+    			</div>
+    			<!-- Left Side Content / End -->
+
+
+    			<!-- Left Side Content -->
+    			<div class="right-side">
+
+    				<!-- Social Icons -->
+    				<ul class="social-icons">
+    					<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+    					<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+    					<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+    					<li><a class="pinterest" href="#"><i class="icon-pinterest"></i></a></li>
+    				</ul>
+
+    			</div>
+    			<!-- Left Side Content / End -->
+
+    		</div>
+    	</div>
+    	<div class="clearfix"></div>
+    	<!-- Topbar / End -->
+
+
+    	<!-- Header -->
+    	<div id="header">
+    		<div class="container">
+
+    			<!-- Left Side Content -->
+    			<div class="left-side">
+
+    				<!-- Logo -->
+
+
+
+    				<!-- Mobile Navigation -->
+    				<div class="mmenu-trigger">
+    					<button class="hamburger hamburger--collapse" type="button">
+    						<span class="hamburger-box">
+    							<span class="hamburger-inner"></span>
+    						</span>
+    					</button>
+    				</div>
+
+
+    				<!-- Main Navigation -->
+    				<nav id="navigation" class="style-1">
+    					<ul id="responsive">
+
+    						<li><a class="current" href="#">Buy</a></li>
+
+    						<li><a href="#">Rent</a></li>
+
+    						<li><a href="#">New homes</a></li>
+                <li><a href="#">Sold</a></li>
+                <li><a href="#">Agents</a></li>
+                <li><a href="#">News & advice</a></li>
+    						<li><a href="#">Classifieds</a></li>
+
+    					</ul>
+    				</nav>
+    				<div class="clearfix"></div>
+    				<!-- Main Navigation / End -->
+
+    			</div>
+    			<!-- Left Side Content / End -->
+
+    			<!-- Right Side Content / End -->
+    			<div class="right-side">
+    				<!-- Header Widget -->
+    				<div class="header-widget">
+              <% if user_signed_in? %>
+    					<!-- User Menu -->
+    					<div class="user-menu">
+    						<div class="user-name"><span><%= image_tag "agent-03.jpg" %></span>Hi, <%= current_user.fullname %></div>
+    						<ul>
+    							<li><%= link_to edit_user_registration_path(current_user) do %><i class="sl sl-icon-user"></i> My Profile<% end %></li>
+    							<li><%= link_to bookmarked_listing_path do %><i class="sl sl-icon-star"></i> Bookmarks <% end %></li>
+    							<li><a href="my-properties.html"><i class="sl sl-icon-docs"></i> My Properties</a></li>
+    							<li><a href="index.html"><i class="sl sl-icon-power"></i> Log Out</a></li>
+    						</ul>
+    					</div>
+              <% else %>
+              <%= link_to new_user_session_path do %>
+    					  <i class="fa fa-user"></i> Log In / Register
+              <% end %>
+              <% end %>
+    				</div>
+    				<!-- Header Widget / End -->
+    			</div>
+    			<!-- Right Side Content / End -->
+
+    		</div>
+    	</div>
+    	<!-- Header / End -->
+
+    </header>
+    <div class="clearfix"></div>
+    <!-- Header Container / End -->
+
+
     <% if current_user %>
       <input type="hidden" id="user_id" value="<%= current_user.id %>">
     <% end %>
-    <div class="container">
-      <%= yield %>
+
+        <%= yield %>
+
+
     </div>
+    <!-- Wrapper / End -->
+
+
+    <!-- Footer
+      <div class="margin-top-55"></div>
+    ================================================== -->
+    <% unless current_page?(properties_path) %>
+    <div id="footer" class="sticky-footer">
+    	<!-- Main -->
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-5 col-sm-6">
+
+    				<br><br>
+    				
+    			</div>
+
+    			<div class="col-md-4 col-sm-6 ">
+    				<h4>Helpful Links</h4>
+    				<ul class="footer-links">
+    					<li><a href="#">Login</a></li>
+    					<li><a href="#">Sign Up</a></li>
+    					<li><a href="#">My Account</a></li>
+    					<li><a href="#">Add Property</a></li>
+    					<li><a href="#">Pricing</a></li>
+    					<li><a href="#">Privacy Policy</a></li>
+    				</ul>
+
+    				<ul class="footer-links">
+    					<li><a href="#">FAQ</a></li>
+    					<li><a href="#">Blog</a></li>
+    					<li><a href="#">Our Agents</a></li>
+    					<li><a href="#">How It Works</a></li>
+    					<li><a href="#">Contact</a></li>
+    				</ul>
+    				<div class="clearfix"></div>
+    			</div>
+
+    			<div class="col-md-3  col-sm-12">
+    				<h4>Contact Us</h4>
+    				<div class="text-widget">
+    					<span>12345 Little Lonsdale St, Melbourne</span> <br>
+    					Phone: <span>(123) 123-456 </span><br>
+    					E-Mail:<span> <a href="#">office@example.com</a> </span><br>
+    				</div>
+
+    				<ul class="social-icons margin-top-20">
+    					<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+    					<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+    					<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+    					<li><a class="vimeo" href="#"><i class="icon-vimeo"></i></a></li>
+    				</ul>
+
+    			</div>
+
+    		</div>
+
+    		<!-- Copyright -->
+    		<div class="row">
+    			<div class="col-md-12">
+    				<div class="copyrights">© 2018 Findit. All Rights Reserved.</div>
+    			</div>
+    		</div>
+
+    	</div>
+
+    </div>
+    <% end %>
+    <!-- Footer / End -->
+
   </body>
 </html>

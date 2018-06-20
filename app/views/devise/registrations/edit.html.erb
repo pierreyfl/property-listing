@@ -1,126 +1,192 @@
-<div class="row">
-  <div class="col-md-3">
-    <ul class="sidebar-list">
-      <li class="sidebar-item"><%= link_to "Edit Profile", edit_user_registration_path, class: "sidebar-link active" %></li>
-    </ul>
-    <br/>
-    <%= link_to "View My Profile", user_path(current_user.id), class: "btn btn-default" %>
-  </div>
-  <div class="col-md-9 text-center">
-    <div class="panel panel-default">
-      <div class="panel-heading">Your Profile</div>
-      <div class="panel-body">
-        <div class="container">
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-            <%= devise_error_messages! %>
 
-            <div class="form-group">
-              <%= f.text_field :fullname, autofocus: true, placeholder: "Full Name", class: "form-control" %>
-            </div>
-            
-            <div class="form-group">
-              <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control" %>
-            </div>
-            
 
-            <div class="form-group">
-              <%= f.text_area :description, rows: 5, cols: 25, autofocus: true, placeholder: "Description", class: "form-control" %>
-            </div>
-            <div class="form-group input-group date" data-provide="datepicker">
-                <%= f.text_field :date_of_birth, placeholder: "Date of Birth", class: "form-control", value: f.object.date_of_birth.try(:strftime, '%d-%m-%Y') %>
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                </div>
-            </div>
-            <div class="form-group">
-              <%= f.country_select :interested_location, { include_blank: 'Select Your Interested Location' } %>
-            </div>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
 
-           
-            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-            <% end %>
+				<h2>My Profile</h2>
 
-            <div class="form-group">
-              <%= f.password_field :password, autocomplete: "off", placeholder: "New Password (Leave blank if you don't want change it)", class: "form-control" %>
-            </div>
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li>My Profile</li>
+					</ul>
+				</nav>
 
-            <div class="form-group">
-              <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm Password", class: "form-control" %>
-            </div>
-
-            <div class="actions">
-              <%= f.submit "Save", class: "btn btn-normal btn-block" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-
-    <br/>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">Your Phone Number</div>
-      <div class="panel-body">
-        <div class="container">
-          <% if !current_user.phone_number.blank? %>
-            <h4><%= current_user.phone_number %></h4>
-            <button class="btn btn-default" data-toggle="modal" data-target="#update-phone">Update Phone Number</button>
-            <% if current_user.phone_verified == false %>
-              <button class="btn btn-default" data-toggle="modal" data-target="#verify-phone">Verify Phone Number</button>
-            <% end %>
-          <% else %>
-            <button class="btn btn-default" data-toggle="modal" data-target="#update-phone">Add Phone Number</button>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
+			</div>
+		</div>
+	</div>
 </div>
 
-<!-- MODAL FOR PHONE NUMBER -->
-<div id="update-phone" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Phone Number</h4>
-      </div>
 
-      <div class="modal-body">
-        <%= form_for current_user, url: update_phone_number_user_path(current_user) do |f| %>
-          <div class="form-group">
-            <%= f.phone_field :phone_number, class: "form-control", placeholder: "Your Phone Number" %>
-          </div>
-          <div class="text-center">
-            <%= f.submit "Save", class: "btn btn-normal" %>
-          </div>
-        <% end %>
-      </div>
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row">
 
-    </div>
-  </div>
-</div>
-<!-- MODAL FOR VERIFICATION -->
-<div id="verify-phone" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Verification Code</h4>
-      </div>
 
-      <div class="modal-body">
-        <%= form_for current_user, url: verify_phone_number_user_path(current_user), method: :post, html: {id: 'edit_usersss'} do |f| %>
-          <div class="form-group">
-            <%= f.phone_field :pin, class: "form-control", placeholder: "Your Verification Code", value: "" %>
-          </div>
-          <div class="text-center">
-            <%= f.submit "Verify", class: "btn btn-normal" %>
-          </div>
-        <% end %>
-      </div>
+		<!-- Widget -->
+		<div class="col-md-4">
+			<%= render "shared/sidebar" %>
+		</div>
 
-    </div>
-  </div>
+		<div class="col-md-8">
+			<div class="row">
+
+
+				<div class="col-md-8 my-profile">
+					<h4 class="margin-top-0 margin-bottom-30">My Account</h4>
+           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      		<h4>Personal Details</h4>
+         
+      		<div class="submit-section">
+
+      			<!-- Row -->
+      			<div class="row with-forms">
+
+      				<!-- First Name -->
+      				<div class="col-md-6">
+      					<h5>First Name</h5>
+                 <%= f.text_field :first_name, autofocus: true %>
+      				</div>
+
+      				<!-- Last Name -->
+      				<div class="col-md-6">
+      					<h5>Last Name</h5>
+                <%= f.text_field :last_name, autofocus: true %>
+      				</div>
+
+      				
+
+      			</div>
+      			<!-- Row / End -->
+            
+      			<div class="row with-forms">
+
+      				<!-- Status -->
+      				<div class="col-md-12">
+      					<h5>Year of Birth</h5>
+                <%= f.select :year_of_birth, (Time.zone.now.year - 80)..(Time.zone.now.year + 1), {}, {class: "chosen-select-no-single"} %>		
+      				</div>
+
+      			</div>
+
+      		</div>
+      		<!-- Section -->
+      		<h4>Address</h4>
+      		<div class="submit-section">
+
+      			<!-- Row -->
+      			<div class="row with-forms">
+
+      				<!-- Address -->
+      				<div class="col-md-6">
+      					<h5>Country</h5>
+                <%= f.country_select :country, { include_blank: 'Select Your Country' }, {class: "chosen-select-no-single" } %>
+      				</div>
+
+
+      				<!-- City -->
+      				<div class="col-md-6">
+      					<h5>City</h5>
+                 <%= f.text_field :city, autofocus: true %>
+      				</div>
+
+      				<!-- City -->
+      				<div class="col-md-6">
+      					<h5>State</h5>
+                 <%= f.text_field :state, autofocus: true %>
+      				</div>
+
+      				<!-- Zip-Code -->
+      				<div class="col-md-6">
+      					<h5>Zip-Code</h5>
+                 <%= f.text_field :zipcode, autofocus: true %>
+      				</div>
+
+      			</div>
+      			<!-- Row / End -->
+
+</div>      		<!-- Section / End -->
+      		<!-- Section -->
+      		<h4>Household Details</h4>
+      		<div class="submit-section">
+
+      			<!-- Row -->
+      			<div class="row with-forms">
+
+      				<!-- Scenario -->
+      				<div class="col-md-12">
+      					<h5>Which scenario describes your household?</h5>
+      					<%= f.text_field :scenario, autofocus: true %>
+      				</div>
+
+      				<!-- Income -->
+      				<div class="col-md-12">
+      					<h5>What's your combined household income?</h5>
+      					<%= f.number_field :zipcode, autofocus: true %>
+      				</div>      	
+      			</div>
+      			<!-- Row / End -->
+
+      		</div>
+      		<!-- Section / End -->
+      		<!-- Section -->
+      		<h4>Where do you want to move?</h4>
+      		<div class="submit-section">
+
+      			<!-- Row -->
+      			<div class="row with-forms">
+
+      				<!-- Country -->
+      				<div class="col-md-12">
+      					<h5>Country</h5>
+                <%= f.country_select :country, { include_blank: 'Select Country To Move' }, {class: "chosen-select-no-single" } %>
+      				</div>
+
+      				<!-- Country -->
+      				<div class="col-md-12">
+      					<h5>Country</h5>
+                <%= f.country_select :country, { include_blank: 'Select Country To Move' }, {class: "chosen-select-no-single" } %>
+      				</div>
+
+      				<!-- Country -->
+      				<div class="col-md-12">
+      					<h5>Country</h5>
+                <%= f.country_select :country, { include_blank: 'Select Country To Move' }, {class: "chosen-select-no-single" } %>
+              </div>
+
+      			</div>
+      			<!-- Row / End -->
+
+      		</div>
+      		<!-- Section / End -->
+
+          <%= f.submit "Save Changes", class: "button margin-bottom-20" %>
+          <% end %>
+				</div>
+
+				<div class="col-md-4">
+					<!-- Avatar -->
+					<div class="edit-profile-photo">
+            <%= image_tag "agent-02.jpg" %>
+						<div class="change-photo-btn">
+							<div class="photoUpload">
+							    <span><i class="fa fa-upload"></i> Upload Photo</span>
+							    <input type="file" class="upload" />
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+			</div>
+		</div>
+
+	</div>
 </div>

@@ -23,7 +23,11 @@
 
 .byebug_history
 
+<<<<<<< HEAD
 /config/secrets.yml
+=======
+config/secrets.yml
+>>>>>>> style-and-compile
 .idea
 public/system
 .gemrc

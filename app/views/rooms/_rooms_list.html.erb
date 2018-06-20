@@ -5,9 +5,9 @@
         <%= image_tag room.cover_photo(:medium) %>
       </div>
       <div class="panel-body">
-        <%= link_to room.listing_name, room %><br/>
-        $<%= room.price %> - <%= pluralize(room.bed_room, "bed") %><br/>
-        <%= room.property_type %>
+        <%= link_to room.listing_name, room, class: "room", data: {room_id: room.id, source: :search} %><br/>
+         <%= with_prefered_currency(room.price) %>- <%= room.home_type %> - <%= pluralize(room.bed_room, "bed") %>
+        <div id="star_<%= room.id %>"></div> <%= pluralize(room.average_rating, "review") %>
       </div>
     </div>
   </div>
