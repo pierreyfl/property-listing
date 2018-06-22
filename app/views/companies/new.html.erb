@@ -1,0 +1,27 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="submit-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2><i class="fa fa-plus-circle"></i>Company Details</h2>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <%= render 'shared/sidebar' %>
+    </div>
+    <div class="col-md-8">
+
+      <%= render 'form', company: @company %>
+
+      <%= link_to 'Back', companies_path %>
+    </div>
+  </div>
+</div>

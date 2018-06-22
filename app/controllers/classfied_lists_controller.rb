@@ -1,17 +1,17 @@
 class ClassfiedListsController < AdminController
-  
+
   def index
     respond_to do |format|
       format.html { render :index and return }
       format.json { render json: ClassfiedList.all }
     end
   end
-  
-  def new 
-        @list = ClassfiedList.new 
+
+  def new
+        @list = ClassfiedList.new
   end
-  
-  def create  
+
+  def create
     list = ClassfiedList.new
     list.title = params[:title]
     list.price = params[:price]
@@ -24,11 +24,11 @@ class ClassfiedListsController < AdminController
     render json: list.errors, status: :unprocessable_entity
 
   end
-  
-  def edit 
+
+  def edit
       @list = ClassfiedList.find(params[:id])
   end
-  
+
   def update
     list = ClassfiedList.find(params[:id])
     list.title = params[:title]
@@ -46,9 +46,9 @@ class ClassfiedListsController < AdminController
   def destroy
     ClassfiedList.delete(params[:id])
   end
-  
+
   private
-  
+
 
   def list_params
     params.require(:classfied_list).permit(:title, :price, :time_length)
