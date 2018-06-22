@@ -1,250 +1,158 @@
-<!-- Image -->
-<div class="row" style="margin-top: 20px;">
-  <div class="col-md-12">
-  </div>
-</div>
-<br/>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
 
-<div class="row">
+				<h2><%= @agency.name.humanize %></h2>
 
-  <!-- LEFT PANEL -->
-  <div class="col-md-12">
-    <!-- Listing name -->
-    <div class="row">
-      <div class="col-md-8">
-        <h1>Agency Name</h1>
-        Agency Address
-      </div>
-      <div class="col-md-4 text-center">
-        <br/><br/>
-        
-      </div>
-    </div>
-    <hr/>
-</div>
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li>
+						  <%= link_to "Home", root_path %>
+						</li>
+						<li>
+						  <%= link_to "Agencies", agencies_path %>
+						</li>
+						<li>
+						  <%= @agency.name.humanize %>
+						</li>
+					</ul>
+				</nav>
 
-    <!-- Room Info -->
-    <div class="row text-babu">
-      <div class="row text-center row-space-1">
-        <div class="col-md-4">
-          <i class="fa fa-home fa-2x"></i>
-        </div>
-        <div class="col-md-4">
-          <i class="fa fa-bed fa-2x"></i>
-        </div>
-        <div class="col-md-4">
-          <i class="fa fa-bath fa-2x"></i>
-        </div>
-      </div>
-      <div class="row text-center">
-        <div class="col-md-4"></div>
-        <div class="col-md-4"></div>
-        <div class="col-md-4"></div>
-      </div>
-    </div>
-    <hr/>
-
-    <!-- About -->
-    <div class="row">
-      <div class="col-md-12">
-        <h3>About This Agency</h3>
-        <p><%= @room.summary %></p>
-      </div>
-    </div>
-    <hr/>
-
-    <!-- Amenities -->
-    <div class="row">
-      <div class="col-md-3">
-        <h4>Amenities</h4>
-      </div>
-
-      <div class="col-md-9">
-        <div class="row">
-          <div class="col-md-6">
-            <ul class="amenities">
-              <li class="<%= 'text-line-through' if !@room.is_tv %>">TV</li>
-              <li class="<%= 'text-line-through' if !@room.is_kitchen %>">Kitchen</li>
-              <li class="<%= 'text-line-through' if !@room.is_internet %>">Internet</li>
-            </ul>
-          </div>
-
-          <div class="col-md-6">
-            <ul class="amenities">
-              <li class="<%= 'text-line-through' if !@room.is_heating %>">Heating</li>
-              <li class="<%= 'text-line-through' if !@room.is_air %>">Air Conditioning</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <hr/>
-
-    <!-- Carousel -->
-    <div class="row">
-
-      <% if @photos.length > 0 %>
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <% @photos.each do |photo| %>
-          <li data-target="#myCarousel" data-slide-to="<%= photo.id %>"></li>
-          <% end %>
-        </ol>
-
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <% @photos.each do |photo| %>
-          <div class="item <%= 'active' if photo.id == @photos[0].id %>">
-            <%= image_tag photo.image.url() %>
-          </div>
-          <% end %>
-        </div>
-
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-      <% end %>
-
-    </div>
-    <hr/>
-
-    <!-- 
-    <div class="row">
-      <div class="col-md-12">
-        <h3>
-          <%= pluralize(@guest_reviews.count, "Review") %>
-          <span id="average_rating"></span>
-        </h3>
-        <div class="container">
-          <div><%= render "reviews/guest_list" %></div>
-        </div>
-      </div>
-    </div>
-    -->  
-    <br/>
-
-    <!-- GOOGLE MAP -->
-    <div class="row">
-
-  <div id="map" style="width: 100%; height: 400px"></div>
-
-  <script src="https://maps.googleapis.com/maps/api/js"></script>
-  <script>
-    function initialize() {
-      var location = {lat: <%= @room.latitude %>, lng: <%= @room.longitude %>};
-      var map = new google.maps.Map(document.getElementById('map'), {
-        center: location,
-        zoom:14
-      });
-
-      var marker = new google.maps.Marker({
-        position: location,
-        map: map
-      });
-
-      var infoWindow = new google.maps.InfoWindow({
-        content: '<div id="content"><%= image_tag @room.cover_photo(:thumb) %></div>'
-      });
-
-      infoWindow.open(map, marker);
-
-    }
-
-    google.maps.event.addDomListener(window, 'load', initialize);
-  </script>
-
-    </div>
-    <hr/>
-    <%
-      near_rooms =  @room.nearbys(10)
-    %>
-    <% if near_rooms %>
-    <!-- NEAR BY ROOMS -->
-    <div class="row">
-      <h3>Near by</h3>
-      <% for room in near_rooms.max(6).shuffle %>
-        <div class="col-md-4">
-          <div class="panel panel-default">
-            <div class="panel-heading preview">
-              <%= image_tag room.cover_photo(:medium) %>
-            </div>
-            <div class="panel-body">
-              <%= link_to room.listing_name, room %><br/>
-              (<%= room.distance.round(2) %> km away)
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
-      <% end %>
-  </div>
-
-  <!-- RIGHT PANEL -->
-  <!-- RESERVATION FORM
-  <div class="col-md-4">
-    <%#= render 'reservations/form' %>
-  </div>
-  -->
+			</div>
+		</div>
+	</div>
 </div>
 
-<div id="room-details"></div>
 
-<script>
-  $('#average_rating').raty({
-    path: '/assets',
-    readOnly: true,
-    score: <%= @room.average_rating %>
-  });
-</script>
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
 
-<script type="text/javascript" charset="utf-8">
-  var start_time = Date.now();
+      <%= render @agency %>
 
-  $(document).on('page:change', function() {
-      var $roomDetais = $('#room-details');
-      var productPolling;
-
-      if ($productContainer.length) {
-          productPolling = setInterval(fetchProducts, 500);
-          $(document).on('page:change', clearPolling);
-      }
-
-      function clearPolling() {
-          clearInterval(productPolling);
-          $document.off('page:change', clearPolling);
-      }
-
-      function fetchProduct() {
-          // some ajax code
-      }
-  });
-
- setInterval(function () {
-      if ($('#room-details').length)
-        start_time = logTime(start_time);
-  }, 15000);
+		</div>
+	</div>
+</div>
 
 
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row sticky-wrapper">
+
+		<div class="col-lg-8 col-md-8">
+
+			<div class="style-1 agency-tabs">
+
+				<!-- Tabs Navigation -->
+				<ul class="tabs-nav">
+					<li class="active"><a href="#tab1">Our Properties</a></li>
+					<li><a href="#tab2">Our Agents</a></li>
+				</ul>
+
+				<!-- Tabs Content -->
+				<div class="tabs-container">
+					<div class="tab-content" id="tab1">
+						<!-- Main Search Input -->
+						<%= render "shared/search_field" %>
+
+						<!-- Sorting / Layout Switcher -->
+						<div class="row margin-bottom-15">
+
+							<div class="col-md-6">
+								<!-- Sort by -->
+								<div class="sort-by">
+									<label>Sort by:</label>
+
+									<div class="sort-by-select">
+										<select data-placeholder="Default order" class="chosen-select-no-single" >
+											<option>Default Order</option>
+											<option>Price Low to High</option>
+											<option>Price High to Low</option>
+											<option>Newest Properties</option>
+											<option>Oldest Properties</option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<!-- Layout Switcher -->
+								<div class="layout-switcher">
+									<a href="#" class="list"><i class="fa fa-th-list"></i></a>
+									<a href="#" class="grid"><i class="fa fa-th-large"></i></a>
+								</div>
+							</div>
+						</div>
 
 
-function logTime(start) {
-    var end_date = new Date();
-    var diff = Math.abs(end_date - start);
-    $.ajax({
-        url: "/log-room-visit",
-        data: {'timeSpent': diff, room_id: <%= @room.id%>},
-        async: true
-    });
+						<!-- Listings -->
+						<div class="listings-container list-layout">
 
-    return end_date;
-}
-</script>
+                <%= render partial: "properties/property", :collection => @properties, :as => :property %>
+
+						</div>
+						<!-- Listings Container / End -->
+
+
+						<!-- Pagination -->
+						<%= paginate @properties %>
+						<!-- Pagination / End -->
+					</div>
+
+
+
+					<div class="tab-content" id="tab2">
+						<!-- Agents Container -->
+						<div class="row">
+
+							<%= render partial: "agents/agent", :collection => @agency.agents, :as => :agent %>
+
+						</div>
+						<!-- Agents Container / End -->
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<!-- Sidebar -->
+		<div class="col-lg-4 col-md-4">
+			<div class="sidebar sticky right">
+
+				<!-- Widget -->
+				<div class="widget">
+					<%= render "contact_form" %>
+				</div>
+				<!-- Widget / End -->
+
+
+				<!-- Widget -->
+				<div class="widget">
+				<h3 class="margin-bottom-30 margin-top-30">Our Location</h3>
+
+				<div id="propertyMap-container" class="agency-map">
+					<div id="propertyMap" data-latitude="40.7427837" data-longitude="-73.11445617675781"></div>
+				</div>
+
+				</div>
+				<!-- Widget / End -->
+
+
+
+			</div>
+		</div>
+		<!-- Sidebar / End -->
+
+	</div>
+</div>

@@ -1,0 +1,40 @@
+<!-- Agency -->
+<div class="agent agent-page agency">
+
+  <a href="agency-page.html" class="">
+  <%= link_to agency_path(agency), class: "agent-avatar" do %>
+    <%= image_tag agency.cover_photo.url %>
+  <% end %>
+
+  <div class="agent-content">
+    <div class="agent-name">
+      <h4>
+        <%= link_to agency.name.humanize, agency_path(agency) %>
+      </h4>
+      <span><i class="fa fa-map-marker"></i><%= agency.location %></span>
+    </div>
+
+    <p>
+      <%= agency.description %>
+    </p>
+
+    <ul class="agent-contact-details">
+      <li>
+        <i class="sl sl-icon-call-in"></i>
+        <%= number_to_phone(agency.contact_no, area_code: true) %>
+      </li>
+      <li>
+        <%= mail_to agency.email do %>
+          <i class="fa fa-envelope-o "></i>
+          <%= agency.email %>
+        <% end %>
+      </li>
+    </ul>
+
+    <!-- social_links -->
+    <%= render partial: "shared/social_link", :collection => agency.social_links, :as => :social_link %>
+
+    <div class="clearfix"></div>
+  </div>
+
+</div>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  conditions: MyText
+  results: 1
+  query_text: MyString
+  user: one
+
+two:
+  conditions: MyText
+  results: 1
+  query_text: MyString
+  user: two

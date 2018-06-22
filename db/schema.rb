@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180612102750) do
+ActiveRecord::Schema.define(version: 2018_06_12_102750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20180612102750) do
     t.string "name"
     t.jsonb "properties"
     t.datetime "time"
-    t.index "properties jsonb_path_ops", name: "index_ahoy_events_on_properties_jsonb_path_ops", using: :gin
     t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
+    t.index ["properties"], name: "index_ahoy_events_on_properties_jsonb_path_ops", opclass: :jsonb_path_ops, using: :gin
     t.index ["user_id"], name: "index_ahoy_events_on_user_id"
     t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
   end
@@ -342,6 +342,16 @@ ActiveRecord::Schema.define(version: 20180612102750) do
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
+  create_table "searches", force: :cascade do |t|
+    t.text "conditions"
+    t.integer "results"
+    t.string "near"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_searches_on_user_id"
+  end
+
   create_table "searchjoy_searches", force: :cascade do |t|
     t.bigint "user_id"
     t.string "search_type"
@@ -376,6 +386,16 @@ ActiveRecord::Schema.define(version: 20180612102750) do
     t.datetime "updated_at"
     t.index ["target_type", "target_id", "var"], name: "index_settings_on_target_type_and_target_id_and_var", unique: true
     t.index ["target_type", "target_id"], name: "index_settings_on_target_type_and_target_id"
+  end
+
+  create_table "social_links", force: :cascade do |t|
+    t.integer "site"
+    t.string "url"
+    t.string "linkable_type"
+    t.bigint "linkable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["linkable_type", "linkable_id"], name: "index_social_links_on_linkable_type_and_linkable_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -463,6 +483,7 @@ ActiveRecord::Schema.define(version: 20180612102750) do
   add_foreign_key "reviews", "users", column: "guest_id"
   add_foreign_key "reviews", "users", column: "host_id"
   add_foreign_key "rooms", "users"
+  add_foreign_key "searches", "users"
   add_foreign_key "subscriptions", "property_packages"
   add_foreign_key "subscriptions", "users"
 end

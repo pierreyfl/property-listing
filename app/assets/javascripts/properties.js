@@ -63,6 +63,10 @@ $(document).on("turbolinks:load", function() {
 
   $("#searchbox").geocomplete();
 
+  if ($('#map').length == 0) {
+    return;
+  }
+
   var map = window.map = new GMaps({
     el: '#map',
     lat: -12.043333,

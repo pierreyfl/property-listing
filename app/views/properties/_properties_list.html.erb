@@ -1,59 +1,6 @@
 <%= tag.div id: "properties-list", data: { properties: @properties.to_json, l: params[:l] } do %>
 <!-- Listings -->
 <div class="listings-container list-layout row fs-listings">
-  <% @properties.each do |property| %>
-      <!-- Listing Item -->
-      <div class="listing-item">
-        <%= link_to property_path(property), class: "listing-img-container" do %>
-
-          <div class="listing-badges">
-            <span class="featured">Featured</span>
-            <span>For <%= property.availability.capitalize %></span>
-          </div>
-
-          <div class="listing-img-content">
-            <span class="listing-price"><%= number_to_currency(property.price, precision: 0) %><i>$520 / sq ft</i></span>
-            <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
-            <span class="compare-button with-tip" data-tip-content="Add to Compare"></span>
-          </div>
-
-          <div class="listing-carousel">
-            <div><%= image_tag "listing-01.jpg" %></div>
-            <div><%= image_tag "listing-01b.jpg" %></div>
-            <div><%= image_tag "listing-01c.jpg" %></div>
-          </div>
-       <% end %>
-
-        <div class="listing-content">
-
-          <div class="listing-title">
-            <h4>
-              <%= link_to property.name.capitalize, property_path(property) %>
-            </h4>
-            <a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom" class="listing-address popup-gmaps">
-              <i class="fa fa-map-marker"></i>
-              <%= property.address %>
-            </a>
-            <%= link_to property_path(property), class: "details button border" do %>
-              Details
-            <% end %>
-          </div>
-
-          <ul class="listing-details">
-            <li><%= property.area %> sq ft</li>
-            <li><%= property.bedrooms %> Bedroom</li>
-            <li><%= property.bathrooms %> Bathroom</li>
-          </ul>
-
-          <div class="listing-footer">
-            <a href="#"><i class="fa fa-user"></i> David Strozier</a>
-            <span><i class="fa fa-calendar-o"></i> <%= time_ago_in_words(property.created_at) %> ago</span>
-          </div>
-
-        </div>
-
-      </div>
-      <!-- Listing Item / End -->
-  <% end %>
+  <%= render @properties %>
 </div>
 <% end %>

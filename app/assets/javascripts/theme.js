@@ -7,6 +7,6 @@
 //= require masonry.min
 //= require mmenu.min
 //= require tooltips.min
-//= require custom
 //= require infobox.min
 //= require markerclusterer
+//= require custom

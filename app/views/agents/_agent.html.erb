@@ -1,0 +1,43 @@
+<!-- Agent -->
+<div class="col-lg-6 col-md-6 col-xs-12">
+  <div class="agent">
+
+    <div class="agent-avatar">
+      <a href="agent-page.html">
+        <%= link_to agent_path(agent) do %>
+          <span class="view-profile-btn">View Profile</span>
+          <%= image_tag agent.photo %>
+        <% end %>
+      </a>
+    </div>
+
+    <div class="agent-content">
+      <div class="agent-name">
+        <h4>
+          <%= link_to agent.name, agent_path(agent) %>
+        </h4>
+        <span>Agent In <%= agent.city %></span>
+      </div>
+
+      <ul class="agent-contact-details">
+        <li>
+          <i class="sl sl-icon-call-in"></i>
+          <%= number_to_phone(agent.phone_number, area_code: true) %>
+        </li>
+        <li>
+          <%= mail_to agent.email do %>
+            <i class="fa fa-envelope-o "></i>
+            <%= agent.email %>
+          <% end %>
+        </li>
+      </ul>
+
+      <!-- social_links -->
+      <%= render partial: "shared/social_link", :collection => agent.social_links, :as => :social_link %>
+
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+</div>
+<!-- Agent / End -->
