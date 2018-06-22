@@ -38,6 +38,16 @@
     <%= link_to_add_association 'Add Service', form, :services %>
   </div>
 
+  <div class="field">
+    <%= form.label :images %>
+    <%= form.file_field :images, multiple: true, direct_upload: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :video %>
+    <%= form.file_field :video, direct_upload: true %>
+  </div>
+
 
   <div class="row">
     <div class="col-md-10">

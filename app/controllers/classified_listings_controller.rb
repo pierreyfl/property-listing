@@ -69,6 +69,8 @@ class ClassifiedListingsController < ApplicationController
         :title,
         :description,
         :listing_plan_id,
+        :video,
+        images: [],
         categories_attributes: [:id, :name, :_destroy],
         services_attributes: [:id, :name, :_destroy],
         company_attributes: [:name, :country, :state, :city, :street, :building, :zip_code, :email, :phone_number, :website, :logo ]

@@ -68,7 +68,6 @@ gem 'toastr-rails', '~> 1.0'
 gem 'omniauth', '~> 1.6'
 gem 'omniauth-facebook', '~> 4.0'
 gem "paperclip", "~> 5.1.0"
-gem 'aws-sdk', '~> 2.8'
 gem 'geocoder', '~> 1.4'
 gem 'ransack', '~> 1.8'
 gem 'react-rails'
@@ -104,3 +103,4 @@ gem 'wicked', '~> 1.3', '>= 1.3.2'
 
 gem 'mail_form', '~> 1.7', '>= 1.7.1'
 
+gem "aws-sdk-s3", require: false

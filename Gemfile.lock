@@ -58,13 +58,20 @@ GEM
     arel (9.0.0)
     autoprefixer-rails (8.6.3)
       execjs
-    aws-sdk (2.11.74)
-      aws-sdk-resources (= 2.11.74)
-    aws-sdk-core (2.11.74)
+    aws-eventstream (1.0.1)
+    aws-partitions (1.93.0)
+    aws-sdk-core (3.21.3)
+      aws-eventstream (~> 1.0)
+      aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.74)
-      aws-sdk-core (= 2.11.74)
+    aws-sdk-kms (1.5.0)
+      aws-sdk-core (~> 3)
+      aws-sigv4 (~> 1.0)
+    aws-sdk-s3 (1.14.0)
+      aws-sdk-core (~> 3, >= 3.21.2)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.0)
     aws-sigv4 (1.0.2)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -403,7 +410,7 @@ PLATFORMS
 
 DEPENDENCIES
   ahoy_matey (~> 2.1)
-  aws-sdk (~> 2.8)
+  aws-sdk-s3
   bitmask_attributes (~> 1.0)
   bootsnap
   bootstrap-datepicker-rails

@@ -1,5 +1,8 @@
 class ClassifiedListing < ApplicationRecord
 
+  has_many_attached :images
+  has_one_attached :video
+
   has_one :company
   accepts_nested_attributes_for :company, allow_destroy: true
 
