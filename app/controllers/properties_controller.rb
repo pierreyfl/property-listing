@@ -1,6 +1,6 @@
 class PropertiesController < ApplicationController
 
-<<<<<<< HEAD
+# <<<<<<< HEAD
     def index
       @saved_searches = Search.all # _TODO current_user.searches
 
@@ -12,22 +12,22 @@ class PropertiesController < ApplicationController
 
       @properties = Property.search("*", page: params[:page], per_page: 3, where: conditions)
     end
-  
+
     def show
       @property = Property.find(params[:id])
     end
-    
+
     def my_properties
       @properties = current_user.properties
     end
-    
+
     def listing
     end
-    
+
     def new
       @property = current_user.properties.build
     end
-    
+
     def create
       @property = current_user.properties.build(property_params)
       if @property.save
@@ -37,7 +37,7 @@ class PropertiesController < ApplicationController
         render :new
       end
     end
-=======
+# =======
   def index
 
     @saved_searches = Search.all # _TODO current_user.searches
@@ -50,7 +50,7 @@ class PropertiesController < ApplicationController
 
     @properties = Property.search("*", page: params[:page], per_page: 3, where: conditions)
   end
->>>>>>> origin/style-ag-pages
+# >>>>>>> origin/style-ag-pages
 
     private
 
@@ -190,7 +190,7 @@ class PropertiesController < ApplicationController
         }
         session[:filters].merge!(location)
     end
-    
+
     def property_params
       params.require(:property).permit(:name, :area, :bedrooms, :bathrooms, :description, :parking, :address, :city, :state, :zip, :building_age, :type, :longitude, :latitude, :availability, :price)
     end
