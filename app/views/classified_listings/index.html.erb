@@ -1,29 +1,89 @@
-<p id="notice"><%= notice %></p>
+<!-- Banner
+================================================== -->
+<div class="parallax" data-background="<%= asset_url 'home-parallax.jpg' %>" data-color="#36383e" data-color-opacity="0.45" data-img-width="2500" data-img-height="1600">
+	<div class="parallax-content">
 
-<h1>Classified Listings</h1>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+					<!-- Main Search Container -->
+					<%= render "properties/search_main" %>
+					<!-- Main Search Container / End -->
 
-  <tbody>
-    <% @classified_listings.each do |classified_listing| %>
-      <tr>
-        <td><%= classified_listing.title %></td>
-        <td><%= classified_listing.description %></td>
-        <td><%= link_to 'Show', classified_listing %></td>
-        <td><%= link_to 'Edit', edit_classified_listing_path(classified_listing) %></td>
-        <td><%= link_to 'Destroy', classified_listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+				</div>
+			</div>
+		</div>
 
-<br>
+	</div>
+</div>
 
-<%= link_to 'New Classified Listing', new_classified_listing_path %>
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-12">
+			<h3 class="headline margin-bottom-25 margin-top-65">Classified Listings</h3>
+		</div>
+
+		<!-- Carousel -->
+		<div class="col-md-12">
+			<div class="carousel">
+        <% @classified_listings.each do |listing| %>
+          <!-- Listing Item -->
+          <div class="carousel-item">
+            <div class="listing-item">
+
+              <a href="single-property-page-1.html" class="listing-img-container">
+
+                <div class="listing-badges">
+                  <span class="featured">Featured</span>
+                  <span>For Sale</span>
+                </div>
+
+                <div class="listing-img-content">
+                  <span class="listing-price">$275,000 <i>$520 / sq ft</i></span>
+                  <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
+                  <span class="compare-button with-tip" data-tip-content="Add to Compare"></span>
+                </div>
+
+                <div class="listing-carousel">
+                  <% listing.images.each do |image| %>
+                    <div>
+                      <%= image_tag image %>
+                    </div>
+                  <% end %>
+                </div>
+              </a>
+
+              <div class="listing-content">
+
+                <div class="listing-title">
+                  <h4><a href="single-property-page-1.html"><%= listing.title %></a></h4>
+                    <p>
+                      <%= listing.description %>
+                    </p>
+                </div>
+
+                <ul class="listing-features">
+                  <% listing.services.each do |service| %>
+                    <li><%= service.name %></li>
+                  <% end %>
+                </ul>
+
+                <div class="listing-footer">
+                  <a href="#"><i class="fa fa-user"></i> David Strozier</a>
+                  <span><i class="fa fa-calendar-o"></i> 1 day ago</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Listing Item / End -->
+        <% end %>
+			</div>
+		</div>
+		<!-- Carousel / End -->
+
+	</div>
+</div>
