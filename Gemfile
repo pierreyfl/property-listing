@@ -104,3 +104,4 @@ gem 'wicked', '~> 1.3', '>= 1.3.2'
 gem 'mail_form', '~> 1.7', '>= 1.7.1'
 
 gem "aws-sdk-s3", require: false
+gem 'rack-cors', require: 'rack/cors'
