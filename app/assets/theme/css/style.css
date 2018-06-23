@@ -70,8 +70,8 @@
 /* ------------------------------------------------------------------- */
 /* 01. Import Section
 ---------------------------------------------------------------------- */
-@import url("bootstrap.css");					/* Default Reset, Typography, Forms, Responsive Grid etc. */
-@import url("icons.css");						/* Webfont Icons: FontAwesome, Line, Simple Line */
+@import asset-url("bootstrap.css");					/* Default Reset, Typography, Forms, Responsive Grid etc. */
+@import asset-url("icons.css");						/* Webfont Icons: FontAwesome, Line, Simple Line */
 @import url("https://fonts.googleapis.com/css?family=Varela+Round");
 
 
@@ -2615,7 +2615,7 @@ input.second-slider-value {
 	width: 28px;
 	height: 28px;
 	display: block;
-	background-image: url(compare-icon.svg);
+	background-image: asset-url(compare-icon.svg);
 	background-repeat: no-repeat;
 	background-size: 28px;
 }
@@ -2657,7 +2657,7 @@ span.like-icon {
     width: 21px;
     height: 21px;
     display: inline-block;
-    background-image: url(compare-icon-black.svg);
+    background-image: asset-url(compare-icon-black.svg);
     background-repeat: no-repeat;
     background-size: 21px;
     position: relative;
@@ -5548,7 +5548,7 @@ section.fullwidth .blog-post { margin: 5px 0 0 0; }
 	text-align: center;
 	border-radius: 50%;
 	background-color: #66676b;
-	background-image: url(plus-icon.svg);
+	background-image: asset-url(plus-icon.svg);
 	background-repeat: no-repeat;
 	background-position: 50%
 }
