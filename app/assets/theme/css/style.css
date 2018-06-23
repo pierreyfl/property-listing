@@ -70,8 +70,8 @@
 /* ------------------------------------------------------------------- */
 /* 01. Import Section
 ---------------------------------------------------------------------- */
-@import asset-url("bootstrap.css");					/* Default Reset, Typography, Forms, Responsive Grid etc. */
-@import asset-url("icons.css");						/* Webfont Icons: FontAwesome, Line, Simple Line */
+@import "bootstrap";					/* Default Reset, Typography, Forms, Responsive Grid etc. */
+@import "icons.css";						/* Webfont Icons: FontAwesome, Line, Simple Line */
 @import url("https://fonts.googleapis.com/css?family=Varela+Round");
 
 
