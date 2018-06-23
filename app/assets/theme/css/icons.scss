@@ -6,8 +6,8 @@
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('fontawesome-webfont.eot?v=4.6.3');
-  src: url('fontawesome-webfont.eot?#iefix&v=4.6.3') format('embedded-opentype'), url('fontawesome-webfont.woff2?v=4.6.3') format('woff2'), url('fontawesome-webfont.woff?v=4.6.3') format('woff'), url('fontawesome-webfont.ttf?v=4.6.3') format('truetype'), url('fontawesome-webfont.svg?v=4.6.3#fontawesomeregular') format('svg');
+  src: asset-url('fontawesome-webfont.eot?v=4.6.3');
+  src: asset-url('fontawesome-webfont.eot?#iefix&v=4.6.3') format('embedded-opentype'), url('fontawesome-webfont.woff2?v=4.6.3') format('woff2'), url('fontawesome-webfont.woff?v=4.6.3') format('woff'), url('fontawesome-webfont.ttf?v=4.6.3') format('truetype'), url('fontawesome-webfont.svg?v=4.6.3#fontawesomeregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -2201,11 +2201,11 @@
 
 @font-face {
     font-family: 'simple-line-icons';
-    src:    url('simple-line-icons.eot?thkwh4');
-    src:    url('simple-line-icons.eot?thkwh4#iefix') format('embedded-opentype'),
-        url('simple-line-icons.ttf?thkwh4') format('truetype'),
-        url('simple-line-icons.woff?thkwh4') format('woff'),
-        url('simple-line-icons.svg?thkwh4#simple-line-icons') format('svg');
+    src:    asset-url('simple-line-icons.eot?thkwh4');
+    src:    asset-url('simple-line-icons.eot?thkwh4#iefix') format('embedded-opentype'),
+        asset-url('simple-line-icons.ttf?thkwh4') format('truetype'),
+        asset-url('simple-line-icons.woff?thkwh4') format('woff'),
+        asset-url('simple-line-icons.svg?thkwh4#simple-line-icons') format('svg');
     font-weight: normal;
     font-style: normal;
 }
