@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_22_131701) do
+ActiveRecord::Schema.define(version: 2018_06_25_041934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -315,17 +315,6 @@ ActiveRecord::Schema.define(version: 2018_06_22_131701) do
     t.index ["room_id"], name: "index_reviews_on_room_id"
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
-    t.string "resource_type"
-    t.bigint "resource_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-    t.index ["name"], name: "index_roles_on_name"
-    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
-  end
-
   create_table "room_visits", force: :cascade do |t|
     t.integer "user_id"
     t.string "email"
@@ -475,17 +464,12 @@ ActiveRecord::Schema.define(version: 2018_06_22_131701) do
     t.string "country_w2"
     t.string "country_w3"
     t.integer "wallet", default: 0
+    t.integer "role"
+    t.integer "agent_id"
+    t.index ["agent_id"], name: "index_users_on_agent_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "users_roles", id: false, force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "role_id"
-    t.index ["role_id"], name: "index_users_roles_on_role_id"
-    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
-    t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
   add_foreign_key "calendars", "rooms"

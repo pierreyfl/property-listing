@@ -13,7 +13,12 @@ class User < ApplicationRecord
       }
   end
 
-  rolify
+  enum role: [:admin, :agency, :agent, :regular]
+
+  belongs_to :agency, -> { where role: :agent } , class_name: 'User', optional: true
+  has_many :agents, class_name: 'User', foreign_key: 'agent_id'
+
+  # rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -97,12 +102,9 @@ class User < ApplicationRecord
     end
   end
 
-  def agency
-    role = self.roles.where(resource_type: "Agency").first
-    Agency.find_by(id: role.resource_id)
-  end
+  # def agency
+  #   role = self.roles.where(resource_type: "Agency").first
+  #   Agency.find_by(id: role.resource_id)
+  # end
 
 end
-
-
-
