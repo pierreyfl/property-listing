@@ -464,7 +464,7 @@ ActiveRecord::Schema.define(version: 2018_06_25_041934) do
     t.string "country_w2"
     t.string "country_w3"
     t.integer "wallet", default: 0
-    t.integer "role"
+    t.integer "role", default: 0
     t.integer "agent_id"
     t.index ["agent_id"], name: "index_users_on_agent_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

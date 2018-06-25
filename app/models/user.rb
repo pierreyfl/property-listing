@@ -13,7 +13,7 @@ class User < ApplicationRecord
       }
   end
 
-  enum role: [:admin, :agency, :agent, :regular]
+  enum role: [:regular, :admin, :agency, :agent]
 
   belongs_to :agency, -> { where role: :agent } , class_name: 'User', optional: true
   has_many :agents, class_name: 'User', foreign_key: 'agent_id'
