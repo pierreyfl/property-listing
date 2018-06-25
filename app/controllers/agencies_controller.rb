@@ -1,9 +1,7 @@
 class AgenciesController < ApplicationController
-  # before_action :authenticate_user!
-  # before_action :authenticate_super_admin
 
   def index
-    @agencies = Agency.all.page(params[:page]).per(3)
+    @agencies = User.where(role: :agency).page(params[:page]).per(3)
   end
 
   def show
@@ -13,9 +11,10 @@ class AgenciesController < ApplicationController
     # @properties = @agency.properties.page(params[:page]).per(3)
   end
 
-  def new
+  def edit
+    @agency = User.find(param[:id])
   end
-  
+
   def show
     @room = Room.find(params[:id])
     @photos = @room.photos

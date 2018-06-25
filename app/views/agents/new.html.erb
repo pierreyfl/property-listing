@@ -10,7 +10,6 @@
           <%= form_for :agent, url: agents_path, html: {id: 'agentForm'} do |f| %>
             <div class="form-group">
               <label>Select Role</label>
-              <%= f.select :role, @roles.map {|r| [r.name, r.name] }, {}, {class: 'form-control'} %>
             </div>
             <div class="form-group">
               <label>Email</label>

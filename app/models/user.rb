@@ -18,6 +18,10 @@ class User < ApplicationRecord
   belongs_to :agency, -> { where role: :agent } , class_name: 'User', optional: true
   has_many :agents, class_name: 'User', foreign_key: 'agent_id'
 
+  has_one_attached :cover_photo
+  has_one_attached :avatar
+  has_many :social_links, as: :linkable
+
   # rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

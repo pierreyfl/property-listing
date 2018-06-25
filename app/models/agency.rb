@@ -20,3 +20,6 @@
 #   has_many :properties, through: :agents
 #   has_one :user, as: :userable
 # end
+
+class Agency < User
+end
