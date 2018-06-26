@@ -30,8 +30,8 @@
     <%= form.text_area :description, id: :classified_listing_description %>
   </div>
 
-  <%= form.fields_for :services do |service_form| %>
-  <%= render 'service_fields', f: service_form %>
+  <% form.fields_for :services do |service_form| %>
+    <%= render 'service_fields', f: service_form %>
   <% end %>
 
   <div class="add-service">

@@ -11,7 +11,8 @@ class AgenciesController < ApplicationController
   end
 
   def edit
-    @agency = Agency.find(param[:id])
+    @agency = Agency.find(params[:id])
+    @agency.social_links.build 
   end
 
 

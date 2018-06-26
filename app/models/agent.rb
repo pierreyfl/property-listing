@@ -4,7 +4,6 @@ class Agent < User
   has_many :social_links, as: :linkable
 
   def photo
-    'https://placeimg.com/150/150/people'
+    self[:photo] || 'http://placeholder.pics/svg/300/DEDEDE/555555/agent%20photo'
   end
-
 end

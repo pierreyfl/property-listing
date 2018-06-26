@@ -8,7 +8,6 @@ class AgentsController < ApplicationController
   def show
     @agent = Agent.find(params[:id])
     @properties = @agent.properties.page(params[:page]).per(3)
-
   end
 
   def index

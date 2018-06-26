@@ -27,6 +27,11 @@ Rails.application.routes.draw do
   root 'pages#index'
   get 'classfied_lists/index'
 
+  devise_scope :user do
+    get 'agency/register' => 'registrations#new', agency: true
+    get 'agent/register' => 'registrations#new', agent: true
+  end
+
   devise_for :users,
               path: '',
               path_names: {sign_in: 'login', sign_out: 'logout', edit: 'profile/:id', sign_up: 'register'},
