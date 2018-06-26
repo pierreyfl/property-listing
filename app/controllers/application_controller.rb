@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:fullname])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:fullname, :phone_number, :description, :date_of_birth, :interested_location, :first_name, :last_name, :year_of_birth, :country, :city, :state, :zipcode, :scenario, :income, :country_w, :country_w2, :country_w3])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :phone_number, :description, :date_of_birth, :interested_location, :first_name, :last_name, :year_of_birth, :country, :city, :state, :zipcode, :scenario, :income, :country_w, :country_w2, :country_w3])
   end
 
   def current_agency

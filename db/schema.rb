@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_25_132551) do
+ActiveRecord::Schema.define(version: 2018_06_26_095751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -431,7 +431,7 @@ ActiveRecord::Schema.define(version: 2018_06_25_132551) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "fullname"
+    t.string "name"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -467,6 +467,8 @@ ActiveRecord::Schema.define(version: 2018_06_25_132551) do
     t.integer "role", default: 0
     t.integer "agent_id"
     t.string "type"
+    t.integer "agency_id"
+    t.index ["agency_id"], name: "index_users_on_agency_id"
     t.index ["agent_id"], name: "index_users_on_agent_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

@@ -68,7 +68,7 @@ class ReservationsController < ApplicationController
       @client.messages.create(
       from: '+18582958001',
       to: room.user.phone_number,
-      body: "#{reservation.user.fullname} booked your '#{room.listing_name}'"
+      body: "#{reservation.user.name} booked your '#{room.listing_name}'"
       )
     end
 

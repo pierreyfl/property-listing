@@ -1,25 +1,20 @@
 class AgenciesController < ApplicationController
 
   def index
-    @agencies = User.where(role: :agency).page(params[:page]).per(3)
+    @agencies = Agency.all.page(params[:page]).per(3)
   end
 
   def show
     @contact = Contact.new
     @agency = Agency.find(params[:id])
-    @properties = Property.all.page(params[:page]).per(3)
-    # @properties = @agency.properties.page(params[:page]).per(3)
+    @properties = @agency.properties.page(params[:page]).per(3)
   end
 
   def edit
-    @agency = User.find(param[:id])
+    @agency = Agency.find(param[:id])
   end
 
-  def show
-    @room = Room.find(params[:id])
-    @photos = @room.photos
-    @guest_reviews = @room.guest_reviews
-  end
+
 
   def create
     email = agency_params[:email]
