@@ -41,6 +41,6 @@
     </div>
   </div>
 </div> -->
-<%= render 'agency_dashboard' do %>
-  <h4>Agency Dashboard</h4>
+<%= render "#{current_user.type.downcase}_dashboard" do %>
+  <h4><%= current_user.type %> Dashboard</h4>
 <% end %>

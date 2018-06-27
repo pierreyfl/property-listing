@@ -118,4 +118,12 @@ class User < ApplicationRecord
     name
   end
 
+  def photo
+    self[:photo] || 'http://placeholder.pics/svg/276x264/DEDEDE/555555/Agency%20logo'
+  end
+
+  def type
+    self[:type] || 'User'
+  end
+
 end

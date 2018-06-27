@@ -1,0 +1,35 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>User Dashboard</h2>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li><a href="#">Dashboard</a></li>
+						<li>User</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row">
+		<!-- Widget -->
+		<div class="col-md-4">
+			<%= render "shared/sidebar" %>
+		</div>
+		<div class="col-md-8">
+      <%= yield %>
+    </div>
+  </div>
+</div>

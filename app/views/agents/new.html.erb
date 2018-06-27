@@ -10,6 +10,16 @@
           <%= f.text_field :email %>
         </div>
 
+        <div>
+          <%= f.label :password %>
+          <%= f.password_field :password, autocomplete: "off", class: "input-text" %>
+        </div>
+
+        <div>
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, autocomplete: "off", class: "input-text" %>
+        </div>
+
         <div class="">
           <label>Name</label>
           <%= f.text_field :name %>
@@ -23,11 +33,6 @@
         <div class="">
           <label>Cover Photo</label>
           <%= f.file_field :cover_photo %>
-        </div>
-
-        <div class="">
-          <label>Title</label>
-          <%= f.text_field :title %>
         </div>
 
         <div class="">
@@ -59,7 +64,7 @@
               ) %>
           </select>
         </div>
-        
+
         <div class="">
           <%= f.label :state %>
           <select name="agency[state]" data-placeholder="All States" class="chosen-select", id="state" >

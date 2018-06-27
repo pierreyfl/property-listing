@@ -5,7 +5,4 @@ class Agency < User
 
   has_many :properties, through: :agents
 
-  def photo
-    self[:photo] || 'http://placeholder.pics/svg/276x264/DEDEDE/555555/Agency%20logo'
-  end
 end
