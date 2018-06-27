@@ -28,8 +28,7 @@ Rails.application.routes.draw do
   get 'classfied_lists/index'
 
   devise_scope :user do
-    get 'agency/register' => 'registrations#new', agency: true
-    get 'agent/register' => 'registrations#new', agent: true
+    get 'agency/register' => 'registrations#new', agency: true, as: 'new_agency_registration'
   end
 
   devise_for :users,

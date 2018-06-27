@@ -31,13 +31,17 @@
 	<div class="col-md-4 col-md-offset-4">
 
   <% if current_page?(new_user_registration_path) %>
-    <button class="button"><i class="fa fa-home"></i> Register as Agency</button>
-  <% else %>
+		<%= link_to new_agency_registration_path do %>
+			<button class="button"><i class="fa fa-home"></i> Register as Agency</button>
+		<% end %>
+  <% elsif current_page?(new_user_session_path) %>
     <button class="button social-login via-twitter"><i class="fa fa-twitter"></i> Log In With Twitter</button>
     <button class="button social-login via-gplus"><i class="fa fa-google-plus"></i> Log In With Google Plus</button>
     <%= link_to user_facebook_omniauth_authorize_path, class:"button social-login via-facebook" do %>
     <i class="fa fa-facebook"></i> Log In With Facebook
     <% end %>
+	<% else %>
+		<h2>Register As Agency</h2>
   <% end %>
 
 	<!--Tab -->

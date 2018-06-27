@@ -127,7 +127,7 @@
     					<div class="user-menu">
     						<div class="user-name"><span><%= image_tag current_user.photo %></span>Hi, <%= current_user.name %></div>
     						<ul>
-    							<li><%= link_to edit_user_registration_path(current_user) do %><i class="sl sl-icon-user"></i> My Profile<% end %></li>
+    							<li><%= link_to dashboard_path do %><i class="im im-icon-Gear"></i> Dashboard<% end %></li>
     							<li><%= link_to bookmarked_listing_path do %><i class="sl sl-icon-star"></i> Bookmarks <% end %></li>
     							<li><a href="my-properties.html"><i class="sl sl-icon-docs"></i> My Properties</a></li>
     							<li>
