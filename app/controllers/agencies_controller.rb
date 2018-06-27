@@ -18,7 +18,7 @@ class AgenciesController < ApplicationController
   def update
     @agency = Agency.find(params[:id])
     if @agency.update(agency_params)
-      redirect_to @agency
+      redirect_to dashboard_path
     else
       # _TODO errors
     end

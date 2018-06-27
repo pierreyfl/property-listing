@@ -125,7 +125,7 @@
               <% if user_signed_in? %>
     					<!-- User Menu -->
     					<div class="user-menu">
-    						<div class="user-name"><span><%= image_tag "agent-03.jpg" %></span>Hi, <%= current_user.name %></div>
+    						<div class="user-name"><span><%= image_tag current_user.photo %></span>Hi, <%= current_user.name %></div>
     						<ul>
     							<li><%= link_to edit_user_registration_path(current_user) do %><i class="sl sl-icon-user"></i> My Profile<% end %></li>
     							<li><%= link_to bookmarked_listing_path do %><i class="sl sl-icon-star"></i> Bookmarks <% end %></li>
