@@ -16,7 +16,6 @@ class AgentsController < ApplicationController
   end
 
   def new
-    # @roles = current_agency.roles
   end
 
   def create

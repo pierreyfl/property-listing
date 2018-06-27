@@ -26,7 +26,7 @@
     <div class="row">
       <div class="col-md-4">
         <%= form.label :country %>
-        <select name="country" data-placeholder="Select Country" class="chosen-select", id="country" >
+        <select name="agency[country]" data-placeholder="Select Country" class="chosen-select", id="country" >
           <option value="">Select Country</option>
             <%= options_for_select(
               CS.countries.invert
@@ -35,14 +35,14 @@
       </div>
       <div class="col-md-4">
         <%= form.label :state %>
-        <select name="state" data-placeholder="All States" class="chosen-select", id="state" >
+        <select name="agency[state]" data-placeholder="All States" class="chosen-select", id="state" >
           <option value="">All States</option>
 
         </select>
       </div>
       <div class="col-md-4">
         <%= form.label :city %>
-        <select name="city" data-placeholder="All Cities" class="chosen-select" id="city" >
+        <select name="agency[city]" data-placeholder="All Cities" class="chosen-select" id="city" >
           <option value="">All Cities</option>
 
         </select>

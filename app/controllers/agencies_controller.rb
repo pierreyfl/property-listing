@@ -12,9 +12,17 @@ class AgenciesController < ApplicationController
 
   def edit
     @agency = Agency.find(params[:id])
-    @agency.social_links.build 
+    @agency.social_links.build if @agency.social_links.none?
   end
 
+  def update
+    @agency = Agency.find(params[:id])
+    if @agency.update(agency_params)
+      redirect_to @agency
+    else
+      # _TODO errors
+    end
+  end
 
 
   def create
@@ -35,7 +43,18 @@ class AgenciesController < ApplicationController
 
   private
   def agency_params
-    params.require(:agency).permit(:email, :name)
+    params.require(:agency).permit(
+      :email,
+      :name,
+      :city,
+      :country,
+      :state,
+      :zipcode,
+      :phone_number,
+      :photo,
+      :cover_photo,
+      social_links_attributes: [:id, :site, :url, :_destroy]
+    )
   end
 
   def authenticate_super_admin
