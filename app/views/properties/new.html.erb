@@ -27,7 +27,7 @@
 
 			<!-- Title -->
 			<div class="form">
-        
+
 				<h5>Property Title <i class="tip" data-tip-content="Type title that will also contains an unique feature of your property (e.g. renovated, air contidioned)"></i></h5>
          <%= f.text_field :name, class: "search-field" %>
 			</div>
@@ -61,7 +61,7 @@
             <%= f.number_field :price, data: {unit: "USD"} %>
 					</div>
 				</div>
-				
+
 				<!-- Area -->
 				<div class="col-md-4">
 					<h5>Area</h5>
@@ -70,7 +70,7 @@
 					</div>
 				</div>
 
-				<!-- Rooms -->			
+				<!-- Rooms -->
 				<div class="col-md-4">
 					<h5>Rooms</h5>
           <%= f.number_field :bedrooms %>
@@ -99,28 +99,41 @@
 			<div class="row with-forms">
 
 				<!-- Address -->
-				<div class="col-md-6">
+				<div class="col-md-12">
 					<h5>Address</h5>
            <%= f.text_field :address %>
-					<input type="text">
 				</div>
 
-				<!-- City -->
 				<div class="col-md-6">
-					<h5>City</h5>
-           <%= f.text_field :city, class: "search-field" %>
-					<input type="text">
-				</div>
+          <%= f.label :country %>
+          <select name="agency[country]" data-placeholder="Select Country" class="chosen-select", id="country" >
+            <option value="">Select Country</option>
+              <%= options_for_select(
+                CS.countries.invert
+              ) %>
+          </select>
+        </div>
 
-				<!-- City -->
-				<div class="col-md-6">
-					<h5>State</h5>
-           <%= f.text_field :state, class: "search-field" %>
-				</div>
+        <div class="col-md-6">
+          <%= f.label :state %>
+          <select name="agency[state]" data-placeholder="All States" class="chosen-select", id="state" >
+            <option value="">All States</option>
+
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <%= f.label :city %>
+          <select name="agency[city]" data-placeholder="All Cities" class="chosen-select" id="city" >
+            <option value="">All Cities</option>
+
+          </select>
+        </div>
+
 
 				<!-- Zip-Code -->
 				<div class="col-md-6">
-					<h5>Zip-Code</h5>
+					<%= f.label :zip, 'Zip-Code' %>
            <%= f.text_field :zip, class: "search-field" %>
 				</div>
 
@@ -148,7 +161,7 @@
 				<div class="col-md-6">
 					<h5>Building Age <span>(optional)</span></h5>
           <%= f.number_field :building_age %>
-					
+
 				</div>
 
 
@@ -165,7 +178,7 @@
 			<!-- Checkboxes -->
 			<h5 class="margin-top-30">Other Features <span>(optional)</span></h5>
 			<div class="checkboxes in-row margin-bottom-20">
-		
+
 				<input id="check-2" type="checkbox" name="check">
 				<label for="check-2">Air Conditioning</label>
 
@@ -176,7 +189,7 @@
 				<label for="check-4">Central Heating</label>
 
 				<input id="check-5" type="checkbox" name="check">
-				<label for="check-5">Laundry Room</label>	
+				<label for="check-5">Laundry Room</label>
 
 
 				<input id="check-6" type="checkbox" name="check">
@@ -187,7 +200,7 @@
 
 				<input id="check-8" type="checkbox" name="check">
 				<label for="check-8">Window Covering</label>
-		
+
 			</div>
 			<!-- Checkboxes / End -->
 
