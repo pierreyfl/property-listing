@@ -37,8 +37,7 @@
         <% @new_properties.each do |p| %>
 					<div class="carousel-item">
 					<div class="listing-item">
-
-						<a href="single-property-page-1.html" class="listing-img-container">
+            <%= link_to property_path(p) do %>
 
 							<div class="listing-badges">
 								<span><%= p.availability %></span>
@@ -58,8 +57,7 @@
 								</div>
 							</div>
 
-						</a>
-
+              <% end %>
 						<div class="listing-content">
 
 							<div class="listing-title">
