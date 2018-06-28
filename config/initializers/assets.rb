@@ -12,7 +12,7 @@ Dir.glob("#{Rails.root}/app/assets/theme/*").each do |path|
   Rails.application.config.assets.paths << path
 end
 
-Rails.application.config.assets.precompile += %w( scripts/switcher.js )
+Rails.application.config.assets.precompile += %w( scripts/switcher.js theme/images/* theme/images/listing-01.jpg )
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets

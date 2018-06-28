@@ -31,3 +31,7 @@ config/secrets.yml
 .idea
 public/system
 .gemrc
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+/storage/*

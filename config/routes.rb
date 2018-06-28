@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  resources :projects
+  resources :companies
+  resources :list_classifieds
+  resources :classified_listings
+  resources :properties, except: [:edit] do
+    member do
+      get 'listing'
+    end
+  end
+
 
   get 'analytics/show'
 
@@ -18,9 +28,13 @@ Rails.application.routes.draw do
   root 'pages#index'
   get 'classfied_lists/index'
 
+  devise_scope :user do
+    get 'agency/register' => 'registrations#new', agency: true, as: 'new_agency_registration'
+  end
+
   devise_for :users,
               path: '',
-              path_names: {sign_in: 'login', sign_out: 'logout', edit: 'profile/:id', sign_up: 'registration'},
+              path_names: {sign_in: 'login', sign_out: 'logout', edit: 'profile/:id', sign_up: 'register'},
               controllers: {omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}
 
   resources :users, only: [:show] do
@@ -51,7 +65,7 @@ Rails.application.routes.draw do
   resources :host_reviews, only: [:create, :destroy]
   resources :subscriptions
   post "/hook" => "subscriptions#hook"
-  
+
    scope '/admin' do
     get '/overview' => 'pages#overview'
     resources :packages do

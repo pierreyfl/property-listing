@@ -3,6 +3,8 @@
 @import "bootstrap-datepicker/bootstrap-datepicker";
 @import "theme";
 @import "properties";
+@import "list_classified";
+@import "direct_uploads";
 
 
 body {
@@ -12,7 +14,7 @@ body {
 }
 
 a {
-  color: #00A699;
+  color: #274abb;
 }
 
 .container {

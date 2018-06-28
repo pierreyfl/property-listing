@@ -31,5 +31,7 @@
 //= require turbolinks
 // = require react
 // = require react_ujs
-
+//= require cocoon
+//= require activestorage
+//= require direct_uploads
 //= require_tree .

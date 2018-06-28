@@ -1,6 +1,4 @@
 class AgenciesController < ApplicationController
-  # before_action :authenticate_user!
-  # before_action :authenticate_super_admin
 
   def index
     @agencies = Agency.all.page(params[:page]).per(3)
@@ -9,17 +7,21 @@ class AgenciesController < ApplicationController
   def show
     @contact = Contact.new
     @agency = Agency.find(params[:id])
-    @properties = Property.all.page(params[:page]).per(3)
-    # @properties = @agency.properties.page(params[:page]).per(3)
+    @properties = @agency.properties.page(params[:page]).per(3)
   end
 
-  def new
+  def edit
+    @agency = Agency.find(params[:id])
+    @agency.social_links.build if @agency.social_links.none?
   end
-  
-  def show
-    @room = Room.find(params[:id])
-    @photos = @room.photos
-    @guest_reviews = @room.guest_reviews
+
+  def update
+    @agency = Agency.find(params[:id])
+    if @agency.update(agency_params)
+      redirect_to dashboard_path
+    else
+      # _TODO errors
+    end
   end
 
 
@@ -41,15 +43,17 @@ class AgenciesController < ApplicationController
 
   private
   def agency_params
-    params.require(:agency)
-    .permit(
+    params.require(:agency).permit(
       :email,
       :name,
-      :description,
-      :contact_no,
-      :private,
-      :location,
-      :cover_photo
+      :city,
+      :country,
+      :state,
+      :zipcode,
+      :phone_number,
+      :photo,
+      :cover_photo,
+      social_links_attributes: [:id, :site, :url, :_destroy]
     )
   end
 

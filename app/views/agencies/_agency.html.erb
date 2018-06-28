@@ -3,7 +3,7 @@
 
   <a href="agency-page.html" class="">
   <%= link_to agency_path(agency), class: "agent-avatar" do %>
-    <%= image_tag agency.cover_photo.url %>
+    <%= image_tag agency.photo %>
   <% end %>
 
   <div class="agent-content">
@@ -13,7 +13,7 @@
       </h4>
       <span><i class="fa fa-map-marker"></i><%= agency.location %></span>
     </div>
-
+    <span><%= agency.properties.where(availability: "sale").count %> For Sale</span> | <span><%= agency.properties.where(availability: "rent").count %> For Rent</span>
     <p>
       <%= agency.description %>
     </p>
@@ -21,7 +21,7 @@
     <ul class="agent-contact-details">
       <li>
         <i class="sl sl-icon-call-in"></i>
-        <%= number_to_phone(agency.contact_no, area_code: true) %>
+        <%= number_to_phone(agency.phone_number, area_code: true) %>
       </li>
       <li>
         <%= mail_to agency.email do %>

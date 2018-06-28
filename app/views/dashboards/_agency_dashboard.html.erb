@@ -1,0 +1,55 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>Agency Dashboard</h2>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li>
+						  <%= link_to "Dashboard", dashboard_path %>
+						</li>
+						<li>Agent</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+
+    <!-- Sidebar  -->
+    <div class="col-md-4">
+      <div class="sidebar left">
+
+      	<div class="my-account-nav-container">
+      		<ul class="my-account-nav">
+      			<li class="sub-nav-title">Manage Agents</li>
+      			<li>
+              <%= link_to new_agent_path do %>
+                <i class="im im-icon-Add-User"></i> Add Agent
+              <% end %>
+            </li>
+      			<li>
+              <%= link_to agents_path do %>
+                <i class="sl sl-icon-star"></i> All Agents
+               <% end %>
+            </li>
+      		</ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-8">
+      <%= yield %>
+    </div>
+  </div>
+</div>

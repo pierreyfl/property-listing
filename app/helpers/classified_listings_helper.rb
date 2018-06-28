@@ -1,0 +1,2 @@
+module ClassifiedListingsHelper
+end

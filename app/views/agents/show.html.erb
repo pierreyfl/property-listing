@@ -59,6 +59,9 @@
                 <%= @agent.email %>
               <% end %>
             </li>
+						<li>
+              Properties: <%= @agent.properties.where(availability: "sale").count %> For Sale | <%= @agent.properties.where(availability: "rent").count %> For Rent
+            </li>
 					</ul>
 
 					<!-- social_links -->
@@ -77,14 +80,24 @@
 <!-- Content
 ================================================== -->
 <div class="container">
+  
+	
+  
 	<div class="row sticky-wrapper">
 
 		<div class="col-lg-8 col-md-8">
+    	<h3 class="desc-headline">Description</h3>
+    		<p>
+    			<%= @agent.description %>
+    		</p>
 
 			<h4 class="headline">My Listings</h4>
 
 			<!-- Main Search Input -->
-			<%= render "shared/search_field" %>
+		<div class="main-search-input margin-bottom-40">
+			<input type="text" class="ico-01" placeholder="Type an address or location" value=""/>
+			<button class="button">Search</button>
+		</div>
 
 			<!-- Sorting / Layout Switcher -->
 			<div class="row margin-bottom-15">
@@ -134,105 +147,30 @@
 
 		<!-- Sidebar -->
 		<div class="col-lg-4 col-md-4">
+			<!-- Agent Widget -->
+			<div class="agent-widget">
+				<div class="agent-title">
+					<div class="agent-photo"><%= image_tag "agent-avatar.jpg" %></div>
+					<div class="agent-details">
+						<h4><%= @agent.name %></h4>
+						<span><i class="sl sl-icon-call-in"></i><%= @agent.phone_number %></span>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+
+				<input type="text" placeholder="Your Email" pattern="^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$">
+				<input type="text" placeholder="Your Phone">
+				<textarea>I'm interested in this property [ID 123456] and I'd like to know more details.</textarea>
+				<button class="button fullwidth margin-top-5">Send Message</button>
+			</div>
+			<!-- Agent Widget / End -->
 			<div class="sidebar sticky right">
+        
 
         <%= render "search_widget" %>
 
 
 				<!-- Widget -->
-				<div class="widget margin-top-55">
-					<h3 class="margin-bottom-35">Featured Properties</h3>
-
-					<div class="listing-carousel outer">
-						<!-- Item -->
-						<div class="item">
-							<div class="listing-item compact">
-
-								<a href="#" class="listing-img-container">
-
-									<div class="listing-badges">
-										<span class="featured">Featured</span>
-										<span>For Sale</span>
-									</div>
-
-									<div class="listing-img-content">
-										<span class="listing-compact-title">Eagle Apartments <i>$275,000</i></span>
-
-										<ul class="listing-hidden-content">
-											<li>Area <span>530 sq ft</span></li>
-											<li>Rooms <span>3</span></li>
-											<li>Beds <span>1</span></li>
-											<li>Baths <span>1</span></li>
-										</ul>
-									</div>
-
-									<img src="images/listing-01.jpg" alt="">
-								</a>
-
-							</div>
-						</div>
-						<!-- Item / End -->
-
-						<!-- Item -->
-						<div class="item">
-							<div class="listing-item compact">
-
-								<a href="#" class="listing-img-container">
-
-									<div class="listing-badges">
-										<span class="featured">Featured</span>
-										<span>For Sale</span>
-									</div>
-
-									<div class="listing-img-content">
-										<span class="listing-compact-title">Selway Apartments <i>$245,000</i></span>
-
-										<ul class="listing-hidden-content">
-											<li>Area <span>530 sq ft</span></li>
-											<li>Rooms <span>3</span></li>
-											<li>Beds <span>1</span></li>
-											<li>Baths <span>1</span></li>
-										</ul>
-									</div>
-
-									<img src="images/listing-02.jpg" alt="">
-								</a>
-
-							</div>
-						</div>
-						<!-- Item / End -->
-
-						<!-- Item -->
-						<div class="item">
-							<div class="listing-item compact">
-
-								<a href="#" class="listing-img-container">
-
-									<div class="listing-badges">
-										<span class="featured">Featured</span>
-										<span>For Sale</span>
-									</div>
-
-									<div class="listing-img-content">
-										<span class="listing-compact-title">Oak Tree Villas <i>$325,000</i></span>
-
-										<ul class="listing-hidden-content">
-											<li>Area <span>530 sq ft</span></li>
-											<li>Rooms <span>3</span></li>
-											<li>Beds <span>1</span></li>
-											<li>Baths <span>1</span></li>
-										</ul>
-									</div>
-
-									<img src="images/listing-03.jpg" alt="">
-								</a>
-
-							</div>
-						</div>
-						<!-- Item / End -->
-					</div>
-
-				</div>
 				<!-- Widget / End -->
 
 

@@ -1,0 +1,40 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="submit-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2><i class="fa fa-plus-circle"></i>Company Details</h2>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <%= render 'shared/sidebar' %>
+    </div>
+    <div class="col-md-8">
+			<%= form_for @classified_listing, url: wizard_path, method: :put do |form| %>
+
+				<h2>Company</h2>
+				<%= form.fields_for :company, @classified_listing.company || @classified_listing.build_company do |f| %>
+						<%= render 'company_fields', f: f %>
+				<% end %>
+
+				<div class="row">
+				  <div class="col-md-10">
+				    <%= link_to 'Cancel', classified_listing_path(@classified_listing), method: :delete  %>
+				  </div>
+				  <div class="col-md-2">
+				    <%= form.button 'Continue', class: "button preview margin-top-5"%>
+				  </div>
+				</div>
+
+			<% end %>
+    </div>
+  </div>
+</div>

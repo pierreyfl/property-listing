@@ -9,10 +9,11 @@ end
 gem 'faker'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.2'
+gem 'rails', '~> 5.2.0'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 
+gem 'bootsnap', require: false
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -67,7 +68,6 @@ gem 'toastr-rails', '~> 1.0'
 gem 'omniauth', '~> 1.6'
 gem 'omniauth-facebook', '~> 4.0'
 gem "paperclip", "~> 5.1.0"
-gem 'aws-sdk', '~> 2.8'
 gem 'geocoder', '~> 1.4'
 gem 'ransack', '~> 1.8'
 gem 'react-rails'
@@ -97,4 +97,12 @@ gem 'searchjoy', '~> 0.3.2'
 gem 'bitmask_attributes', '~> 1.0'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'paypal-sdk-rest'
+gem 'simple_form'
+
+gem 'cocoon', '~> 1.2', '>= 1.2.11'
+gem 'wicked', '~> 1.3', '>= 1.3.2'
+
 gem 'mail_form', '~> 1.7', '>= 1.7.1'
+
+gem "aws-sdk-s3", require: false
+gem 'rack-cors', require: 'rack/cors'

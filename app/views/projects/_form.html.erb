@@ -1,0 +1,42 @@
+<%= simple_form_for project do |form| %>
+  <% if project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= form.association :users,   as: :check_boxes %>
+
+    <%= form.input :country %>
+
+    <%= form.input :building_name %>
+
+    <%= form.input :street_address %>
+
+    <%= form.input :suburb %>
+
+    <%= form.input :state %>
+
+    <%= form.input :postcode %>
+
+    <%= form.input :display_address %>
+
+    <%= form.input :title %>
+
+    <%= form.input :description %>
+
+    <%= form.input :key_features %>
+
+    <%= form.input :prefix %>
+
+    <%= form.input :currency %>
+
+    <%= form.input :price %>
+
+    <%= form.button :submit %>
+<% end %>

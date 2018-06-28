@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Projects</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Agent</th>
+      <th>Country</th>
+      <th>Building name</th>
+      <th>Street address</th>
+      <th>Suburb</th>
+      <th>State</th>
+      <th>Postcode</th>
+      <th>Display address</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Key features</th>
+      <th>Prefix</th>
+      <th>Currency</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.agent %></td>
+        <td><%= project.country %></td>
+        <td><%= project.building_name %></td>
+        <td><%= project.street_address %></td>
+        <td><%= project.suburb %></td>
+        <td><%= project.state %></td>
+        <td><%= project.postcode %></td>
+        <td><%= project.display_address %></td>
+        <td><%= project.title %></td>
+        <td><%= project.description %></td>
+        <td><%= project.key_features %></td>
+        <td><%= project.prefix %></td>
+        <td><%= project.currency %></td>
+        <td><%= project.price %></td>
+        <td><%= link_to 'Show', project %></td>
+        <td><%= link_to 'Edit', edit_project_path(project) %></td>
+        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project', new_project_path %>

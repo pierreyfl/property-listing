@@ -70,9 +70,9 @@
 /* ------------------------------------------------------------------- */
 /* 01. Import Section
 ---------------------------------------------------------------------- */
-@import url("bootstrap.css");					/* Default Reset, Typography, Forms, Responsive Grid etc. */
-@import url("icons.css");						/* Webfont Icons: FontAwesome, Line, Simple Line */
-@import url("http://fonts.googleapis.com/css?family=Varela+Round");
+@import "bootstrap";					/* Default Reset, Typography, Forms, Responsive Grid etc. */
+@import "icons";						/* Webfont Icons: FontAwesome, Line, Simple Line */
+@import url("https://fonts.googleapis.com/css?family=Varela+Round");
 
 
 /* ------------------------------------------------------------------- */
@@ -2615,7 +2615,7 @@ input.second-slider-value {
 	width: 28px;
 	height: 28px;
 	display: block;
-	background-image: url(compare-icon.svg);
+	background-image: asset-url('compare-icon.svg');
 	background-repeat: no-repeat;
 	background-size: 28px;
 }
@@ -2657,7 +2657,7 @@ span.like-icon {
     width: 21px;
     height: 21px;
     display: inline-block;
-    background-image: url(compare-icon-black.svg);
+    background-image: asset-url('compare-icon-black.svg');
     background-repeat: no-repeat;
     background-size: 21px;
     position: relative;
@@ -5548,7 +5548,7 @@ section.fullwidth .blog-post { margin: 5px 0 0 0; }
 	text-align: center;
 	border-radius: 50%;
 	background-color: #66676b;
-	background-image: url(plus-icon.svg);
+	background-image: asset-url('plus-icon.svg');
 	background-repeat: no-repeat;
 	background-position: 50%
 }
@@ -10345,11 +10345,11 @@ body .notification strong { border: none; }
 /* Web Font */
 @font-face {
   font-family: 'fontello';
-  src: url('fontello.eot');
-  src: url('fontello.eot') format('embedded-opentype'),
-	   url('fontello.woff') format('woff'),
-	   url('fontello.ttf') format('truetype'),
-	   url('fontello.svg') format('svg');
+  src: asset-url('fontello.eot');
+  src: asset-url('fontello.eot') format('embedded-opentype'),
+	   asset-url('fontello.woff') format('woff'),
+	   asset-url('fontello.ttf') format('truetype'),
+	   asset-url('fontello.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }

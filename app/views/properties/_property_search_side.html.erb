@@ -8,6 +8,7 @@
 
       <!-- Title -->
       <h4 class="search-title">Find Your Home</h4>
+      <p><%= link_to "Save Search", searches_path(:results_found => @properties.total_entries ), method: :post, remote: true, id: "save-search" %></p>
 
       <!-- Form -->
       <div class="main-search-box no-shadow">
@@ -26,7 +27,7 @@
             <div class="col-fs-3">
               <select name="tab" data-placeholder="Any Status" class="chosen-select-no-single" >
                   <%= options_for_select(
-                    { 'Any Status' => :any,
+                    { 'All Status' => :any,
                       'For Sale' => :sale,
                       'For Rent' => :rent
                     }, session[:filters][:availability]
@@ -38,7 +39,7 @@
             <div class="col-fs-3">
               <select name="type" data-placeholder="Any Type" class="chosen-select-no-single" >
                 <%= options_for_select(
-                  { 'Any Type' => :any,
+                  { 'All Property Type' => :any,
                     'Apartments' => :apartment,
                     'Houses' => :house,
                     'Comercial' => :commercial,
@@ -143,7 +144,7 @@
           <a href="#" class="more-search-options-trigger margin-top-20" data-open-title="More Options" data-close-title="Less Options"></a>
 
           <!-- Save Search Button-->
-          <%= link_to "Save Search", searches_path(:results_found => @properties.total_entries ), method: :post, remote: true, id: "save-search" ,class: "button medium border" %>
+          
 
           <div class="more-search-options relative">
             <div class="more-search-options-container margin-top-30">

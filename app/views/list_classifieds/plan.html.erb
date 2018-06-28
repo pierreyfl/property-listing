@@ -1,0 +1,52 @@
+
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="submit-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2><i class="fa fa-plus-circle"></i>Company Details</h2>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <%= render 'shared/sidebar' %>
+    </div>
+    <div class="col-md-8">
+
+    <%= form_for @classified_listing, url: wizard_path, method: :put do |form| %>
+      <% ListingPlan.all.each do |plan| %>
+      <div class="row">
+			<div class="col-md-4">
+
+				<!-- Blog Post -->
+				<div class="blog-post">
+
+					<!-- Content -->
+					<div class="post-content">
+						<h3 style="text-align: center;"><%= form.label plan.name, class: 'listing-plan-label' %></h3>
+						<h3 class="package-price" style="text-align: center;">$<%= plan.price %></h3>
+            <p style="text-align: center;"><%= plan.duration %> Days Listing Period </p>
+						<%= form.radio_button :listing_plan_id, plan.id, class: 'listing-plan-radio' %>
+					</div>
+					
+
+				</div>
+				<!-- Blog Post / End -->
+
+			</div>
+         </div>
+      <% end %>
+
+      <%= form.submit 'Continue' %>
+    <% end %>
+
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-3">
     <div class="center">
       <%= image_tag avatar_url(current_user), class: "avatar-full" %>
@@ -20,24 +20,27 @@
       </div>
     </div>
   </div>
-  <div class="col-md-9">
+  <div class="col-md-9"> -->
 
     <!-- Notification -->
-    <div class="panel panel-default">
+    <!-- <div class="panel panel-default">
       <div class="panel-heading">Notifications</div>
       <div class="panel-body">
         <%= link_to notifications_path do %>
           You have <span id="num_of_unread"><%= current_user.unread %></span> notification(s).
         <% end %>
       </div>
-    </div>
+    </div> -->
 
     <!-- Your Listings -->
-    <div class="panel panel-default">
+    <!-- <div class="panel panel-default">
       <div class="panel-heading">Your Listings (<%= @rooms.length %>)</div>
       <div class="panel-body">
         <%= render partial: "rooms/rooms_list", locals: {rooms: @rooms} %>
       </div>
     </div>
   </div>
-</div>
+</div> -->
+<%= render "#{current_user.type.downcase}_dashboard" do %>
+  <h4><%= current_user.type %> Dashboard</h4>
+<% end %>

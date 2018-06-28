@@ -1,0 +1,27 @@
+<%= render 'dashboards/agency_dashboard' do %>
+  <h4>Agents List</h4>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @agents.each_with_index do |agent, index| %>
+        <tr>
+          <th scope="row"><%= index.next %></th>
+          <td><%= agent.name %></td>
+          <td><%= agent.email %></td>
+          <td><%= agent.created_at %></td>
+        </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+
+
+<% end %>

@@ -1,7 +1,6 @@
 class User < ApplicationRecord
 
   include Likeable::UserMethods
-  has_many :properties
   has_many :subscriptions
 
   has_settings do |s|
@@ -13,13 +12,21 @@ class User < ApplicationRecord
       }
   end
 
-  rolify
+  enum role: [:regular, :admin, :agency, :agent]
+
+
+
+  has_one_attached :cover_photo
+  has_one_attached :photo
+
+
+  # rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: %i[facebook] #:confirmable
 
-  validates :fullname, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 50 }
   has_many :rooms
   has_many :reservations
 
@@ -28,7 +35,7 @@ class User < ApplicationRecord
   has_many :guest_reviews, class_name: "GuestReview", foreign_key: "guest_id"
   has_many :host_reviews, class_name: "HostReview", foreign_key: "host_id"
   has_many :notifications
-
+  has_many :properties
 
   # Use polymorphic association since agent and agency admin need login feature, the reason for not using STI(single table inheritance)
   # is under the consideration of future maintenance.
@@ -55,7 +62,7 @@ class User < ApplicationRecord
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
         user.email = auth.info.email
         user.password = Devise.friendly_token[0,20]
-        user.fullname = auth.info.name   # assuming the user model has a name
+        user.name = auth.info.name   # assuming the user model has a name
         user.image = auth.info.image # assuming the user model has an image
         user.uid = auth.uid
         user.provider = auth.provider
@@ -90,16 +97,33 @@ class User < ApplicationRecord
   end
 
   # helper method for creating super admin account in rails console
-  def self.create_super_admin(email:, password:, fullname:)
+  def self.create_super_admin(email:, password:, name:)
     transaction do
-      user = User.create!(email: email, password: password, fullname: fullname)
+      user = User.create!(email: email, password: password, name: name)
       user.add_role :super_admin
     end
   end
 
-  def agency
-    role = self.roles.where(resource_type: "Agency").first
-    Agency.find_by(id: role.resource_id)
+  # def agency
+  #   role = self.roles.where(resource_type: "Agency").first
+  #   Agency.find_by(id: role.resource_id)
+  # end
+
+  def location
+    [country, city, state].join(' ')
+  end
+  
+  # temporary method
+  def fullname
+    name
+  end
+
+  def photo
+    self[:photo] || 'http://placeholder.pics/svg/276x264/DEDEDE/555555/Agency%20logo'
+  end
+
+  def type
+    self[:type] || 'User'
   end
 
 end

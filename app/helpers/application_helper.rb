@@ -12,4 +12,13 @@ module ApplicationHelper
     "https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_BNB4XU1h6OSfGzZNXQhIRtCZi7FTJee5&scope=read_write"
   end
 
+  def active_class(path)
+    current_page?(path) ? "active" : ""
+  end
+
+
+  def cp(path)
+    "current" if current_page?(path)
+  end
+  
 end

@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180611175941) do
+ActiveRecord::Schema.define(version: 2018_06_28_090508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "agencies", force: :cascade do |t|
     t.string "name"
@@ -28,6 +49,15 @@ ActiveRecord::Schema.define(version: 20180611175941) do
     t.string "cover_photo_content_type"
     t.integer "cover_photo_file_size"
     t.datetime "cover_photo_updated_at"
+  end
+
+  create_table "agency_applications", force: :cascade do |t|
+    t.string "name"
+    t.string "title"
+    t.string "phone"
+    t.string "email"
+    t.string "company"
+    t.text "message"
   end
 
   create_table "agents", force: :cascade do |t|
@@ -61,8 +91,8 @@ ActiveRecord::Schema.define(version: 20180611175941) do
     t.string "name"
     t.jsonb "properties"
     t.datetime "time"
-    t.index "properties jsonb_path_ops", name: "index_ahoy_events_on_properties_jsonb_path_ops", using: :gin
     t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
+    t.index ["properties"], name: "index_ahoy_events_on_properties_jsonb_path_ops", opclass: :jsonb_path_ops, using: :gin
     t.index ["user_id"], name: "index_ahoy_events_on_user_id"
     t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
   end
@@ -117,12 +147,53 @@ ActiveRecord::Schema.define(version: 20180611175941) do
     t.index ["room_id"], name: "index_calendars_on_room_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categorizations", id: false, force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "classified_listing_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_categorizations_on_category_id"
+    t.index ["classified_listing_id"], name: "index_categorizations_on_classified_listing_id"
+  end
+
   create_table "classfied_lists", force: :cascade do |t|
     t.string "title"
     t.decimal "price"
     t.integer "time_length"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "classified_listings", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "listing_plan_id"
+    t.index ["listing_plan_id"], name: "index_classified_listings_on_listing_plan_id"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.bigint "classified_listing_id"
+    t.string "name"
+    t.string "country"
+    t.string "state"
+    t.string "city"
+    t.string "street"
+    t.string "building"
+    t.string "zip_code"
+    t.string "email"
+    t.string "phone_number"
+    t.string "website"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classified_listing_id"], name: "index_companies_on_classified_listing_id"
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -132,21 +203,12 @@ ActiveRecord::Schema.define(version: 20180611175941) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "favorites", force: :cascade do |t|
-    t.string "favoritable_type", null: false
-    t.integer "favoritable_id", null: false
-    t.string "favoritor_type", null: false
-    t.integer "favoritor_id", null: false
-    t.string "scope", default: "favorite", null: false
-    t.boolean "blocked", default: false, null: false
+  create_table "listing_plans", force: :cascade do |t|
+    t.string "name"
+    t.integer "duration"
+    t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["blocked"], name: "index_favorites_on_blocked"
-    t.index ["favoritable_id", "favoritable_type"], name: "fk_favoritables"
-    t.index ["favoritable_type", "favoritable_id"], name: "index_favorites_on_favoritable_type_and_favoritable_id"
-    t.index ["favoritor_id", "favoritor_type"], name: "fk_favorites"
-    t.index ["favoritor_type", "favoritor_id"], name: "index_favorites_on_favoritor_type_and_favoritor_id"
-    t.index ["scope"], name: "index_favorites_on_scope"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -186,6 +248,31 @@ ActiveRecord::Schema.define(version: 20180611175941) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.index ["room_id"], name: "index_photos_on_room_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "country"
+    t.string "building_name"
+    t.string "street_address"
+    t.string "suburb"
+    t.string "state"
+    t.string "postcode"
+    t.boolean "display_address"
+    t.string "title"
+    t.text "description"
+    t.text "key_features", default: [], array: true
+    t.string "prefix"
+    t.string "currency"
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "projects_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "project_id", null: false
   end
 
   create_table "properties", force: :cascade do |t|
@@ -262,17 +349,6 @@ ActiveRecord::Schema.define(version: 20180611175941) do
     t.index ["room_id"], name: "index_reviews_on_room_id"
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
-    t.string "resource_type"
-    t.bigint "resource_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-    t.index ["name"], name: "index_roles_on_name"
-    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
-  end
-
   create_table "room_visits", force: :cascade do |t|
     t.integer "user_id"
     t.string "email"
@@ -336,6 +412,14 @@ ActiveRecord::Schema.define(version: 20180611175941) do
     t.index ["user_id"], name: "index_searchjoy_searches_on_user_id"
   end
 
+  create_table "services", force: :cascade do |t|
+    t.string "name"
+    t.bigint "classified_listing_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classified_listing_id"], name: "index_services_on_classified_listing_id"
+  end
+
   create_table "settings", id: :serial, force: :cascade do |t|
     t.string "var", null: false
     t.text "value"
@@ -381,7 +465,7 @@ ActiveRecord::Schema.define(version: 20180611175941) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "fullname"
+    t.string "name"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -414,24 +498,24 @@ ActiveRecord::Schema.define(version: 20180611175941) do
     t.string "country_w3"
     t.boolean "admin"
     t.integer "wallet", default: 0
+    t.integer "role", default: 0
+    t.integer "agent_id"
+    t.string "type"
+    t.integer "agency_id"
+    t.index ["agency_id"], name: "index_users_on_agency_id"
+    t.index ["agent_id"], name: "index_users_on_agent_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "users_roles", id: false, force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "role_id"
-    t.index ["role_id"], name: "index_users_roles_on_role_id"
-    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
-    t.index ["user_id"], name: "index_users_roles_on_user_id"
-  end
-
   add_foreign_key "calendars", "rooms"
+  add_foreign_key "classified_listings", "listing_plans"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "photos", "rooms"
+  add_foreign_key "projects", "users"
   add_foreign_key "properties", "users"
   add_foreign_key "reservations", "rooms"
   add_foreign_key "reservations", "users"

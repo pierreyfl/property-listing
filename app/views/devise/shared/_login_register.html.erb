@@ -1,0 +1,70 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>Log In & Register</h2>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li>Log In & Register</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Contact
+================================================== -->
+
+<!-- Container -->
+<div class="container">
+
+	<div class="row">
+	<div class="col-md-4 col-md-offset-4">
+
+  <% if current_page?(new_user_registration_path) %>
+		<%= link_to new_agency_registration_path do %>
+			<button class="button"><i class="fa fa-home"></i> Register as Agency</button>
+		<% end %>
+  <% elsif current_page?(new_user_session_path) %>
+    <button class="button social-login via-twitter"><i class="fa fa-twitter"></i> Log In With Twitter</button>
+    <button class="button social-login via-gplus"><i class="fa fa-google-plus"></i> Log In With Google Plus</button>
+    <%= link_to user_facebook_omniauth_authorize_path, class:"button social-login via-facebook" do %>
+    <i class="fa fa-facebook"></i> Log In With Facebook
+    <% end %>
+	<% else %>
+		<h2>Register As Agency</h2>
+  <% end %>
+
+	<!--Tab -->
+	<div class="my-account style-1 margin-top-5 margin-bottom-40">
+
+		<ul class="tabs-nav">
+			<li class="<%= active_class(new_user_session_path) %>">
+        <%= link_to 'Log In', new_user_session_path, id: :login %>
+      </li>
+			<li class="<%= active_class(new_user_registration_path) %>">
+        <%= link_to 'Register', new_user_registration_path %>
+      </li>
+		</ul>
+
+		<div class="tabs-container alt">
+    	<%= yield %>
+		</div>
+	</div>
+
+
+
+	</div>
+	</div>
+
+</div>
+<!-- Container / End -->

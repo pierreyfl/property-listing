@@ -1,0 +1,15 @@
+<div class="nested-fields">
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.label :site %>
+      <%= f.collection_select(:site, SocialLink.sites, :first, :first, {} ,{class: 'chosen-select'} ) %>
+    </div>
+    <div class="col-md-7">
+      <%= f.label :url %>
+      <%= f.text_field :url %>
+    </div>
+    <div class="col-md-1">
+      <%= link_to_remove_association 'Remove', f, class: 'button margin-top-35' %>
+    </div>
+  </div>
+</div>

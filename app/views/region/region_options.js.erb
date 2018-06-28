@@ -1,5 +1,0 @@
-<% if @cities %>
-  $('.citySelect').replaceWith("<%= escape_javascript(render partial: 'city_selections', locals: {cities: @cities}) %>")
-<% elsif @states %>
-  $('.stateSelect').replaceWith("<%= escape_javascript(render partial: 'state_selections', locals: {states: @states}) %>")
-<% end %>

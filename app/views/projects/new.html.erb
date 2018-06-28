@@ -1,0 +1,26 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="submit-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2><i class="fa fa-plus-circle"></i> Create Project</h2>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+<div class="row">
+
+	<!-- Submit Page -->
+  <%= render 'form', project: @project %>
+</div>
+</div>
+
+
+
+<%= link_to 'Back', projects_path %>

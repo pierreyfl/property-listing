@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-md-12">
 
-				<h2><%= @agency.name.humanize %></h2>
+				<h2><%= @agency.fullname.humanize %></h2>
 
 				<!-- Breadcrumbs -->
 				<nav id="breadcrumbs">
@@ -18,7 +18,7 @@
 						  <%= link_to "Agencies", agencies_path %>
 						</li>
 						<li>
-						  <%= @agency.name.humanize %>
+						  <%= @agency.fullname.humanize %>
 						</li>
 					</ul>
 				</nav>
@@ -148,8 +148,6 @@
 
 				</div>
 				<!-- Widget / End -->
-
-
 
 			</div>
 		</div>
