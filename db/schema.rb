@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_26_095751) do
+ActiveRecord::Schema.define(version: 2018_06_28_090508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,24 @@ ActiveRecord::Schema.define(version: 2018_06_26_095751) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "search_visibility", default: 0, null: false
+    t.string "location"
+    t.string "contact_no"
+    t.text "description"
+    t.string "email"
+    t.string "cover_photo_file_name"
+    t.string "cover_photo_content_type"
+    t.integer "cover_photo_file_size"
+    t.datetime "cover_photo_updated_at"
+  end
+
+  create_table "agency_applications", force: :cascade do |t|
+    t.string "name"
+    t.string "title"
+    t.string "phone"
+    t.string "email"
+    t.string "company"
+    t.text "message"
   end
 
   create_table "agents", force: :cascade do |t|
@@ -64,6 +82,7 @@ ActiveRecord::Schema.define(version: 2018_06_26_095751) do
     t.string "cover_photo_content_type"
     t.integer "cover_photo_file_size"
     t.datetime "cover_photo_updated_at"
+    t.integer "search_visibility", default: 0, null: false
   end
 
   create_table "ahoy_events", force: :cascade do |t|
@@ -231,12 +250,36 @@ ActiveRecord::Schema.define(version: 2018_06_26_095751) do
     t.index ["room_id"], name: "index_photos_on_room_id"
   end
 
+  create_table "projects", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "country"
+    t.string "building_name"
+    t.string "street_address"
+    t.string "suburb"
+    t.string "state"
+    t.string "postcode"
+    t.boolean "display_address"
+    t.string "title"
+    t.text "description"
+    t.text "key_features", default: [], array: true
+    t.string "prefix"
+    t.string "currency"
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "projects_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "project_id", null: false
+  end
+
   create_table "properties", force: :cascade do |t|
     t.string "name"
     t.integer "agent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "approved"
     t.integer "bedrooms"
     t.integer "bathrooms"
     t.text "description"
@@ -250,6 +293,7 @@ ActiveRecord::Schema.define(version: 2018_06_26_095751) do
     t.integer "amenities"
     t.decimal "area"
     t.bigint "user_id"
+    t.boolean "approved"
     t.string "city"
     t.string "state"
     t.string "zip"
@@ -273,16 +317,6 @@ ActiveRecord::Schema.define(version: 2018_06_26_095751) do
     t.datetime "updated_at", null: false
     t.string "listing_type"
     t.string "single_multi"
-  end
-
-  create_table "property_preferences", force: :cascade do |t|
-    t.bigint "user_id"
-    t.integer "room_id"
-    t.boolean "favourite", default: false
-    t.boolean "saved", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_property_preferences_on_user_id"
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -449,7 +483,6 @@ ActiveRecord::Schema.define(version: 2018_06_26_095751) do
     t.string "interested_location"
     t.integer "userable_id"
     t.string "userable_type"
-    t.boolean "admin"
     t.string "first_name"
     t.string "last_name"
     t.integer "year_of_birth"
@@ -463,6 +496,7 @@ ActiveRecord::Schema.define(version: 2018_06_26_095751) do
     t.string "country_w"
     t.string "country_w2"
     t.string "country_w3"
+    t.boolean "admin"
     t.integer "wallet", default: 0
     t.integer "role", default: 0
     t.integer "agent_id"
@@ -481,8 +515,8 @@ ActiveRecord::Schema.define(version: 2018_06_26_095751) do
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "photos", "rooms"
+  add_foreign_key "projects", "users"
   add_foreign_key "properties", "users"
-  add_foreign_key "property_preferences", "users"
   add_foreign_key "reservations", "rooms"
   add_foreign_key "reservations", "users"
   add_foreign_key "reviews", "reservations"

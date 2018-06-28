@@ -39,11 +39,25 @@
               <% end %>
             </li>
       			<li>
+              <%= link_to my_properties_path do %>
+                <i class="im im-icon-Home-5"></i> My Properties
+               <% end %>
+            </li>
+      			<li>
               <%= link_to agents_path do %>
                 <i class="im im-icon-Home-5"></i> All Properties
                <% end %>
             </li>
       		</ul>
+      		<ul class="my-account-nav">
+      			<li class="sub-nav-title">Manage Projects</li>
+      			<li>
+              <%= link_to new_property_path do %>
+                <i class="sl sl-icon-action-redo"></i> Create Project
+              <% end %>
+            </li>
+      		</ul>
+          
         </div>
 
       </div>

@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  agent: one
+  country: MyString
+  building_name: MyString
+  street_address: MyString
+  suburb: MyString
+  state: MyString
+  postcode: MyString
+  display_address: false
+  title: MyString
+  description: MyText
+  key_features: MyText
+  prefix: MyString
+  currency: MyString
+  price: 9.99
+
+two:
+  agent: two
+  country: MyString
+  building_name: MyString
+  street_address: MyString
+  suburb: MyString
+  state: MyString
+  postcode: MyString
+  display_address: false
+  title: MyString
+  description: MyText
+  key_features: MyText
+  prefix: MyString
+  currency: MyString
+  price: 9.99

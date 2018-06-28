@@ -1,0 +1,153 @@
+<div class="main-search-container">
+  <h2>Find Classified Listings</h2>
+
+  <!-- Main Search -->
+  <%= form_with(url: properties_path, class: "main-search-form", local: true, method: :get) do |f| %>
+
+    <!-- Type -->
+    <div class="search-type">
+      <label class="active">
+        <%= f.radio_button :tab, :any, class: 'first-tab', checked: true %>Any Status
+      </label>
+      <label>
+        <%= f.radio_button :tab, :sale %>For Sale
+      </label>
+      <label>
+        <%= f.radio_button :tab, :rent %>For Rent
+      </label>
+      <div class="search-type-arrow"></div>
+    </div>
+
+
+    <!-- Box -->
+    <div class="main-search-box">
+
+      <!-- Main Search Input -->
+      <div class="main-search-input larger-input">
+        <%= f.text_field :near, id: :searchbox, placeholder: "Enter address e.g. street, city and state or zip", class: "ico-01"  %>
+        <button class="button">Search</button>
+      </div>
+
+      <!-- Row -->
+      <div class="row with-forms">
+
+        <!-- Property Type -->
+        <div class="col-md-4">
+          <select name="type" data-placeholder="Any Type" class="chosen-select-no-single" >
+            <option value="any">Any Type</option>
+            <% %w(apartment house commercial garage lot).each do |type| %>
+            <%= content_tag(:option, type.capitalize, value: type) %>
+            <% end %>
+          </select>
+        </div>
+
+        <!-- Min Price -->
+        <div class="col-md-4">
+
+          <!-- Select Input -->
+          <div class="select-input">
+            <%= f.text_field 'price[min]', placeholder: 'Min price', data: {unit: "USD"} %>
+          </div>
+          <!-- Select Input / End -->
+
+        </div>
+
+
+        <!-- Max Price -->
+        <div class="col-md-4">
+
+          <!-- Select Input -->
+          <div class="select-input">
+            <%= f.text_field 'price[max]', placeholder: 'Max price', data: {unit: "USD"} %>
+          </div>
+          <!-- Select Input / End -->
+
+        </div>
+
+      </div>
+      <!-- Row / End -->
+
+
+      <!-- More Search Options -->
+      <a href="#" class="more-search-options-trigger" data-open-title="More Options" data-close-title="Less Options"></a>
+
+      <div class="more-search-options">
+        <div class="more-search-options-container">
+
+          <!-- Row -->
+          <div class="row with-forms">
+
+            <!-- Min Price -->
+            <div class="col-md-6">
+
+              <!-- Select Input -->
+              <div class="select-input">
+                <%= f.text_field 'area[min]', placeholder: 'Min Area', data: {unit: "Sq Ft"} %>
+              </div>
+              <!-- Select Input / End -->
+
+            </div>
+
+            <!-- Max Price -->
+            <div class="col-md-6">
+
+              <!-- Select Input -->
+              <div class="select-input">
+                <%= f.text_field 'area[max]', placeholder: 'Max Area', data: {unit: "Sq Ft"} %>
+              </div>
+              <!-- Select Input / End -->
+
+            </div>
+
+          </div>
+          <!-- Row / End -->
+
+
+          <!-- Row -->
+          <div class="row with-forms">
+
+            <!-- Min Area -->
+            <div class="col-md-6">
+              <select name="bedrooms" data-placeholder="Beds" class="chosen-select-no-single" >
+                <option label="blank"></option>
+                <option value="any">Beds (Any)</option>
+                <% (1..5).to_a.each do |option| %>
+                  <%= content_tag(:option, option, value: option) %>
+                <% end %>
+              </select>
+            </div>
+
+            <!-- Max Area -->
+            <div class="col-md-6">
+              <select data-placeholder="Baths" class="chosen-select-no-single" >
+                <option label="blank"></option>
+                <% (1..5).to_a.unshift('Beds (Any)').each do |option| %>
+                  <%= content_tag(:option, option, value: option) %>
+                <% end %>
+              </select>
+            </div>
+
+          </div>
+          <!-- Row / End -->
+
+
+          <!-- Checkboxes -->
+          <div class="checkboxes in-row">
+
+            <%= amenities_check_list_helper %>
+
+          </div>
+          <!-- Checkboxes / End -->
+
+        </div>
+      </div>
+      <!-- More Search Options / End -->
+
+
+    </div>
+    <!-- Box / End -->
+
+  <% end %>
+  <!-- Main Search -->
+
+</div>

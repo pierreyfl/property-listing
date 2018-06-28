@@ -352,6 +352,9 @@ GEM
     selenium-webdriver (3.12.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
+    simple_form (4.0.1)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
     sixarm_ruby_unaccent (1.2.0)
     social-share-button (1.1.0)
       coffee-rails
@@ -461,6 +464,7 @@ DEPENDENCIES
   searchjoy (~> 0.3.2)
   searchkick (~> 3.1)
   selenium-webdriver
+  simple_form
   social-share-button (~> 1.1)
   spring
   spring-watcher-listen (~> 2.0.0)

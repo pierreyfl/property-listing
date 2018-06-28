@@ -155,7 +155,7 @@ class PagesController < ApplicationController
   end
 
   def index
-
+    @new_properties = Property.last(10)
   end
 
 

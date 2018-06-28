@@ -13,7 +13,7 @@
       </h4>
       <span><i class="fa fa-map-marker"></i><%= agency.location %></span>
     </div>
-
+    <span><%= agency.properties.where(availability: "sale").count %> For Sale</span> | <span><%= agency.properties.where(availability: "rent").count %> For Rent</span>
     <p>
       <%= agency.description %>
     </p>

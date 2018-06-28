@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Agent:</strong>
+  <%= @project.users %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @project.country %>
+</p>
+
+<p>
+  <strong>Building name:</strong>
+  <%= @project.building_name %>
+</p>
+
+<p>
+  <strong>Street address:</strong>
+  <%= @project.street_address %>
+</p>
+
+<p>
+  <strong>Suburb:</strong>
+  <%= @project.suburb %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @project.state %>
+</p>
+
+<p>
+  <strong>Postcode:</strong>
+  <%= @project.postcode %>
+</p>
+
+<p>
+  <strong>Display address:</strong>
+  <%= @project.display_address %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @project.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @project.description %>
+</p>
+
+<p>
+  <strong>Key features:</strong>
+  <%= @project.key_features %>
+</p>
+
+<p>
+  <strong>Prefix:</strong>
+  <%= @project.prefix %>
+</p>
+
+<p>
+  <strong>Currency:</strong>
+  <%= @project.currency %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @project.price %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

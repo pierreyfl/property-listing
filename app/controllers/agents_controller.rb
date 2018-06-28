@@ -38,7 +38,12 @@ class AgentsController < ApplicationController
       :email,
       :name,
       :password,
-      :password_confirmation
+      :password_confirmation,
+      :city,
+      :country,
+      :phone_number,
+      :description,
+      :state
     )
   end
 

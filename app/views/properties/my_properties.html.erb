@@ -29,7 +29,30 @@
 
 		<!-- Widget -->
 		<div class="col-md-4">
+      <% if current_user.agency_id == nil %>
 			<%= render "shared/sidebar" %>
+      <% else %>
+    	<div class="my-account-nav-container">
+    		<ul class="my-account-nav">
+    			<li class="sub-nav-title">Manage Properties</li>
+    			<li>
+            <%= link_to new_property_path do %>
+              <i class="sl sl-icon-action-redo"></i> List Property
+            <% end %>
+          </li>
+    			<li>
+            <%= link_to my_properties_path do %>
+              <i class="im im-icon-Home-5"></i> My Properties
+             <% end %>
+          </li>
+    			<li>
+            <%= link_to agents_path do %>
+              <i class="im im-icon-Home-5"></i> All Properties
+             <% end %>
+          </li>
+    		</ul>
+      </div>
+      <% end %>
 		</div>
 
 		<div class="col-md-8">
@@ -42,79 +65,30 @@
 				</tr>
 
 				<!-- Item #1 -->
+        <% @properties.each do |p| %>
 				<tr>
 					<td class="title-container">
 						<img src="images/listing-02.jpg" alt="">
 						<div class="title">
-							<h4><a href="#">Serene Uptown</a></h4>
-							<span>6 Bishop Ave. Perkasie, PA </span>
-							<span class="table-property-price">$900 / monthly</span>
+							<h4><%= link_to p.name, property_path(p) %></h4>
+							<span><%= p.address %></span>
+							<span class="table-property-price"><% if p.availability == "rent"%><%= p.price %> / monthly <% end %></span>
 						</div>
 					</td>
-					<td class="expire-date">December 30, 2016</td>
+					<td class="expire-date">December 30, 2018</td>
 					<td class="action">
-						<a href="#"><i class="fa fa-pencil"></i> Edit</a>
-						<a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-						<a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+            <%= link_to edit_property_path(p) do %>
+						  <i class="fa fa-pencil"></i> Edit
+              <% end %>
+              <%= link_to property_url(p), method: :delete,
+                                                data: { confirm: "You sure?" } do %>
+						<i class="fa fa-remove"></i> Delete
+            <% end %>
 					</td>
 				</tr>
-
-				<!-- Item #2 -->
-				<tr>
-					<td class="title-container">
-						<img src="images/listing-05.jpg" alt="">
-						<div class="title">
-							<h4><a href="#">Oak Tree Villas</a></h4>
-							<span>71 Lower River Dr. Bronx, NY</span>
-							<span class="table-property-price">$535,000</span>
-						</div>
-					</td>
-					<td class="expire-date">December 12, 2016</td>
-					<td class="action">
-						<a href="#"><i class="fa fa-pencil"></i> Edit</a>
-						<a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-						<a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-					</td>
-				</tr>
-
-				<!-- Item #3 -->
-				<tr>
-					<td class="title-container">
-						<img src="images/listing-04.jpg" alt="">
-						<div class="title">
-							<h4><a href="#">Selway Apartments</a></h4>
-							<span>33 William St. Northbrook, IL </span>
-							<span class="table-property-price">$420,000</span>
-						</div>
-					</td>
-					<td class="expire-date">December 04, 2016</td>
-					<td class="action">
-						<a href="#"><i class="fa fa-pencil"></i> Edit</a>
-						<a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-						<a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-					</td>
-				</tr>
-
-				<!-- Item #4 -->
-				<tr>
-					<td class="title-container">
-						<img src="images/listing-06.jpg" alt="">
-						<div class="title">
-							<h4><a href="#">Old Town Manchester</a></h4>
-							<span> 7843 Durham Avenue, MD  </span>
-							<span class="table-property-price">$420,000</span>
-						</div>
-					</td>
-					<td class="expire-date">November 27, 2016</td>
-					<td class="action">
-						<a href="#"><i class="fa fa-pencil"></i> Edit</a>
-						<a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-						<a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-					</td>
-				</tr>
+<% end %>
 
 			</table>
-			<a href="submit-property.html" class="margin-top-40 button">Submit New Property</a>
 		</div>
 
 	</div>

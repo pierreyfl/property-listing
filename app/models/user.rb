@@ -35,7 +35,7 @@ class User < ApplicationRecord
   has_many :guest_reviews, class_name: "GuestReview", foreign_key: "guest_id"
   has_many :host_reviews, class_name: "HostReview", foreign_key: "host_id"
   has_many :notifications
-
+  has_many :properties
 
   # Use polymorphic association since agent and agency admin need login feature, the reason for not using STI(single table inheritance)
   # is under the consideration of future maintenance.

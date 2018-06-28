@@ -16,4 +16,9 @@ module ApplicationHelper
     current_page?(path) ? "active" : ""
   end
 
+
+  def cp(path)
+    "current" if current_page?(path)
+  end
+  
 end
