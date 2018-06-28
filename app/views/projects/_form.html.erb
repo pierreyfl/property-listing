@@ -1,4 +1,4 @@
-<%= form_with(model: project, local: true) do |form| %>
+<%= simple_form_for project do |form| %>
   <% if project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -10,78 +10,33 @@
       </ul>
     </div>
   <% end %>
+    <%= form.association :users,   as: :check_boxes %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
+    <%= form.input :country %>
 
-  <div class="field">
-    <%= form.label :country %>
-    <%= form.text_field :country %>
-  </div>
+    <%= form.input :building_name %>
 
-  <div class="field">
-    <%= form.label :building_name %>
-    <%= form.text_field :building_name %>
-  </div>
+    <%= form.input :street_address %>
 
-  <div class="field">
-    <%= form.label :street_address %>
-    <%= form.text_field :street_address %>
-  </div>
+    <%= form.input :suburb %>
 
-  <div class="field">
-    <%= form.label :suburb %>
-    <%= form.text_field :suburb %>
-  </div>
+    <%= form.input :state %>
 
-  <div class="field">
-    <%= form.label :state %>
-    <%= form.text_field :state %>
-  </div>
+    <%= form.input :postcode %>
 
-  <div class="field">
-    <%= form.label :postcode %>
-    <%= form.text_field :postcode %>
-  </div>
+    <%= form.input :display_address %>
 
-  <div class="field">
-    <%= form.label :display_address %>
-    <%= form.check_box :display_address %>
-  </div>
+    <%= form.input :title %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+    <%= form.input :description %>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
+    <%= form.input :key_features %>
 
-  <div class="field">
-    <%= form.label :key_features %>
-    <%= form.text_area :key_features %>
-  </div>
+    <%= form.input :prefix %>
 
-  <div class="field">
-    <%= form.label :prefix %>
-    <%= form.text_field :prefix %>
-  </div>
+    <%= form.input :currency %>
 
-  <div class="field">
-    <%= form.label :currency %>
-    <%= form.text_field :currency %>
-  </div>
+    <%= form.input :price %>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <%= form.button :submit %>
 <% end %>
