@@ -28,6 +28,20 @@
 ================================================== -->
 <div class="container">
 	<div class="row">
+		<div class="col-md-12">      
+			<%= search_form_for @q do |f| %>
+				<div class="col-md-4">
+					<%= select_tag "sort_agency", options_for_select([ "Name (A to Z)", "Name (Z to A)" ], params["sort_agency"]) %>
+				</div>
+				<div class="col-md-6">
+					<%= f.search_field :name_or_city_or_state_or_country_cont, class: 'ico-01', placeholder: "Type an agency name or location" %>
+				</div>
+				<div class="col-md-2">
+					<%= f.submit "Search", class: "button search-button" %>
+				</div>
+			<% end %>
+		</div>
+
 		<div class="col-md-12">
       <%= render @agencies %>
 		</div>

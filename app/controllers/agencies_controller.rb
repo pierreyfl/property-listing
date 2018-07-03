@@ -2,6 +2,16 @@ class AgenciesController < ApplicationController
 
   def index
     @agencies = Agency.all.page(params[:page]).per(3)
+    @q = Agency.ransack(params[:q])
+    @agencies = @q.result(distinct: true)
+    if params["sort_agency"].present?
+      if params["sort_agency"] == "Name (A to Z)"
+        @agencies = @agencies.order(name: :asc)
+      else
+        @agencies = @agencies.order(name: :desc)
+      end
+    end
+    @agencies = @agencies.page(params[:page]).per(3)
   end
 
   def show
