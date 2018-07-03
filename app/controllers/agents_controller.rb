@@ -14,7 +14,16 @@ class AgentsController < ApplicationController
       @agents = current_user.agents.page(params[:page]).per(3)
       render 'dashboards/agents_list'
     else
-      @agents = Agent.all.page(params[:page]).per(3)
+      @q = Agent.ransack(params[:q])
+      @agents = @q.result(distinct: true)
+      if params["sort_agent"].present?
+        if params["sort_agent"] == "Name (A to Z)"
+          @agents = @agents.order(name: :asc)
+        else
+          @agents = @agents.order(name: :desc)
+        end
+      end
+      @agents = @agents.page(params[:page]).per(3)
     end
   end
 
