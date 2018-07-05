@@ -19,8 +19,12 @@ class AgentsController < ApplicationController
       if params["sort_agent"].present?
         if params["sort_agent"] == "Name (A to Z)"
           @agents = @agents.order(name: :asc)
+        elsif params["sort_agency"] == "Name (Z to A)"
+          @agents = @agents.order(name: :desc)          
+        elsif params["sort_agency"] == "Most Properties for sale"
+          @agents = @agents.order(num_of_sold_properties: :desc)        
         else
-          @agents = @agents.order(name: :desc)
+          @agents = @agents.order(num_of_rent_properties: :desc)
         end
       end
       @agents = @agents.page(params[:page]).per(3)

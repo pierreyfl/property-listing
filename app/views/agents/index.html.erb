@@ -32,7 +32,7 @@
     <div class="col-md-12">      
       <%= search_form_for @q do |f| %>
         <div class="col-md-4">
-          <%= select_tag "sort_agent", options_for_select([ "Name (A to Z)", "Name (Z to A)" ], params["sort_agent"]) %>
+          <%= select_tag "sort_agent", options_for_select([ "Name (A to Z)", "Name (Z to A)", "Most Properties for sale", "Most properties for rent" ], params["sort_agent"]), onchange: 'this.form.submit();' %>
         </div>
         <div class="col-md-6">
           <%= f.search_field :name_or_city_or_state_or_country_cont, class: 'ico-01', placeholder: "Type an agent name or location" %>
