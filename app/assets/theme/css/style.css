@@ -2322,6 +2322,16 @@ a.adv-search-btn.active i.fa.fa-caret-up { transform: rotate(-540deg); }
 	height: 51px;
 }
 
+.reset-filter-button {
+	width: auto;
+	min-width: 150px !important;
+	margin: 0 !important;
+	position: relative;
+	margin-left: 0px !important;
+	flex: 0 auto !important;
+	height: 51px;
+}
+
 .larger-input button.button,
 .larger-input input {
 	height: 55px;
